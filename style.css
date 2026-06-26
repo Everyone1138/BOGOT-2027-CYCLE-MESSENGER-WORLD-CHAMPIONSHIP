@@ -16,6 +16,15 @@ body {
     font-family: 'Anton', sans-serif;
 }
 
+
+.brand-icon {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
 .bg-beige {
     background-color: var(--beige);
 }
