@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycle Messenger World Championships Bogotá 2027</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Punk & Arcade Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Press+Start+2P&family=Rubik+Glitch&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+         :root {
+            --neon-pink: #d9bb7a;
+            --neon-cyan: #ead9b7;
+            --neon-green: #b78d49;
+            --neon-yellow: #f7e8c6;
+            --dark-bg: #020202;
+            --grid-color: rgba(234, 217, 183, 0.1);
+        }
+        
+        body {
+            font-family: 'Bebas Neue', sans-serif;
+            background-color: var(--dark-bg);
+            color: #fff;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+        /* CRT Scanline Effect */
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient( rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.3;
+        }
+        /* Screen Flicker Animation */
+        
+        @keyframes flicker {
+            0% {
+                opacity: 0.97;
+            }
+            5% {
+                opacity: 0.95;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            15% {
+                opacity: 0.95;
+            }
+            20% {
+                opacity: 0.99;
+            }
+            50% {
+                opacity: 0.95;
+            }
+            100% {
+                opacity: 0.98;
+            }
+        }
+        
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 255, 0.03);
+            pointer-events: none;
+            z-index: 9998;
+            animation: flicker 0.15s infinite;
+        }
+        /* Glitch Effect */
+        
+        .glitch {
+            position: relative;
+            animation: glitch-skew 1s infinite;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-cyan);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--neon-pink);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(30px, 9999px, 15px, 0);
+            }
+            20% {
+                clip: rect(85px, 9999px, 95px, 0);
+            }
+            40% {
+                clip: rect(10px, 9999px, 65px, 0);
+            }
+            60% {
+                clip: rect(70px, 9999px, 90px, 0);
+            }
+            80% {
+                clip: rect(25px, 9999px, 35px, 0);
+            }
+            100% {
+                clip: rect(55px, 9999px, 80px, 0);
+            }
+        }
+        
+        @keyframes glitch-anim2 {
+            0% {
+                clip: rect(65px, 9999px, 95px, 0);
+            }
+            20% {
+                clip: rect(15px, 9999px, 35px, 0);
+            }
+            40% {
+                clip: rect(80px, 9999px, 20px, 0);
+            }
+            60% {
+                clip: rect(40px, 9999px, 60px, 0);
+            }
+            80% {
+                clip: rect(90px, 9999px, 10px, 0);
+            }
+            100% {
+                clip: rect(5px, 9999px, 45px, 0);
+            }
+        }
+        
+        @keyframes glitch-skew {
+            0% {
+                transform: skew(0deg);
+            }
+            10% {
+                transform: skew(-2deg);
+            }
+            20% {
+                transform: skew(2deg);
+            }
+            30% {
+                transform: skew(0deg);
+            }
+            100% {
+                transform: skew(0deg);
+            }
+        }
+        /* Custom Scrollbar - Neon Style */
+        
+         ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background: #000;
+            border: 1px solid var(--neon-cyan);
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+        /* Neon Text Glow */
+        
+        .neon-text {
+            text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
+        }
+        
+        .neon-border {
+            box-shadow: 0 0 5px currentColor, inset 0 0 5px currentColor;
+        }
+        /* Arcade Button Style */
+        
+        .arcade-btn {
+            font-family: 'Press Start 2P', cursive;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            position: relative;
+            border: 4px solid;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+            transition: all 0.1s;
+            box-shadow: 0 4px 0 #000, 0 0 15px currentColor;
+        }
+        
+        .arcade-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #000, 0 0 10px currentColor;
+        }
+        /* Punk Spray Paint Effect */
+        
+        .spray-text {
+            font-family: 'Permanent Marker', cursive;
+            transform: rotate(-2deg);
+            filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.8));
+        }
+        /* Grid Background */
+        
+        .cyber-grid {
+            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center center;
+        }
+        /* Health Bar Style */
+        
+        .health-bar {
+            height: 20px;
+            background: #333;
+            border: 2px solid #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .health-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+            box-shadow: 0 0 10px var(--neon-green);
+            transition: width 0.5s ease;
+        }
+        /* Pixel Borders */
+        
+        .pixel-border {
+            border: 4px solid;
+            border-image: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan)) 1;
+            clip-path: polygon( 0 10px, 10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px));
+        }
+        /* Noise Texture */
+        
+        .noise {
+            position: relative;
+        }
+        
+        .noise::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.4"/%3E%3C/svg%3E');
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
+        /* Map Container */
+        
+        #map {
+            height: 500px;
+            width: 100%;
+            z-index: 1;
+        }
+        /* Carousel Styles */
+        
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+        }
+        /* Gallery Hover Effect */
+        
+        .gallery-item {
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        /* Form Animation */
+        
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+        /* Custom Marker Cluster - Neon Style */
+        
+        .country-marker {
+            background: #d9bb7a;
+            border: 2px solid #fff;
+            border-radius: 0;
+            color: #000;
+            font-weight: bold;
+            text-align: center;
+            line-height: 30px;
+            box-shadow: 0 0 20px #d9bb7a, inset 0 0 10px rgba(0, 0, 0, 0.2);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+        }
+        
+        .custom-div-icon {
+            background: transparent;
+            border: none;
+        }
+        /* Scanning animation for map markers */
+        
+        @keyframes radar-ping {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        /* ===== CMWC Bogotá 2027 Official Crest Theme Override ===== */
+        
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cormorant+Garamond:wght@500;600;700&display=swap');
+         :root {
+            --official-black: #020202;
+            --official-gold: #e8d6b0;
+            --official-gold-deep: #b78d49;
+            --official-gold-soft: #f6e8c8;
+            --official-line: rgba(232, 214, 176, .34);
+            --official-panel: rgba(8, 7, 5, .82);
+            --neon-pink: var(--official-gold);
+            --neon-cyan: var(--official-gold-soft);
+            --neon-green: var(--official-gold-deep);
+            --neon-yellow: var(--official-gold-soft);
+            --dark-bg: var(--official-black);
+            --grid-color: rgba(232, 214, 176, .08);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: radial-gradient(circle at 20% 10%, rgba(232, 214, 176, .13), transparent 22rem), radial-gradient(circle at 80% 35%, rgba(183, 141, 73, .10), transparent 26rem), linear-gradient(135deg, #000 0%, #070604 48%, #000 100%) !important;
+            color: var(--official-gold) !important;
+            font-family: 'Cormorant Garamond', serif !important;
+            cursor: default !important;
+        }
+        
+        body::before {
+            background: linear-gradient(rgba(232, 214, 176, .035) 50%, rgba(0, 0, 0, .22) 50%), repeating-linear-gradient(90deg, transparent 0 7px, rgba(232, 214, 176, .025) 7px 8px) !important;
+            background-size: 100% 5px, 28px 28px !important;
+            opacity: .45 !important;
+        }
+        
+        body::after {
+            background: radial-gradient(circle, rgba(232, 214, 176, .045), transparent 45%) !important;
+            animation: none !important;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        nav,
+        .arcade-btn,
+        label,
+        button,
+        .font-\['Press_Start_2P'\] {
+            font-family: 'Cinzel', serif !important;
+            letter-spacing: .13em !important;
+        }
+        
+        p,
+        input,
+        select,
+        textarea,
+        li {
+            font-family: 'Cormorant Garamond', serif !important;
+        }
+        
+        .spray-text {
+            transform: none !important;
+            filter: none !important;
+        }
+        
+        .glitch {
+            animation: none !important;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            display: none !important;
+        }
+        
+        .neon-text,
+        [style*="text-shadow"] {
+            text-shadow: 0 0 12px rgba(232, 214, 176, .18), 0 2px 0 rgba(0, 0, 0, .8) !important;
+        }
+        
+        .cyber-grid {
+            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px), radial-gradient(circle at center, rgba(232, 214, 176, .06), transparent 55%) !important;
+            background-size: 64px 64px, 64px 64px, cover !important;
+        }
+        
+        nav {
+            background: rgba(0, 0, 0, .92) !important;
+            border-color: var(--official-gold) !important;
+            box-shadow: 0 1px 0 var(--official-gold), 0 14px 42px rgba(0, 0, 0, .72) !important;
+        }
+        
+        nav a,
+        nav span {
+            color: var(--official-gold) !important;
+        }
+        
+        nav a:hover {
+            color: #fff3d1 !important;
+            transform: translateY(-2px) scale(1.03) !important;
+        }
+        
+        .crest-icon {
+            filter: drop-shadow(0 0 10px rgba(232, 214, 176, .35));
+            transition: transform .35s ease;
+        }
+        
+        .crest-icon:hover {
+            transform: rotate(-6deg) scale(1.12);
+        }
+        
+        .official-hero-logo {
+            width: min(390px, 76vw);
+            height: auto;
+            filter: drop-shadow(0 0 24px rgba(232, 214, 176, .25));
+            opacity: .98;
+        }
+        
+        .interactive-float {
+            animation: officialFloat 4.2s ease-in-out infinite;
+        }
+        
+        @keyframes officialFloat {
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+            50% {
+                transform: translateY(-10px)
+            }
+        }
+        
+        section {
+            border-bottom: 1px solid rgba(232, 214, 176, .16);
+        }
+        
+        .arcade-btn {
+            background: transparent !important;
+            color: var(--official-gold) !important;
+            border: 2px solid var(--official-gold) !important;
+            clip-path: none !important;
+            box-shadow: inset 0 0 0 1px rgba(232, 214, 176, .18), 0 0 22px rgba(232, 214, 176, .14) !important;
+            border-radius: 999px !important;
+            transition: transform .25s ease, background .25s ease, color .25s ease, box-shadow .25s ease !important;
+        }
+        
+        .arcade-btn:hover,
+        button:hover {
+            background: var(--official-gold) !important;
+            color: #050505 !important;
+            box-shadow: 0 0 34px rgba(232, 214, 176, .25) !important;
+            transform: translateY(-2px) !important;
+        }
+        
+        .pixel-border,
+        .gallery-item,
+        form,
+        #map,
+        .bg-black\/90,
+        .bg-black\/80,
+        .bg-black\/50,
+        .bg-black {
+            border-color: rgba(232, 214, 176, .72) !important;
+            box-shadow: inset 0 0 0 1px rgba(232, 214, 176, .14), 0 22px 80px rgba(0, 0, 0, .45) !important;
+        }
+        
+        .gallery-item,
+        .carousel-container,
+        form,
+        #successMessage,
+        #countryStats>div {
+            background: linear-gradient(145deg, rgba(12, 10, 7, .96), rgba(0, 0, 0, .92)) !important;
+        }
+        
+        .carousel-slide img,
+        .gallery-item img,
+        #lightboxImage {
+            filter: grayscale(.22) sepia(.42) contrast(1.1) brightness(.78) saturate(.75) !important;
+        }
+        
+        .gallery-item:hover img,
+        .carousel-slide:hover img {
+            transform: scale(1.06) !important;
+            filter: grayscale(0) sepia(.30) contrast(1.14) brightness(.9) saturate(.9) !important;
+        }
+        
+        input,
+        select,
+        textarea {
+            background: rgba(0, 0, 0, .74) !important;
+            color: var(--official-gold-soft) !important;
+            border: 1px solid rgba(232, 214, 176, .72) !important;
+            box-shadow: inset 0 0 18px rgba(232, 214, 176, .06) !important;
+            border-radius: 0 !important;
+        }
+        
+        input:focus,
+        select:focus {
+            border-color: var(--official-gold-soft) !important;
+            outline: none !important;
+            box-shadow: 0 0 0 3px rgba(232, 214, 176, .12), inset 0 0 18px rgba(232, 214, 176, .08) !important;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background: #000 !important;
+            border-color: var(--official-gold) !important;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: var(--official-gold-deep) !important;
+            box-shadow: 0 0 12px rgba(232, 214, 176, .35) !important;
+        }
+        
+        .leaflet-container {
+            filter: grayscale(.55) sepia(.65) brightness(.65) contrast(1.1);
+            background: #000 !important;
+        }
+        
+        .leaflet-popup-content-wrapper,
+        .leaflet-popup-tip {
+            background: #050505 !important;
+            color: var(--official-gold) !important;
+            border: 1px solid var(--official-gold) !important;
+        }
+        
+        .health-bar-fill,
+        .animate-pulse {
+            animation-duration: 2.2s !important;
+        }
+        
+        .noise::before {
+            opacity: .10 !important;
+        }
+        
+        [class*="text-[#"],
+        [class*="border-[#"],
+        [class*="bg-[#"] {
+            transition: all .25s ease;
+        }
+        
+        .group:hover,
+        .hover\:scale-110:hover {
+            transform: translateY(-3px) !important;
+        }
+        
+        .official-stamp {
+            position: fixed;
+            right: clamp(12px, 2vw, 28px);
+            bottom: clamp(12px, 2vw, 28px);
+            width: 92px;
+            opacity: .18;
+            pointer-events: none;
+            z-index: 40;
+            filter: drop-shadow(0 0 10px rgba(232, 214, 176, .2));
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: clamp(2.2rem, 12vw, 4.5rem) !important;
+            }
+            .official-stamp {
+                width: 64px;
+                opacity: .14;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <img src="./PajaroOficialCMWC2027.png" alt="CMWC 2027 bird watermark" class="official-stamp">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-black/90 border-b-4 border-[#d9bb7a] z-50 font-['Press_Start_2P'] text-xs md:text-sm" style="box-shadow: 0 0 20px rgba(217,187,122,0.5);">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="./PajaroOficialCMWC2027.png" alt="CMWC 2027 bird" class="w-10 h-10 object-contain crest-icon">
+                <span class="text-[#ead9b7] neon-text tracking-tighter text-lg">CMWC_2027</span>
+            </div>
+            <div class="hidden md:flex gap-6 text-[10px]">
+                <a href="#about" class="text-[#d9bb7a] hover:text-[#ead9b7] hover:scale-110 transition transform uppercase tracking-widest" style="text-shadow: 0 0 5px currentColor;">[ABOUT]</a>
+                <a href="#signup" class="text-[#b78d49] hover:text-[#f7e8c6] hover:scale-110 transition transform uppercase tracking-widest" style="text-shadow: 0 0 5px currentColor;">REGISTER</a>
+                <a href="#map-section" class="text-[#ead9b7] hover:text-[#d9bb7a] hover:scale-110 transition transform uppercase tracking-widest" style="text-shadow: 0 0 5px currentColor;">RIDERS_MAP</a>
+                <a href="#gallery" class="text-[#f7e8c6] hover:text-[#b78d49] hover:scale-110 transition transform uppercase tracking-widest" style="text-shadow: 0 0 5px currentColor;">GALLERY</a>
+            </div>
+            <button class="md:hidden text-[#d9bb7a]" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i data-lucide="menu" class="w-6 h-6" style="filter: drop-shadow(0 0 5px currentColor);"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-t-4 border-[#d9bb7a] p-4">
+            <a href="#about" class="block py-2 text-[#d9bb7a] font-['Press_Start_2P'] text-xs">ABOUT_SYS</a>
+            <a href="#signup" class="block py-2 text-[#b78d49] font-['Press_Start_2P'] text-xs">NEW_GAME</a>
+            <a href="#map-section" class="block py-2 text-[#ead9b7] font-['Press_Start_2P'] text-xs">RADAR</a>
+            <a href="#gallery" class="block py-2 text-[#f7e8c6] font-['Press_Start_2P'] text-xs">GALLERY</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Arcade Style -->
+    <section class="relative h-screen flex items-center justify-center cyber-grid overflow-hidden noise bg-black">
+        <!-- Scanline overlay for section -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#d9bb7a]/10 via-transparent to-[#ead9b7]/10 pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <!-- High Score Display -->
+            <div class="absolute top-20 left-4 font-['Press_Start_2P'] text-[#f7e8c6] text-xs hidden md:block" style="text-shadow: 0 0 10px #f7e8c6;">
+                <div>HI-SCORE</div>
+                <div>999999</div>
+            </div>
+
+            <div class="absolute top-20 right-4 font-['Press_Start_2P'] text-[#b78d49] text-xs hidden md:block" style="text-shadow: 0 0 10px #b78d49;">
+                <div>CREDITS</div>
+                <div>02</div>
+            </div>
+
+
+            <div class="mb-8 flex justify-center">
+                <img src="./LogoOficialCMWC2027.png" alt="CMWC Bogotá 2027 official logo" class="official-hero-logo interactive-float">
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-none glitch spray-text" data-text="CYCLE MESSENGER WORLD CHAMPIONSHIPS" style="font-family: 'Rubik Glitch', sans-serif; color: #d9bb7a; text-shadow: 4px 4px 0 #ead9b7, -2px -2px 0 #f7e8c6;">
+                BOGOTÁ 2027<br>
+                <span class="text-[#ead9b7]" style="text-shadow: 4px 4px 0 #d9bb7a;">CYCLE MESSENGER</span><br>
+                <span class="text-[#b78d49]" style="text-shadow: 4px 4px 0 #d9bb7a;">WORLD CHAMPIONSHIPS</span>
+            </h1>
+
+            <p class="text-xl md:text-2xl mb-8 text-[#a0a0a0] font-['Permanent_Marker'] tracking-wider transform -rotate-1">BOGOTÁ 2027 · MENSAJERÍA · CALLE · CAMPEONATO</p>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="#signup" class="arcade-btn bg-[#d9bb7a] border-[#d9bb7a] text-black hover:bg-[#f1dcae] text-sm md:text-base py-4 px-8" style="color: #000; box-shadow: 0 0 20px #d9bb7a;">
+                    REGISTER
+                </a>
+                <a href="#about" class="arcade-btn bg-transparent border-[#ead9b7] text-[#ead9b7] hover:bg-[#ead9b7] hover:text-black text-sm md:text-base py-4 px-8" style="box-shadow: 0 0 20px #ead9b7;">
+                    EVENT INFO
+                </a>
+            </div>
+
+            <!-- HUD Elements -->
+            <div class="mt-12 flex justify-center gap-8 text-xs font-['Press_Start_2P']">
+                <div class="flex flex-col items-center gap-2 text-[#d9bb7a]">
+                    <i data-lucide="calendar" class="w-6 h-6 animate-pulse" style="filter: drop-shadow(0 0 5px currentColor);"></i>
+                    <span>HOST CITY</span>
+                    <span>2027</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 text-[#ead9b7]">
+                    <i data-lucide="map-pin" class="w-6 h-6 animate-pulse" style="filter: drop-shadow(0 0 5px currentColor);"></i>
+                    <span>STREET LEVEL</span>
+                    <span>COLOMBIA</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 text-[#f7e8c6]">
+                    <i data-lucide="zap" class="w-6 h-6 animate-pulse" style="filter: drop-shadow(0 0 5px currentColor);"></i>
+                    <span>RIDE</span>
+                    <span>READY</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 animate-bounce text-[#b78d49] font-['Press_Start_2P'] text-xs" style="text-shadow: 0 0 10px #b78d49;">
+            SCROLL<br>
+            <i data-lucide="chevron-down" class="w-8 h-8 mx-auto"></i>
+        </div>
+    </section>
+
+    <!-- About Section with Carousel - Punk Arcade Style -->
+    <section id="about" class="py-20 bg-black cyber-grid relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#b78d49]/5 to-transparent pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-6xl font-bold mb-4 spray-text text-[#d9bb7a] glitch" data-text="THE EVENT">THE EVENT</h2>
+                <p class="text-[#ead9b7] max-w-2xl mx-auto font-['Press_Start_2P'] text-xs tracking-widest">WORLD COURIERS · BOGOTÁ 2027 · ONE CITY, MANY ROUTES</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="carousel-container pixel-border bg-black h-96 relative" style="box-shadow: 0 0 30px rgba(217,187,122,0.3);">
+                    <div class="absolute -top-8 left-4 bg-[#d9bb7a] text-black px-4 py-1 font-['Press_Start_2P'] text-xs z-20 transform -rotate-2 border-2 border-white" style="box-shadow: 4px 4px 0 #000;">
+                        SCREEN_01
+                    </div>
+                    <div class="carousel-track h-full" id="carouselTrack">
+                        <div class="carousel-slide relative h-full border-2 border-[#ead9b7]">
+                            <img src="http://static.photos/cityscape/1024x576/10" alt="Race 1" class="w-full h-full object-cover filter contrast-125 saturate-150">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 border-t-4 border-[#d9bb7a]">
+                                <p class="text-[#b78d49] font-['Press_Start_2P'] text-sm" style="text-shadow: 0 0 10px #b78d49;">URBAN_SPRINT_CHAOS</p>
+                                <div class="mt-2 h-2 w-full bg-gray-800 rounded overflow-hidden">
+                                    <div class="h-full bg-[#d9bb7a] w-3/4 animate-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide relative h-full border-2 border-[#ead9b7]">
+                            <img src="http://static.photos/people/1024x576/20" alt="Race 2" class="w-full h-full object-cover filter contrast-125 saturate-150">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 border-t-4 border-[#d9bb7a]">
+                                <p class="text-[#ead9b7] font-['Press_Start_2P'] text-sm" style="text-shadow: 0 0 10px #ead9b7;">CARGO_OVERLOAD_MODE</p>
+                                <div class="mt-2 h-2 w-full bg-gray-800 rounded overflow-hidden">
+                                    <div class="h-full bg-[#ead9b7] w-4/5 animate-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide relative h-full border-2 border-[#ead9b7]">
+                            <img src="http://static.photos/sport/1024x576/30" alt="Race 3" class="w-full h-full object-cover filter contrast-125 saturate-150">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 border-t-4 border-[#d9bb7a]">
+                                <p class="text-[#f7e8c6] font-['Press_Start_2P'] text-sm" style="text-shadow: 0 0 10px #f7e8c6;">ENDURANCE_BOSS_FIGHT</p>
+                                <div class="mt-2 h-2 w-full bg-gray-800 rounded overflow-hidden">
+                                    <div class="h-full bg-[#f7e8c6] w-5/6 animate-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="prevSlide()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-[#d9bb7a] hover:bg-[#f1dcae] p-3 border-2 border-white transition z-10" style="box-shadow: 4px 4px 0 #000;">
+                        <i data-lucide="chevron-left" class="w-6 h-6 text-black" style="filter: drop-shadow(0 0 2px #000);"></i>
+                    </button>
+                    <button onclick="nextSlide()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#ead9b7] hover:bg-[#fff2d2] p-3 border-2 border-white transition z-10" style="box-shadow: -4px 4px 0 #000;">
+                        <i data-lucide="chevron-right" class="w-6 h-6 text-black" style="filter: drop-shadow(0 0 2px #000);"></i>
+                    </button>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="flex gap-4 p-4 border-2 border-[#b78d49] bg-black/50 transform hover:translate-x-2 transition" style="box-shadow: 4px 4px 0 #b78d49;">
+                        <div class="bg-[#b78d49] p-3 h-fit" style="box-shadow: 0 0 15px #b78d49;">
+                            <i data-lucide="trophy" class="w-6 h-6 text-black"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2 text-[#b78d49] font-['Rubik_Glitch'] tracking-wider">CHAMPIONSHIP RACING</h3>
+                            <p class="text-gray-300 font-['Bebas_Neue'] text-lg tracking-wide">Riders from 40+ territories competing in high-octane cargo races, illegal sprints, and technical skill boss fights.</p>
+                            <div class="mt-2 h-1 w-full bg-gray-800">
+                                <div class="h-full bg-[#b78d49] w-4/5"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-4 border-2 border-[#d9bb7a] bg-black/50 transform hover:translate-x-2 transition" style="box-shadow: 4px 4px 0 #d9bb7a;">
+                        <div class="bg-[#d9bb7a] p-3 h-fit" style="box-shadow: 0 0 15px #d9bb7a;">
+                            <i data-lucide="globe" class="w-6 h-6 text-black"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2 text-[#d9bb7a] font-['Rubik_Glitch'] tracking-wider">GLOBAL MESSENGER CULTURE</h3>
+                            <p class="text-gray-300 font-['Bebas_Neue'] text-lg tracking-wide">Underground global collective. Anti-establishment. Pro-bike. We don't just race, we reclaim the streets.</p>
+                            <div class="mt-2 h-1 w-full bg-gray-800">
+                                <div class="h-full bg-[#d9bb7a] w-full animate-pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-4 border-2 border-[#ead9b7] bg-black/50 transform hover:translate-x-2 transition" style="box-shadow: 4px 4px 0 #ead9b7;">
+                        <div class="bg-[#ead9b7] p-3 h-fit" style="box-shadow: 0 0 15px #ead9b7;">
+                            <i data-lucide="skull" class="w-6 h-6 text-black"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2 text-[#ead9b7] font-['Rubik_Glitch'] tracking-wider">BIKES, STREETS, COMMUNITY</h3>
+                            <p class="text-gray-300 font-['Bebas_Neue'] text-lg tracking-wide">Zero emissions. Maximum chaos. Destroying car culture one delivery at a time. BIKES_NOT_BOMBS.</p>
+                            <div class="mt-2 h-1 w-full bg-gray-800">
+                                <div class="h-full bg-[#ead9b7] w-3/4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign Up Form Section - Arcade Cabinet Style -->
+    <section id="signup" class="py-20 bg-black cyber-grid relative">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#d9bb7a]/10 via-transparent to-[#ead9b7]/10 pointer-events-none"></div>
+
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-black/90 border-4 border-[#b78d49] overflow-hidden text-white relative" style="box-shadow: 0 0 40px rgba(183,141,73,0.3), inset 0 0 40px rgba(183,141,73,0.1);">
+                <!-- Arcade Cabinet Header -->
+                <div class="bg-[#b78d49] p-4 text-black text-center relative overflow-hidden border-b-4 border-white">
+                    <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;utf8,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 40L40 0H20L0 20M40 40V20L20 40\'/%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2 font-['Press_Start_2P'] relative z-10 tracking-tighter" style="text-shadow: 2px 2px 0 #fff;">RIDER REGISTRATION</h2>
+                    <p class="font-['Bebas_Neue'] text-xl tracking-widest relative z-10">JOIN THE BOGOTÁ 2027 RIDER LIST</p>
+                </div>
+
+                <!-- Decorative Screws -->
+                <div class="absolute top-2 left-2 w-4 h-4 rounded-full bg-gray-400 border-2 border-gray-600 z-20" style="box-shadow: inset 0 0 2px #000;"></div>
+                <div class="absolute top-2 right-2 w-4 h-4 rounded-full bg-gray-400 border-2 border-gray-600 z-20" style="box-shadow: inset 0 0 2px #000;"></div>
+
+                <form id="registrationForm" class="p-8 md:p-12 space-y-6 relative">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-['Press_Start_2P'] text-[#d9bb7a] mb-2" style="text-shadow: 0 0 5px #d9bb7a;">REGISTER_NAME</label>
+                            <input type="text" required class="w-full px-4 py-3 bg-black border-2 border-[#ead9b7] text-[#ead9b7] font-['Bebas_Neue'] text-xl tracking-wider focus:outline-none focus:border-[#d9bb7a] transition uppercase" style="box-shadow: 0 0 10px rgba(234,217,183,0.3), inset 0 0 10px rgba(234,217,183,0.1);"
+                                placeholder="ENTER_NAME">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-['Press_Start_2P'] text-[#d9bb7a] mb-2" style="text-shadow: 0 0 5px #d9bb7a;">CALLSIGN</label>
+                            <input type="text" required class="w-full px-4 py-3 bg-black border-2 border-[#ead9b7] text-[#ead9b7] font-['Bebas_Neue'] text-xl tracking-wider focus:outline-none focus:border-[#d9bb7a] transition uppercase" style="box-shadow: 0 0 10px rgba(234,217,183,0.3), inset 0 0 10px rgba(234,217,183,0.1);"
+                                placeholder="NICKNAME">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-['Press_Start_2P'] text-[#d9bb7a] mb-2" style="text-shadow: 0 0 5px #d9bb7a;">EMAIL</label>
+                        <input type="email" required class="w-full px-4 py-3 bg-black border-2 border-[#ead9b7] text-[#ead9b7] font-['Bebas_Neue'] text-xl tracking-wider focus:outline-none focus:border-[#d9bb7a] transition" style="box-shadow: 0 0 10px rgba(234,217,183,0.3), inset 0 0 10px rgba(234,217,183,0.1);"
+                            placeholder="RIDER@UNDERGROUND.NET">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-['Press_Start_2P'] text-[#d9bb7a] mb-2" style="text-shadow: 0 0 5px #d9bb7a;">COUNTRY / ORIGIN</label>
+                        <select id="countrySelect" required class="w-full px-4 py-3 bg-black border-2 border-[#ead9b7] text-[#ead9b7] font-['Bebas_Neue'] text-xl tracking-wider focus:outline-none focus:border-[#d9bb7a] transition uppercase" style="box-shadow: 0 0 10px rgba(234,217,183,0.3), inset 0 0 10px rgba(234,217,183,0.1);">
+                            <option value="" class="bg-black">SELECT_SECTOR...</option>
+                            <option value="USA" class="bg-black">UNITED_STATES_ZONE</option>
+                            <option value="Colombia" class="bg-black">COLOMBIA_SECTOR</option>
+                            <option value="UK" class="bg-black">UK_GRID</option>
+                            <option value="Japan" class="bg-black">JAPAN_NODE</option>
+                            <option value="Australia" class="bg-black">AUSTRALIA_ZONE</option>
+                            <option value="Canada" class="bg-black">CANADA_SECTOR</option>
+                            <option value="France" class="bg-black">FRANCE_GRID</option>
+                            <option value="Netherlands" class="bg-black">DUTCH_NODE</option>
+                            <option value="Denmark" class="bg-black">DENMARK_ZONE</option>
+                            <option value="Sweden" class="bg-black">SWEDEN_GRID</option>
+                            <option value="Switzerland" class="bg-black">SWISS_NODE</option>
+                            <option value="Belgium" class="bg-black">BELGIUM_SECTOR</option>
+                            <option value="Austria" class="bg-black">AUSTRIA_ZONE</option>
+                            <option value="Italy" class="bg-black">ITALY_GRID</option>
+                            <option value="Spain" class="bg-black">SPAIN_NODE</option>
+                            <option value="Brazil" class="bg-black">BRAZIL_SECTOR</option>
+                            <option value="Mexico" class="bg-black">MEXICO_ZONE</option>
+                            <option value="Argentina" class="bg-black">ARG_GRID</option>
+                            <option value="South Africa" class="bg-black">SA_NODE</option>
+                            <option value="New Zealand" class="bg-black">NZ_SECTOR</option>
+                            <option value="Singapore" class="bg-black">SINGAPORE_GRID</option>
+                            <option value="South Korea" class="bg-black">KOREA_NODE</option>
+                            <option value="China" class="bg-black">CHINA_ZONE</option>
+                            <option value="India" class="bg-black">INDIA_GRID</option>
+                            <option value="Poland" class="bg-black">POLAND_SECTOR</option>
+                            <option value="Czech Republic" class="bg-black">CZECH_NODE</option>
+                            <option value="Norway" class="bg-black">NORWAY_ZONE</option>
+                            <option value="Finland" class="bg-black">FINLAND_GRID</option>
+                            <option value="Ireland" class="bg-black">IRELAND_NODE</option>
+                            <option value="Portugal" class="bg-black">PORTUGAL_SECTOR</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-['Press_Start_2P'] text-[#b78d49] mb-3" style="text-shadow: 0 0 5px #b78d49;">RIDER LEVEL</label>
+                        <div class="grid grid-cols-3 gap-4">
+                            <label class="flex items-center justify-center p-3 border-2 border-gray-600 bg-black cursor-pointer hover:border-[#b78d49] hover:shadow-[0_0_10px_#b78d49] transition group">
+                                <input type="radio" name="experience" value="beginner" class="mr-2 accent-[#b78d49]">
+                                <span class="text-xs font-['Press_Start_2P'] text-gray-400 group-hover:text-[#b78d49]">EASY</span>
+                            </label>
+                            <label class="flex items-center justify-center p-3 border-2 border-[#f7e8c6] bg-black cursor-pointer hover:shadow-[0_0_10px_#f7e8c6] transition group">
+                                <input type="radio" name="experience" value="intermediate" class="mr-2 accent-[#f7e8c6]" checked>
+                                <span class="text-xs font-['Press_Start_2P'] text-[#f7e8c6]">HARD</span>
+                            </label>
+                            <label class="flex items-center justify-center p-3 border-2 border-gray-600 bg-black cursor-pointer hover:border-[#d9bb7a] hover:shadow-[0_0_10px_#d9bb7a] transition group">
+                                <input type="radio" name="experience" value="professional" class="mr-2 accent-[#d9bb7a]">
+                                <span class="text-xs font-['Press_Start_2P'] text-gray-400 group-hover:text-[#d9bb7a]">DEATH</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-['Press_Start_2P'] text-[#ead9b7] mb-2" style="text-shadow: 0 0 5px #ead9b7;">BIKE / VEHICLE CLASS</label>
+                        <input type="text" class="w-full px-4 py-3 bg-black border-2 border-[#d9bb7a] text-[#d9bb7a] font-['Bebas_Neue'] text-xl tracking-wider focus:outline-none focus:border-[#f7e8c6] transition uppercase" style="box-shadow: 0 0 10px rgba(217,187,122,0.3), inset 0 0 10px rgba(217,187,122,0.1);"
+                            placeholder="FIXIE / CARGO / BMX / ETC">
+                    </div>
+
+                    <!-- Health/Status Bars -->
+                    <div class="space-y-2 pt-4 border-t-2 border-dashed border-gray-700">
+                        <div class="flex justify-between text-xs font-['Press_Start_2P'] text-[#b78d49]">
+                            <span>SPEED_STAT</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="h-4 bg-gray-900 border border-[#b78d49] p-0.5">
+                            <div class="h-full bg-[#b78d49] w-[85%] relative overflow-hidden">
+                                <div class="absolute inset-0 bg-[url('data:image/svg+xml;utf8,%3Csvg width=\'4\' height=\'4\' viewBox=\'0 0 4 4\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect x=\'0\' y=\'0\' width=\'2\' height=\'2\' fill=\'rgba(0,0,0,0.3)\'/%3E%3C/svg%3E')] opacity-50"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between text-xs font-['Press_Start_2P'] text-[#ead9b7]">
+                            <span>GRIND_STAT</span>
+                            <span>92%</span>
+                        </div>
+                        <div class="h-4 bg-gray-900 border border-[#ead9b7] p-0.5">
+                            <div class="h-full bg-[#ead9b7] w-[92%] relative overflow-hidden">
+                                <div class="absolute inset-0 bg-[url('data:image/svg+xml;utf8,%3Csvg width=\'4\' height=\'4\' viewBox=\'0 0 4 4\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect x=\'0\' y=\'0\' width=\'2\' height=\'2\' fill=\'rgba(0,0,0,0.3)\'/%3E%3C/svg%3E')] opacity-50"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-[#d9bb7a] hover:bg-[#f1dcae] text-black font-['Press_Start_2P'] text-sm py-4 border-4 border-white transition transform hover:scale-[1.02] flex items-center justify-center gap-3 relative overflow-hidden group" style="box-shadow: 0 0 30px #d9bb7a;">
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i data-lucide="zap" class="w-5 h-5 animate-pulse"></i>
+                            SUBMIT REGISTRATION
+                        </span>
+                        <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
+                    </button>
+
+                    <p class="text-xs text-gray-500 text-center mt-4 font-['Press_Start_2P'] leading-relaxed">By executing, you agree to the_anarchist_collective_terms. RIDE SAFE. RIDE TOGETHER.</p>
+                </form>
+
+                <!-- Success Message (Hidden by default) - Arcade Style -->
+                <div id="successMessage" class="hidden p-12 text-center bg-black relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[#b78d49]/5 animate-pulse"></div>
+
+                    <div class="w-24 h-24 bg-[#b78d49] flex items-center justify-center mx-auto mb-6 relative border-4 border-white" style="box-shadow: 0 0 30px #b78d49; clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);">
+                        <i data-lucide="check" class="w-12 h-12 text-black"></i>
+                    </div>
+
+                    <h3 class="text-3xl font-bold mb-4 font-['Press_Start_2P'] text-[#b78d49]" style="text-shadow: 0 0 20px #b78d49;">REGISTRATION RECEIVED</h3>
+                    <p class="text-[#ead9b7] mb-6 font-['Bebas_Neue'] text-xl tracking-widest">YOU HAVE BEEN ADDED TO THE RIDER MAP</p>
+
+                    <div class="bg-black border-2 border-[#d9bb7a] p-4 mb-6 relative" style="box-shadow: 0 0 20px rgba(217,187,122,0.3);">
+                        <p class="text-[#f7e8c6] font-['Press_Start_2P'] text-xs leading-relaxed blink">> SECTOR_UPDATED_<br>> RADAR_SYNCED_<br>> WELCOME_TO_THE_RESISTANCE_</p>
+                    </div>
+
+                    <button onclick="resetForm()" class="text-[#d9bb7a] font-['Press_Start_2P'] text-xs hover:text-[#f1dcae] hover:scale-110 transition transform" style="text-shadow: 0 0 10px #d9bb7a;">
+                        [RESTART_INSERTION]
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section - Radar Style -->
+    <section id="map-section" class="py-20 bg-black cyber-grid relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(217,187,122,0.1)_0%,_transparent_70%)] pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl md:text-6xl font-bold mb-4 font-['Rubik_Glitch'] text-[#ead9b7] glitch" data-text="RIDERS MAP" style="text-shadow: 0 0 20px #ead9b7;">RIDERS MAP</h2>
+                <p class="text-[#d9bb7a] font-['Bebas_Neue'] text-xl tracking-[0.2em]">GLOBAL RIDER REGISTRATION LIVE VIEW</p>
+
+                <div class="flex justify-center gap-8 mt-6 font-['Press_Start_2P'] text-xs">
+                    <div class="flex items-center gap-2 text-[#d9bb7a]" style="text-shadow: 0 0 5px #d9bb7a;">
+                        <div class="w-4 h-4 bg-[#d9bb7a] animate-pulse" style="box-shadow: 0 0 10px #d9bb7a; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
+                        <span id="totalRiders">0_RIDERS</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-[#b78d49]" style="text-shadow: 0 0 5px #b78d49;">
+                        <div class="w-4 h-4 bg-[#b78d49] animate-pulse" style="box-shadow: 0 0 10px #b78d49; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
+                        <span id="countryCount">0_SECTORS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-black/80 p-1 border-4 border-[#ead9b7] relative" style="box-shadow: 0 0 40px rgba(234,217,183,0.2), inset 0 0 40px rgba(234,217,183,0.05);">
+                <!-- Radar Scanning Line -->
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#b78d49] to-transparent opacity-50 z-[400] animate-[scan_4s_linear_infinite] pointer-events-none" style="box-shadow: 0 0 20px #b78d49;"></div>
+
+                <div id="map" class="h-[500px] w-full bg-black/90"></div>
+
+                <!-- HUD Overlay Corners -->
+                <div class="absolute top-2 left-2 w-8 h-8 border-t-4 border-l-4 border-[#d9bb7a] z-[500]"></div>
+                <div class="absolute top-2 right-2 w-8 h-8 border-t-4 border-r-4 border-[#d9bb7a] z-[500]"></div>
+                <div class="absolute bottom-2 left-2 w-8 h-8 border-b-4 border-l-4 border-[#d9bb7a] z-[500]"></div>
+                <div class="absolute bottom-2 right-2 w-8 h-8 border-b-4 border-r-4 border-[#d9bb7a] z-[500]"></div>
+
+                <!-- Coordinate Display -->
+                <div class="absolute bottom-4 left-4 bg-black/80 border border-[#b78d49] px-3 py-1 text-[#b78d49] font-['Press_Start_2P'] text-[10px] z-[500]" style="text-shadow: 0 0 5px #b78d49;">
+                    LAT: 52.5200 | LNG: 13.4050
+                </div>
+                <div class="absolute top-4 right-4 bg-black/80 border border-[#f7e8c6] px-3 py-1 text-[#f7e8c6] font-['Press_Start_2P'] text-[10px] z-[500]" style="text-shadow: 0 0 5px #f7e8c6;">
+                    ZOOM_LVL: 04
+                </div>
+            </div>
+
+            <div class="mt-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" id="countryStats">
+                <!-- Country stats will be populated by JS -->
+            </div>
+        </div>
+
+        <style>
+            @keyframes scan {
+                0% {
+                    top: 0%;
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    top: 100%;
+                    opacity: 0;
+                }
+            }
+            
+            .blink {
+                animation: blink 1s infinite;
+            }
+            
+            @keyframes blink {
+                0%,
+                50% {
+                    opacity: 1;
+                }
+                51%,
+                100% {
+                    opacity: 0;
+                }
+            }
+        </style>
+    </section>
+
+    <!-- Gallery Section - Glitch Archive -->
+    <section id="gallery" class="py-20 bg-black relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#d9bb7a]/5 via-transparent to-[#ead9b7]/5 pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-6xl font-bold mb-4 font-['Rubik_Glitch'] text-[#d9bb7a] glitch" data-text="GALLERY">GALLERY</h2>
+                <p class="text-[#b78d49] font-['Bebas_Neue'] text-xl tracking-[0.3em]">RACE MOMENTS, STREET CULTURE, AND CITY ENERGY</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="gallery-item border-2 border-[#ead9b7] cursor-pointer group relative overflow-hidden bg-black" style="box-shadow: 0 0 20px rgba(234,217,183,0.2);" onclick="openLightbox(0)">
+                    <img src="http://static.photos/sport/640x360/101" alt="Race Start" class="w-full h-64 object-cover filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition border-4 border-transparent group-hover:border-[#d9bb7a]">
+                        <span class="text-[#ead9b7] font-['Press_Start_2P'] text-xs" style="text-shadow: 0 0 10px #ead9b7;">LOAD_CASSETTE_01</span>
+                    </div>
+                    <div class="absolute top-2 right-2 text-[#b78d49] font-['Press_Start_2P'] text-[8px]">FILE_01</div>
+                </div>
+
+                <div class="gallery-item border-2 border-[#d9bb7a] cursor-pointer group relative overflow-hidden bg-black" style="box-shadow: 0 0 20px rgba(217,187,122,0.2);" onclick="openLightbox(1)">
+                    <img src="http://static.photos/cityscape/640x360/102" alt="City Race" class="w-full h-64 object-cover filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition border-4 border-transparent group-hover:border-[#ead9b7]">
+                        <span class="text-[#d9bb7a] font-['Press_Start_2P'] text-xs" style="text-shadow: 0 0 10px #d9bb7a;">LOAD_CASSETTE_02</span>
+                    </div>
+                    <div class="absolute top-2 right-2 text-[#b78d49] font-['Press_Start_2P'] text-[8px]">FILE_02</div>
+                </div>
+
+                <div class="gallery-item border-2 border-[#b78d49] cursor-pointer group relative overflow-hidden bg-black" style="box-shadow: 0 0 20px rgba(183,141,73,0.2);" onclick="openLightbox(2)">
+                    <img src="http://static.photos/people/640x360/103" alt="Podium" class="w-full h-64 object-cover filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition border-4 border-transparent group-hover:border-[#f7e8c6]">
+                        <span class="text-[#b78d49] font-['Press_Start_2P'] text-xs" style="text-shadow: 0 0 10px #b78d49;">LOAD_CASSETTE_03</span>
+                    </div>
+                    <div class="absolute top-2 right-2 text-[#b78d49] font-['Press_Start_2P'] text-[8px]">FILE_03</div>
+                </div>
+
+                <div class="gallery-item border-2 border-[#f7e8c6] cursor-pointer group relative overflow-hidden bg-black" style="box-shadow: 0 0 20px rgba(247,232,198,0.2);" onclick="openLightbox(3)">
+                    <img src="http://static.photos/sport/640x360/104" alt="Track Stand" class="w-full h-64 object-cover filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition border-4 border-transparent group-hover:border-[#d9bb7a]">
+                        <span class="text-[#f7e8c6] font-['Press_Start_2P'] text-xs" style="text-shadow: 0 0 10px #f7e8c6;">LOAD_CASSETTE_04</span>
+                    </div>
+                    <div class="absolute top-2 right-2 text-[#b78d49] font-['Press_Start_2P'] text-[8px]">FILE_04</div>
+                </div>
+
+                <div class="gallery-item border-2 border-[#ead9b7] cursor-pointer group relative overflow-hidden bg-black" style="box-shadow: 0 0 20px rgba(234,217,183,0.2);" onclick="openLightbox(4)">
+                    <img src="http://static.photos/cityscape/640x360/105" alt="Night Race" class="w-full h-64 object-cover filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition border-4 border-transparent group-hover:border-[#b78d49]">
+                        <span class="text-[#ead9b7] font-['Press_Start_2P'] text-xs" style="text-shadow: 0 0 10px #ead9b7;">LOAD_CASSETTE_05</span>
+                    </div>
+                    <div class="absolute top-2 right-2 text-[#b78d49] font-['Press_Start_2P'] text-[8px]">FILE_05</div>
+                </div>
+
+                <div class="gallery-item border-2 border-[#d9bb7a] cursor-pointer group relative overflow-hidden bg-black" style="box-shadow: 0 0 20px rgba(217,187,122,0.2);" onclick="openLightbox(5)">
+                    <img src="http://static.photos/people/640x360/106" alt="Celebration" class="w-full h-64 object-cover filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition border-4 border-transparent group-hover:border-[#ead9b7]">
+                        <span class="text-[#d9bb7a] font-['Press_Start_2P'] text-xs" style="text-shadow: 0 0 10px #d9bb7a;">LOAD_CASSETTE_06</span>
+                    </div>
+                    <div class="absolute top-2 right-2 text-[#b78d49] font-['Press_Start_2P'] text-[8px]">FILE_06</div>
+                </div>
+
+                <div class="gallery-item border-2 border-[#b78d49] cursor-pointer group relative overflow-hidden bg-black" style="box-shadow: 0 0 20px rgba(183,141,73,0.2);" onclick="openLightbox(6)">
+                    <img src="http://static.photos/sport/640x360/107" alt="Cargo Race" class="w-full h-64 object-cover filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition border-4 border-transparent group-hover:border-[#f7e8c6]">
+                        <span class="text-[#b78d49] font-['Press_Start_2P'] text-xs" style="text-shadow: 0 0 10px #b78d49;">LOAD_CASSETTE_07</span>
+                    </div>
+                    <div class="absolute top-2 right-2 text-[#b78d49] font-['Press_Start_2P'] text-[8px]">FILE_07</div>
+                </div>
+
+                <div class="gallery-item border-2 border-[#f7e8c6] cursor-pointer group relative overflow-hidden bg-black" style="box-shadow: 0 0 20px rgba(247,232,198,0.2);" onclick="openLightbox(7)">
+                    <img src="http://static.photos/cityscape/640x360/108" alt="Sprint Finish" class="w-full h-64 object-cover filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition border-4 border-transparent group-hover:border-[#d9bb7a]">
+                        <span class="text-[#f7e8c6] font-['Press_Start_2P'] text-xs" style="text-shadow: 0 0 10px #f7e8c6;">LOAD_CASSETTE_08</span>
+                    </div>
+                    <div class="absolute top-2 right-2 text-[#b78d49] font-['Press_Start_2P'] text-[8px]">FILE_08</div>
+                </div>
+
+                <div class="gallery-item border-2 border-[#ead9b7] cursor-pointer group relative overflow-hidden bg-black" style="box-shadow: 0 0 20px rgba(234,217,183,0.2);" onclick="openLightbox(8)">
+                    <img src="http://static.photos/people/640x360/109" alt="Medal Ceremony" class="w-full h-64 object-cover filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition border-4 border-transparent group-hover:border-[#b78d49]">
+                        <span class="text-[#ead9b7] font-['Press_Start_2P'] text-xs" style="text-shadow: 0 0 10px #ead9b7;">LOAD_CASSETTE_09</span>
+                    </div>
+                    <div class="absolute top-2 right-2 text-[#b78d49] font-['Press_Start_2P'] text-[8px]">FILE_09</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal - Arcade Monitor -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 hidden z-50 flex items-center justify-center p-4 cyber-grid">
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-[#d9bb7a] hover:text-[#f1dcae] font-['Press_Start_2P'] text-xs border-2 border-[#d9bb7a] px-4 py-2 bg-black z-50" style="text-shadow: 0 0 10px #d9bb7a; box-shadow: 0 0 10px rgba(217,187,122,0.3);">
+            [ESC]
+        </button>
+        <button onclick="prevImage()" class="absolute left-4 top-1/2 -translate-y-1/2 text-[#ead9b7] hover:text-[#fff2d2] border-2 border-[#ead9b7] p-2 bg-black" style="text-shadow: 0 0 10px #ead9b7;">
+            <i data-lucide="chevron-left" class="w-12 h-12"></i>
+        </button>
+
+        <div class="relative border-4 border-[#b78d49] p-2 bg-black max-w-full max-h-[90vh]" style="box-shadow: 0 0 40px rgba(183,141,73,0.3);">
+            <div class="absolute -top-8 left-0 bg-[#b78d49] text-black px-4 py-1 font-['Press_Start_2P'] text-xs" style="clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);">
+                VIEWING_MEMORY_DUMP
+            </div>
+            <img id="lightboxImage" src="" alt="Gallery Image" class="max-w-full max-h-[85vh] object-contain border border-[#ead9b7]/30">
+            <div class="absolute bottom-0 left-0 right-0 bg-black/80 border-t border-[#d9bb7a] p-2 text-center font-['Press_Start_2P'] text-[10px] text-[#f7e8c6]" style="text-shadow: 0 0 5px #f7e8c6;">
+                USE_ARROWS_TO_NAVIGATE // PRESS_ESC_TO_ABORT
+            </div>
+        </div>
+
+        <button onclick="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 text-[#ead9b7] hover:text-[#fff2d2] border-2 border-[#ead9b7] p-2 bg-black" style="text-shadow: 0 0 10px #ead9b7;">
+            <i data-lucide="chevron-right" class="w-12 h-12"></i>
+        </button>
+    </div>
+
+    <!-- Footer - System Terminal -->
+    <footer class="bg-black border-t-4 border-[#d9bb7a] text-white py-12 relative cyber-grid" style="box-shadow: inset 0 10px 40px rgba(217,187,122,0.1);">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="./PajaroOficialCMWC2027.png" alt="CMWC 2027 bird" class="w-8 h-8 object-contain crest-icon">
+                        <span class="font-['Press_Start_2P'] text-xs text-[#d9bb7a]" style="text-shadow: 0 0 5px #d9bb7a;">CMWC_2027</span>
+                    </div>
+                    <p class="text-gray-400 text-sm font-['Bebas_Neue'] tracking-wider">UNDERGROUND_NETWORK_FOR_BIKE_MESSENGERS. BOGOTÁ 2027 OFFICIAL EVENT SITE.</p>
+                </div>
+                <div>
+                    <h4 class="font-['Press_Start_2P'] text-xs text-[#ead9b7] mb-4" style="text-shadow: 0 0 5px #ead9b7;">LINKS</h4>
+                    <ul class="space-y-2 text-sm text-gray-400 font-['Bebas_Neue'] text-lg tracking-wide">
+                        <li><a href="#about" class="hover:text-[#ead9b7] transition text-[10px] font-['Press_Start_2P']">[ABOUT_SYS]</a></li>
+                        <li><a href="#signup" class="hover:text-[#b78d49] transition text-[10px] font-['Press_Start_2P']">[REGISTER_EXE]</a></li>
+                        <li><a href="#map-section" class="hover:text-[#d9bb7a] transition text-[10px] font-['Press_Start_2P']">[RADAR_VIEW]</a></li>
+                        <li><a href="#gallery" class="hover:text-[#f7e8c6] transition text-[10px] font-['Press_Start_2P']">[ARCHIVES]</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-['Press_Start_2P'] text-xs text-[#f7e8c6] mb-4" style="text-shadow: 0 0 5px #f7e8c6;">CONTACT</h4>
+                    <ul class="space-y-2 text-sm text-gray-400 font-['Press_Start_2P'] text-[10px]">
+                        <li class="flex items-center gap-2 text-[#b78d49]">
+                            <i data-lucide="mail" class="w-4 h-4"></i> info@cmwc2027.com
+                        </li>
+                        <li class="flex items-center gap-2 text-[#ead9b7]">
+                            <i data-lucide="phone" class="w-4 h-4"></i> +57_BOGOTA_BIKE
+                        </li>
+                        <li class="flex items-center gap-2 text-[#d9bb7a]">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i> BOGOTÁ_GRID
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-['Press_Start_2P'] text-xs text-[#b78d49] mb-4" style="text-shadow: 0 0 5px #b78d49;">SOCIAL</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="bg-black border-2 border-[#d9bb7a] p-2 hover:bg-[#d9bb7a] transition group" style="box-shadow: 0 0 10px rgba(217,187,122,0.3);">
+                            <i data-lucide="instagram" class="w-5 h-5 text-[#d9bb7a] group-hover:text-black" style="filter: drop-shadow(0 0 3px currentColor);"></i>
+                        </a>
+                        <a href="#" class="bg-black border-2 border-[#ead9b7] p-2 hover:bg-[#ead9b7] transition group" style="box-shadow: 0 0 10px rgba(234,217,183,0.3);">
+                            <i data-lucide="twitter" class="w-5 h-5 text-[#ead9b7] group-hover:text-black" style="filter: drop-shadow(0 0 3px currentColor);"></i>
+                        </a>
+                        <a href="#" class="bg-black border-2 border-[#b78d49] p-2 hover:bg-[#b78d49] transition group" style="box-shadow: 0 0 10px rgba(183,141,73,0.3);">
+                            <i data-lucide="radio" class="w-5 h-5 text-[#b78d49] group-hover:text-black" style="filter: drop-shadow(0 0 3px currentColor);"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t-2 border-dashed border-gray-800 pt-8 text-center">
+                <p class="text-xs text-gray-500 font-['Press_Start_2P']">
+                    <span class="text-[#d9bb7a]">&copy;</span>
+                    <span class="text-[#ead9b7]">2027</span>
+                    <span class="text-[#b78d49]">CMWC</span>
+                    <span class="animate-pulse text-[#f7e8c6]">_SYSTEM_READY</span>
+                </p>
+                <p class="text-[10px] text-gray-600 mt-2 font-['Press_Start_2P']">BOGOTÁ 2027 · CYCLE MESSENGER WORLD CHAMPIONSHIPS</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Carousel Logic
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        function showSlide(index) {
+            const track = document.getElementById('carouselTrack');
+            if (index >= totalSlides) currentSlide = 0;
+            if (index < 0) currentSlide = totalSlides - 1;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance carousel
+        setInterval(() => {
+            nextSlide();
+        }, 5000);
+
+        // Map Data - Coordinates for countries
+        const countryCoordinates = {
+            'USA': [37.0902, -95.7129],
+            'Colombia': [4.7110, -74.0721],
+            'UK': [55.3781, -3.4360],
+            'Japan': [36.2048, 138.2529],
+            'Australia': [-25.2744, 133.7751],
+            'Canada': [56.1304, -106.3468],
+            'France': [46.2276, 2.2137],
+            'Netherlands': [52.1326, 5.2913],
+            'Denmark': [56.2639, 9.5018],
+            'Sweden': [60.1282, 18.6435],
+            'Switzerland': [46.8182, 8.2275],
+            'Belgium': [50.8503, 4.3517],
+            'Austria': [47.5162, 14.5501],
+            'Italy': [41.8719, 12.5674],
+            'Spain': [40.4637, -3.7492],
+            'Brazil': [-14.2350, -51.9253],
+            'Mexico': [23.6345, -102.5528],
+            'Argentina': [-38.4161, -63.6167],
+            'South Africa': [-30.5595, 22.9375],
+            'New Zealand': [-40.9006, 174.8869],
+            'Singapore': [1.3521, 103.8198],
+            'South Korea': [35.9078, 127.7669],
+            'China': [35.8617, 104.1954],
+            'India': [20.5937, 78.9629],
+            'Poland': [51.9194, 19.1451],
+            'Czech Republic': [49.8175, 15.4730],
+            'Norway': [60.4720, 8.4689],
+            'Finland': [61.9241, 25.7482],
+            'Ireland': [53.1424, -7.6921],
+            'Portugal': [39.3999, -8.2245]
+        };
+
+        // Initialize registration data with some existing participants
+        let registrations = {
+            'Colombia': 45,
+            'USA': 38,
+            'Netherlands': 22,
+            'UK': 19,
+            'Japan': 15,
+            'Denmark': 12,
+            'France': 11,
+            'Australia': 9,
+            'Canada': 8,
+            'Belgium': 7,
+            'Switzerland': 6,
+            'Austria': 5,
+            'Sweden': 5,
+            'Italy': 4,
+            'Spain': 4,
+            'New Zealand': 3,
+            'Poland': 3,
+            'Czech Republic': 2,
+            'Norway': 2,
+            'Ireland': 2,
+            'Brazil': 2
+        };
+
+        // Initialize Map - Dark Theme
+        let map;
+        let markers = [];
+
+        function initMap() {
+            // Create map centered on Berlin (host city)
+            map = L.map('map', {
+                scrollWheelZoom: false,
+                attributionControl: false
+            }).setView([52.5200, 13.4050], 4);
+
+            // Add dark themed tile layer
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 19
+            }).addTo(map);
+
+            updateMapMarkers();
+            updateStats();
+        }
+
+        function updateMapMarkers() {
+            // Clear existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            // Add markers for each country with registrations
+            for (const [country, count] of Object.entries(registrations)) {
+                if (countryCoordinates[country]) {
+                    const [lat, lng] = countryCoordinates[country];
+
+                    // Create cyberpunk style icon with count
+                    const size = Math.max(40, count * 2 + 20);
+                    const icon = L.divIcon({
+                        className: 'custom-div-icon',
+                        html: `<div style="
+                            background: #000; 
+                            border: 3px solid ${count > 20 ? '#d9bb7a' : count > 10 ? '#ead9b7' : '#b78d49'}; 
+                            width: ${size}px; 
+                            height: ${size}px; 
+                            color: ${count > 20 ? '#d9bb7a' : count > 10 ? '#ead9b7' : '#b78d49'}; 
+                            font-family: 'Press Start 2P', cursive;
+                            font-size: ${Math.max(10, size/4)}px;
+                            text-align: center; 
+                            line-height: ${size}px; 
+                            box-shadow: 0 0 20px ${count > 20 ? '#d9bb7a' : count > 10 ? '#ead9b7' : '#b78d49'},
+                                        inset 0 0 20px ${count > 20 ? 'rgba(217,187,122,0.3)' : count > 10 ? 'rgba(234,217,183,0.3)' : 'rgba(183,141,73,0.3)'};
+                            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+                            text-shadow: 0 0 10px currentColor;
+                        ">${count}</div>`,
+                        iconSize: [size, size],
+                        iconAnchor: [size / 2, size / 2]
+                    });
+
+                    const marker = L.marker([lat, lng], {
+                            icon: icon
+                        })
+                        .addTo(map)
+                        .bindPopup(`<div style="font-family: 'Press Start 2P', cursive; font-size: 10px; text-align: center; background: #000; color: #b78d49; padding: 10px; border: 2px solid #b78d49; box-shadow: 0 0 10px #b78d49;">
+                            <div style="color: #d9bb7a; margin-bottom: 5px;">${country}</div>
+                            <div style="color: #ead9b7; font-size: 8px;">RIDERS: ${count}</div>
+                            <div style="margin-top: 5px; font-size: 8px; color: #f7e8c6;">STATUS: ACTIVE</div>
+                        </div>`);
+
+                    markers.push(marker);
+                }
+            }
+        }
+
+        function updateStats() {
+            const totalRiders = Object.values(registrations).reduce((a, b) => a + b, 0);
+            const countryCount = Object.keys(registrations).length;
+
+            document.getElementById('totalRiders').textContent = `${totalRiders} Riders Registered`;
+            document.getElementById('countryCount').textContent = `${countryCount} Countries`;
+
+            // Update country stats grid
+            const statsContainer = document.getElementById('countryStats');
+            statsContainer.innerHTML = '';
+
+            const sortedCountries = Object.entries(registrations)
+                .sort(([, a], [, b]) => b - a)
+                .slice(0, 12);
+
+            sortedCountries.forEach(([country, count], index) => {
+                const colors = ['#d9bb7a', '#ead9b7', '#b78d49', '#f7e8c6'];
+                const color = colors[index % 4];
+                const div = document.createElement('div');
+                div.className = 'bg-black p-4 border-2 text-center relative overflow-hidden group';
+                div.style.borderColor = color;
+                div.style.boxShadow = `0 0 15px ${color}20`;
+                div.innerHTML = `
+                    <div class="absolute top-0 right-0 text-[8px] font-['Press_Start_2P'] text-gray-600 p-1">${String(index + 1).padStart(2, '0')}</div>
+                    <div class="font-['Bebas_Neue'] text-xl tracking-widest" style="color: ${color}; text-shadow: 0 0 5px ${color};">${country}</div>
+                    <div class="text-2xl font-black font-['Press_Start_2P'] my-2" style="color: ${color}; text-shadow: 0 0 10px ${color};">${count}</div>
+                    <div class="h-1 w-full bg-gray-900 mt-2 overflow-hidden">
+                        <div class="h-full animate-pulse" style="width: ${Math.min(100, count)}%; background: ${color}; box-shadow: 0 0 5px ${color};"></div>
+                    </div>
+                    <div class="text-[8px] font-['Press_Start_2P'] text-gray-500 mt-1">RIDERS</div>
+                `;
+                statsContainer.appendChild(div);
+            });
+        }
+
+        // Form Handling
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const country = document.getElementById('countrySelect').value;
+
+            if (!country) {
+                alert('Please select a country');
+                return;
+            }
+
+            // Add registration
+            registrations[country] = (registrations[country] || 0) + 1;
+
+            // Update map and stats
+            updateMapMarkers();
+            updateStats();
+
+            // Show success message
+            document.getElementById('registrationForm').classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+
+            // Re-initialize icons for success message
+            lucide.createIcons();
+
+            // Scroll to map to show the update
+            setTimeout(() => {
+                document.getElementById('map-section').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }, 1500);
+        });
+
+        function resetForm() {
+            document.getElementById('registrationForm').reset();
+            document.getElementById('registrationForm').classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+        }
+
+        // Gallery Lightbox
+        const galleryImages = [
+            'http://static.photos/sport/1024x576/101',
+            'http://static.photos/cityscape/1024x576/102',
+            'http://static.photos/people/1024x576/103',
+            'http://static.photos/sport/1024x576/104',
+            'http://static.photos/cityscape/1024x576/105',
+            'http://static.photos/people/1024x576/106',
+            'http://static.photos/sport/1024x576/107',
+            'http://static.photos/cityscape/1024x576/108',
+            'http://static.photos/people/1024x576/109'
+        ];
+
+        let currentImageIndex = 0;
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            document.getElementById('lightboxImage').src = galleryImages[index];
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById('lightboxImage').src = galleryImages[currentImageIndex];
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById('lightboxImage').src = galleryImages[currentImageIndex];
+        }
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('lightbox').classList.contains('hidden')) return;
+
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        // Initialize map when page loads
+        window.onload = function() {
+            initMap();
+        };
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

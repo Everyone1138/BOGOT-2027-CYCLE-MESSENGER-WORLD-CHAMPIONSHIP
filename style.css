@@ -1,0 +1,280 @@
+/* Custom CSS for WBMC site */
+
+:root {
+    --beige: #E8DCC4;
+    --beige-light: #F0E8D6;
+    --beige-dark: #C9B98E;
+    --black: #0A0A0A;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.font-anton {
+    font-family: 'Anton', sans-serif;
+}
+
+.bg-beige {
+    background-color: var(--beige);
+}
+
+.text-beige {
+    color: var(--beige);
+}
+
+.border-beige {
+    border-color: var(--beige);
+}
+
+.bg-black\/95 {
+    background-color: rgba(10, 10, 10, 0.95);
+}
+
+.bg-black\/70 {
+    background-color: rgba(10, 10, 10, 0.7);
+}
+
+.bg-black\/50 {
+    background-color: rgba(10, 10, 10, 0.5);
+}
+
+.bg-black\/60 {
+    background-color: rgba(10, 10, 10, 0.6);
+}
+
+.bg-black\/90 {
+    background-color: rgba(10, 10, 10, 0.9);
+}
+
+.text-beige\/90 {
+    color: rgba(232, 220, 196, 0.9);
+}
+
+.text-beige\/70 {
+    color: rgba(232, 220, 196, 0.7);
+}
+
+.text-beige\/60 {
+    color: rgba(232, 220, 196, 0.6);
+}
+
+.text-black\/70 {
+    color: rgba(10, 10, 10, 0.7);
+}
+
+.border-beige\/30 {
+    border-color: rgba(232, 220, 196, 0.3);
+}
+
+.hover\:bg-beige:hover {
+    background-color: var(--beige);
+}
+
+.hover\:text-beige:hover {
+    color: var(--beige);
+}
+
+.hover\:text-black:hover {
+    color: var(--black);
+}
+
+
+/* Custom scrollbar */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--beige-dark);
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--beige);
+}
+
+
+/* Leaflet map custom styling */
+
+.leaflet-container {
+    background: var(--beige-light);
+    font-family: 'Inter', sans-serif;
+}
+
+.leaflet-popup-content-wrapper {
+    background: var(--black);
+    color: var(--beige);
+    border-radius: 0;
+    border: 2px solid var(--beige);
+}
+
+.leaflet-popup-tip {
+    background: var(--beige);
+}
+
+.leaflet-popup-content {
+    margin: 12px 16px;
+    font-weight: 600;
+}
+
+.leaflet-popup-content .popup-country {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.leaflet-popup-content .popup-count {
+    font-size: 0.9rem;
+    color: var(--beige);
+    opacity: 0.9;
+}
+
+.custom-marker {
+    background: var(--black);
+    border: 3px solid var(--beige);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--beige);
+    font-family: 'Anton', sans-serif;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
+}
+
+.custom-marker:hover {
+    transform: scale(1.15);
+    z-index: 1000;
+}
+
+
+/* Country list item styling */
+
+.country-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(232, 220, 196, 0.05);
+    border-left: 3px solid var(--beige);
+    transition: all 0.2s;
+}
+
+.country-item:hover {
+    background: rgba(232, 220, 196, 0.15);
+    transform: translateX(4px);
+}
+
+.country-item .country-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.country-item .country-count {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.1rem;
+    color: var(--beige);
+}
+
+
+/* Carousel dots */
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.3);
+    border: 2px solid var(--black);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.carousel-dot.active {
+    background: var(--black);
+    transform: scale(1.2);
+}
+
+
+/* Form message styles */
+
+.form-success {
+    background: var(--black);
+    color: var(--beige);
+}
+
+.form-error {
+    background: #8B0000;
+    color: white;
+}
+
+
+/* Lightbox animation */
+
+#lightbox.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Smooth transitions for nav */
+
+header {
+    transition: transform 0.3s ease;
+}
+
+
+/* Selection styling */
+
+::selection {
+    background: var(--beige);
+    color: var(--black);
+}
+
+
+/* Hide number input arrows */
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+/* Gallery item hover effect */
+
+.gallery-item {
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+}
+
+
+/* Mobile menu animation */
+
+#mobile-menu {
+    transition: max-height 0.3s ease;
+}
