@@ -1,6 +1,262 @@
 // Initialize Lucide icons
 lucide.createIcons();
 
+
+// ===== LANGUAGE SWITCHER =====
+const LANG_KEY = 'cmwc_language';
+let currentLang = localStorage.getItem(LANG_KEY) || 'en';
+
+const translations = {
+    en: {
+        pageTitle: 'World Bike Messenger Championships',
+        navAbout: 'ABOUT',
+        navGallery: 'GALLERY',
+        navMap: 'GLOBAL MAP',
+        navSignup: 'SIGN UP',
+        eyebrow: 'BOGOTÁ • 2027 • COURIER CULTURE',
+        heroTitle: 'CYCLE MESSENGER<br> WORLD CHAMPIONSHIP',
+        heroText: 'A moving gallery of speed, cargo, alleycats, night rides, and the global messenger community coming to Bogotá.',
+        heroRegister: 'REGISTER NOW',
+        heroGallery: 'VIEW GALLERY',
+        statSignups: 'Signups',
+        statCountries: 'Countries',
+        statEvents: 'Events',
+        statYears: 'Years',
+        aboutTitle: 'ABOUT THE CHAMPIONSHIPS',
+        aboutText: 'Born in the streets, raised by the couriers. The World Bike Messenger Championships bring together the fastest, most skilled urban cyclists from every corner of the globe.',
+        carouselTitle1: 'THE MAIN RACE',
+        carouselText1: 'Navigate city streets, deliver packages, beat the clock. A test of speed, skill, and street knowledge.',
+        carouselTitle2: 'TRACK COMPETITIONS',
+        carouselText2: 'Sprints, time trials, and skid contests. Pure cycling skill on closed circuits.',
+        carouselTitle3: 'GLOBAL COMMUNITY',
+        carouselText3: 'Meet messengers from Tokyo to New York. Forge friendships that span continents.',
+        carouselTitle4: 'ALLEYCAT RACES',
+        carouselText4: 'Open-street checkpoint races inspired by the daily work of bike messengers worldwide.',
+        galleryTitle: 'GALLERY',
+        galleryText: 'Moments captured from past championships around the world.',
+        mapTitle: 'GLOBAL SIGNUPS',
+        mapText: 'See where messengers from around the world are signing up. Each marker represents a country with registered competitors.',
+        topCountries: 'TOP COUNTRIES',
+        noSignups: 'No signups yet. Be the first!',
+        signupTitle: 'SIGN UP',
+        signupText: 'Register your spot at the Cycle Messenger World Championship Bogotá 2027.',
+        fullName: 'FULL NAME',
+        email: 'EMAIL',
+        country: 'COUNTRY',
+        city: 'CITY',
+        experience: 'YEARS OF EXPERIENCE',
+        terms: 'I agree to the championship rules and confirm I am 18 years or older.',
+        submit: 'REGISTER NOW',
+        placeholderName: 'Your full name',
+        placeholderEmail: 'you@example.com',
+        placeholderCountry: '-- Select your country --',
+        placeholderCity: 'Your city',
+        footerText: 'World Bike Messenger Championships. The premier global event for urban cycling couriers.',
+        quickLinks: 'QUICK LINKS',
+        followUs: 'FOLLOW US',
+        footerRights: '© 2027 Cycle Messenger World Championship Bogotá. All rights reserved.',
+        formMissing: 'Please fill in all fields.',
+        formSuccess: (name, country) => `Welcome to the championships, ${name}! 🚴 You're registered from ${country}.`,
+        popupSignedUp: (count) => `${count} messenger${count > 1 ? 's' : ''} signed up`,
+        popupMore: (count) => ` + ${count} more`,
+        heroAriaPrev: 'Previous hero image',
+        heroAriaNext: 'Next hero image',
+        heroAriaDot: (index) => `Show hero image ${index + 1}`,
+        heroCaptions: [
+            'Heavy loads. Fast streets. Bogotá energy.',
+            'Night races, courier culture, and city lights.',
+            'Community before, during, and after every race.',
+            'Packages, checkpoints, radios, and pressure.',
+            'Cargo races built from messenger work.',
+            'The velodrome meets the street.',
+            'Bogotá nights. Bikes everywhere.'
+        ]
+    },
+    es: {
+        pageTitle: 'Campeonato Mundial de Mensajeros en Bicicleta',
+        navAbout: 'SOBRE EL EVENTO',
+        navGallery: 'GALERÍA',
+        navMap: 'MAPA GLOBAL',
+        navSignup: 'INSCRÍBETE',
+        eyebrow: 'BOGOTÁ • 2027 • CULTURA MENSAJERA',
+        heroTitle: 'CAMPEONATO MUNDIAL<br>DE MENSAJERIA EN BICICLETA',
+        heroText: 'Una galería en movimiento de velocidad, carga, alleycats, rodadas nocturnas y comunidad mensajera global llegando a Bogotá.',
+        heroRegister: 'INSCRÍBETE AHORA',
+        heroGallery: 'VER GALERÍA',
+        statSignups: 'Inscritos',
+        statCountries: 'Países',
+        statEvents: 'Eventos',
+        statYears: 'Años',
+        aboutTitle: 'SOBRE EL CAMPEONATO',
+        aboutText: 'Nacido en las calles y criado por los mensajeros. El Campeonato Mundial de Mensajeros en Bicicleta reúne a los ciclistas urbanos más rápidos y hábiles de todos los rincones del mundo.',
+        carouselTitle1: 'LA CARRERA PRINCIPAL',
+        carouselText1: 'Navega las calles de la ciudad, entrega paquetes y vence el reloj. Una prueba de velocidad, técnica y conocimiento callejero.',
+        carouselTitle2: 'COMPETENCIAS DE PISTA',
+        carouselText2: 'Sprints, contrarreloj y concursos de skid. Habilidad pura sobre circuitos cerrados.',
+        carouselTitle3: 'COMUNIDAD GLOBAL',
+        carouselText3: 'Conoce mensajeros de Tokio a Nueva York. Crea amistades que cruzan continentes.',
+        carouselTitle4: 'CARRERAS ALLEYCAT',
+        carouselText4: 'Carreras urbanas de checkpoints inspiradas en el trabajo diario de mensajeros de todo el mundo.',
+        galleryTitle: 'GALERÍA',
+        galleryText: 'Momentos capturados de campeonatos anteriores alrededor del mundo.',
+        mapTitle: 'INSCRIPCIONES GLOBALES',
+        mapText: 'Mira desde dónde se están inscribiendo mensajeros de todo el mundo. Cada marcador representa un país con competidores registrados.',
+        topCountries: 'PAÍSES DESTACADOS',
+        noSignups: 'Todavía no hay inscritos. ¡Sé el primero!',
+        signupTitle: 'INSCRÍBETE',
+        signupText: 'Registra tu cupo para el Campeonato Mundial de Mensajeros en Bicicleta Bogotá 2027.',
+        fullName: 'NOMBRE COMPLETO',
+        email: 'CORREO ELECTRÓNICO',
+        country: 'PAÍS',
+        city: 'CIUDAD',
+        experience: 'AÑOS DE EXPERIENCIA',
+        terms: 'Acepto las reglas del campeonato y confirmo que tengo 18 años o más.',
+        submit: 'INSCRÍBETE AHORA',
+        placeholderName: 'Tu nombre completo',
+        placeholderEmail: 'tu@correo.com',
+        placeholderCountry: '-- Selecciona tu país --',
+        placeholderCity: 'Tu ciudad',
+        footerText: 'Campeonato Mundial de Mensajeros en Bicicleta. El evento global principal para couriers urbanos en bicicleta.',
+        quickLinks: 'ENLACES',
+        followUs: 'SÍGUENOS',
+        footerRights: '© 2027 Campeonato Mundial de Mensajeros en Bicicleta Bogotá. Todos los derechos reservados.',
+        formMissing: 'Por favor completa todos los campos.',
+        formSuccess: (name, country) => `¡Bienvenido al campeonato, ${name}! 🚴 Estás inscrito desde ${country}.`,
+        popupSignedUp: (count) => `${count} mensajero${count > 1 ? 's' : ''} inscrito${count > 1 ? 's' : ''}`,
+        popupMore: (count) => ` + ${count} más`,
+        heroAriaPrev: 'Imagen anterior del hero',
+        heroAriaNext: 'Siguiente imagen del hero',
+        heroAriaDot: (index) => `Mostrar imagen ${index + 1} del hero`,
+        heroCaptions: [
+            'Cargas pesadas. Calles rápidas. Energía bogotana.',
+            'Carreras nocturnas, cultura courier y luces de ciudad.',
+            'Comunidad antes, durante y después de cada carrera.',
+            'Paquetes, checkpoints, radios y presión.',
+            'Carreras de carga nacidas del trabajo mensajero.',
+            'El velódromo se encuentra con la calle.',
+            'Noches bogotanas. Bicis por todas partes.'
+        ]
+    }
+};
+
+function tr(key) {
+    return translations[currentLang]?.[key] ?? translations.en[key] ?? '';
+}
+
+function setText(selector, value) {
+    document.querySelectorAll(selector).forEach(el => {
+        el.textContent = value;
+    });
+}
+
+function setHTML(selector, value) {
+    document.querySelectorAll(selector).forEach(el => {
+        el.innerHTML = value;
+    });
+}
+
+function setAttr(selector, attr, value) {
+    document.querySelectorAll(selector).forEach(el => {
+        el.setAttribute(attr, value);
+    });
+}
+
+function applyLanguage(lang) {
+    currentLang = lang === 'es' ? 'es' : 'en';
+    localStorage.setItem(LANG_KEY, currentLang);
+    document.documentElement.lang = currentLang;
+    document.title = tr('pageTitle');
+
+    setText('a[href="#about"]', tr('navAbout'));
+    setText('a[href="#gallery"]', tr('navGallery'));
+    setText('a[href="#map"]', tr('navMap'));
+    setText('a[href="#signup"]', tr('navSignup'));
+
+    setText('.hero-eyebrow', tr('eyebrow'));
+    setHTML('#hero h1', tr('heroTitle'));
+    setText('#hero .text-beige\\/90', tr('heroText'));
+    setText('#hero a[href="#signup"]', tr('heroRegister'));
+    setText('#hero a[href="#gallery"]', tr('heroGallery'));
+    setAttr('#hero-prev', 'aria-label', tr('heroAriaPrev'));
+    setAttr('#hero-next', 'aria-label', tr('heroAriaNext'));
+
+    heroSlides.forEach((slide, index) => {
+        slide.dataset.caption = tr('heroCaptions')[index] || slide.dataset.caption || '';
+    });
+    if (heroCaption && heroSlides[heroCurrent]) {
+        heroCaption.textContent = heroSlides[heroCurrent].dataset.caption || '';
+    }
+    if (heroDots) {
+        Array.from(heroDots.children).forEach((dot, index) => dot.setAttribute('aria-label', tr('heroAriaDot')(index)));
+    }
+
+    const statLabels = document.querySelectorAll('.border-y-2 .text-beige\\/70');
+    if (statLabels[0]) statLabels[0].textContent = tr('statSignups');
+    if (statLabels[1]) statLabels[1].textContent = tr('statCountries');
+    if (statLabels[2]) statLabels[2].textContent = tr('statEvents');
+    if (statLabels[3]) statLabels[3].textContent = tr('statYears');
+
+    setText('#about h2', tr('aboutTitle'));
+    setText('#about > div > p', tr('aboutText'));
+    const carouselTitles = document.querySelectorAll('#carousel h3');
+    const carouselTexts = document.querySelectorAll('#carousel p');
+    ['1','2','3','4'].forEach((n, i) => {
+        if (carouselTitles[i]) carouselTitles[i].textContent = tr(`carouselTitle${n}`);
+        if (carouselTexts[i]) carouselTexts[i].textContent = tr(`carouselText${n}`);
+    });
+
+    setText('#gallery h2', tr('galleryTitle'));
+    setText('#gallery > div > p', tr('galleryText'));
+    setText('#map h2', tr('mapTitle'));
+    setText('#map > div > p', tr('mapText'));
+    setText('#map h3', tr('topCountries'));
+
+    setText('#signup h2', tr('signupTitle'));
+    setText('#signup > div > p', tr('signupText'));
+    setText('label[for="name"]', tr('fullName'));
+    setText('label[for="email"]', tr('email'));
+    setText('label[for="country"]', tr('country'));
+    setText('label[for="city"]', tr('city'));
+    setText('label[for="experience"]', tr('experience'));
+    setText('label[for="terms"]', tr('terms'));
+    setText('#signup-form button[type="submit"]', tr('submit'));
+    setAttr('#name', 'placeholder', tr('placeholderName'));
+    setAttr('#email', 'placeholder', tr('placeholderEmail'));
+    setAttr('#city', 'placeholder', tr('placeholderCity'));
+    const firstCountryOption = document.querySelector('#country option[value=""]');
+    if (firstCountryOption) firstCountryOption.textContent = tr('placeholderCountry');
+
+    const footerColumns = document.querySelectorAll('footer .max-w-7xl > div');
+    if (footerColumns[0]?.querySelector('p')) footerColumns[0].querySelector('p').textContent = tr('footerText');
+    setText('footer h4:nth-of-type(1)', tr('quickLinks'));
+    const footerHeadings = document.querySelectorAll('footer h4');
+    if (footerHeadings[0]) footerHeadings[0].textContent = tr('quickLinks');
+    if (footerHeadings[1]) footerHeadings[1].textContent = tr('followUs');
+    const footerLinks = document.querySelectorAll('footer li a');
+    if (footerLinks[0]) footerLinks[0].textContent = currentLang === 'es' ? 'Sobre el evento' : 'About';
+    if (footerLinks[1]) footerLinks[1].textContent = currentLang === 'es' ? 'Galería' : 'Gallery';
+    if (footerLinks[2]) footerLinks[2].textContent = currentLang === 'es' ? 'Mapa global' : 'Global Map';
+    if (footerLinks[3]) footerLinks[3].textContent = currentLang === 'es' ? 'Inscríbete' : 'Sign Up';
+    const copyright = document.querySelector('footer .border-t.text-center');
+    if (copyright) copyright.textContent = tr('footerRights');
+
+    document.querySelectorAll('.lang-toggle').forEach(btn => {
+        const isActive = btn.dataset.lang === currentLang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+
+    updateCountryList();
+    if (map) updateMapMarkers();
+}
+
+function setupLanguageSwitcher() {
+    document.querySelectorAll('.lang-toggle').forEach(btn => {
+        btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+    });
+    applyLanguage(currentLang);
+}
+
 // ===== HERO MOVING GALLERY =====
 const heroSlides = document.querySelectorAll('.hero-slide');
 const heroDots = document.getElementById('hero-dots');
@@ -18,7 +274,7 @@ function buildHeroDots() {
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.className = 'hero-dot';
-        dot.setAttribute('aria-label', `Show hero image ${index + 1}`);
+        dot.setAttribute('aria-label', tr('heroAriaDot')(index));
         dot.addEventListener('click', () => showHeroSlide(index, true));
         heroDots.appendChild(dot);
     });
@@ -81,11 +337,11 @@ buildHeroDots();
 showHeroSlide(0);
 restartHeroTimer();
 
-document.getElementById('hero-next').addEventListener('click', () => showHeroSlide(heroCurrent + 1, true));
-document.getElementById('hero-prev').addEventListener('click', prevHeroSlide);
+document.getElementById('hero-next')?.addEventListener('click', () => showHeroSlide(heroCurrent + 1, true));
+document.getElementById('hero-prev')?.addEventListener('click', prevHeroSlide);
 
-heroSection.addEventListener('mouseenter', () => clearInterval(heroTimer));
-heroSection.addEventListener('mouseleave', restartHeroTimer);
+heroSection?.addEventListener('mouseenter', () => clearInterval(heroTimer));
+heroSection?.addEventListener('mouseleave', restartHeroTimer);
 
 
 
@@ -216,7 +472,7 @@ function updateCountryList() {
     const entries = Object.entries(byCountry).sort((a, b) => b[1].count - a[1].count);
 
     if (entries.length === 0) {
-        listEl.innerHTML = '<p class="text-beige/60 text-sm">No signups yet. Be the first!</p>';
+        listEl.innerHTML = `<p class="text-beige/60 text-sm">${tr('noSignups')}</p>`;
         return;
     }
 
@@ -271,11 +527,11 @@ function updateMapMarkers() {
         const marker = L.marker([coords.lat, coords.lng], { icon }).addTo(map);
 
         const namesList = data.names.slice(0, 5).join(', ');
-        const extra = data.count > 5 ? ` + ${data.count - 5} more` : '';
+        const extra = data.count > 5 ? tr('popupMore')(data.count - 5) : '';
 
         marker.bindPopup(`
       <div class="popup-country">${country}</div>
-      <div class="popup-count">${data.count} messenger${data.count > 1 ? 's' : ''} signed up</div>
+      <div class="popup-count">${tr('popupSignedUp')(data.count)}</div>
       <div style="font-size:0.75rem;opacity:0.7;margin-top:6px;">${namesList}${extra}</div>
     `);
 
@@ -297,7 +553,7 @@ form.addEventListener('submit', (e) => {
     const experience = document.getElementById('experience').value;
 
     if (!name || !email || !country || !city || experience === '') {
-        showFormMessage('Please fill in all fields.', 'error');
+        showFormMessage(tr('formMissing'), 'error');
         return;
     }
 
@@ -318,7 +574,7 @@ form.addEventListener('submit', (e) => {
     updateMapMarkers();
 
     // Show success message
-    showFormMessage(`Welcome to the championships, ${name}! 🚴 You're registered from ${country}.`, 'success');
+    showFormMessage(tr('formSuccess')(name, country), 'success');
 
     // Reset form
     form.reset();
@@ -438,6 +694,7 @@ mobileMenu.querySelectorAll('a').forEach(link => {
 });
 
 // ===== INITIALIZE EVERYTHING =====
+setupLanguageSwitcher();
 initMap();
 updateStats();
 updateCountryList();

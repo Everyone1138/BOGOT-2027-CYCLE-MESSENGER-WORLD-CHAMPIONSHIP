@@ -16,6 +16,7 @@ body {
     font-family: 'Anton', sans-serif;
 }
 
+
 .brand-icon {
     width: 2rem;
     height: 2rem;
@@ -88,6 +89,38 @@ body {
     color: var(--black);
 }
 
+
+
+/* Language switcher */
+.language-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    border: 2px solid var(--beige);
+    background: rgba(232, 220, 196, 0.08);
+    padding: 2px;
+    border-radius: 2px;
+}
+
+.language-switcher-mobile {
+    margin-top: 12px;
+}
+
+.lang-toggle {
+    color: var(--beige);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 6px 10px;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+.lang-toggle:hover,
+.lang-toggle.active {
+    background: var(--beige);
+    color: var(--black);
+}
 
 /* Custom scrollbar */
 
@@ -287,9 +320,7 @@ input[type=number] {
     transition: max-height 0.3s ease;
 }
 
-
 /* Hero moving gallery */
-
 .hero-gallery {
     background: var(--black);
     isolation: isolate;
@@ -312,12 +343,16 @@ input[type=number] {
 }
 
 .hero-vignette {
-    background: radial-gradient(circle at center, rgba(10, 10, 10, 0.05) 0%, rgba(10, 10, 10, 0.75) 100%), linear-gradient(90deg, rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.15), rgba(10, 10, 10, 0.75));
+    background:
+        radial-gradient(circle at center, rgba(10, 10, 10, 0.05) 0%, rgba(10, 10, 10, 0.75) 100%),
+        linear-gradient(90deg, rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.15), rgba(10, 10, 10, 0.75));
     pointer-events: none;
 }
 
 .hero-grain {
-    background-image: linear-gradient(rgba(232, 220, 196, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(232, 220, 196, 0.035) 1px, transparent 1px);
+    background-image:
+        linear-gradient(rgba(232, 220, 196, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 220, 196, 0.035) 1px, transparent 1px);
     background-size: 38px 38px;
     mix-blend-mode: screen;
     opacity: 0.24;
@@ -440,10 +475,12 @@ input[type=number] {
         top: auto;
         bottom: 5.25rem;
     }
+
     .hero-bottom-bar {
         flex-direction: column;
         bottom: 1rem;
     }
+
     .hero-caption {
         text-align: center;
         border-left: 0;
