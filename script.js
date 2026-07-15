@@ -81,11 +81,11 @@ buildHeroDots();
 showHeroSlide(0);
 restartHeroTimer();
 
-document.getElementById('hero-next') ? .addEventListener('click', () => showHeroSlide(heroCurrent + 1, true));
-document.getElementById('hero-prev') ? .addEventListener('click', prevHeroSlide);
+document.getElementById('hero-next').addEventListener('click', () => showHeroSlide(heroCurrent + 1, true));
+document.getElementById('hero-prev').addEventListener('click', prevHeroSlide);
 
-heroSection ? .addEventListener('mouseenter', () => clearInterval(heroTimer));
-heroSection ? .addEventListener('mouseleave', restartHeroTimer);
+heroSection.addEventListener('mouseenter', () => clearInterval(heroTimer));
+heroSection.addEventListener('mouseleave', restartHeroTimer);
 
 
 
