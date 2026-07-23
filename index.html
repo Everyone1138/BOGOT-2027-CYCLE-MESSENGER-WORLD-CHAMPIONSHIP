@@ -1,17 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>World Bike Messenger Championships</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link href="style.css?v=merged-video-1" rel="stylesheet">
+    </link>
 </head>
 
 <body class="bg-beige text-black">
@@ -20,85 +22,81 @@
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-2">
-                    <img src="images/cyclist-icon.png" alt="CMWC cyclist icon" class="brand-icon">
+                    <img alt="CMWC cyclist icon" class="brand-icon" src="images/cyclist-icon.png" />
                     <span class="font-anton text-beige text-xl tracking-wider hidden sm:block">CMWC 2027</span>
                 </div>
                 <div class="hidden md:flex items-center gap-6">
-                    <a href="#about" class="text-beige hover:text-white transition-colors text-sm font-semibold tracking-wide">ABOUT</a>
-                    <a href="#gallery" class="text-beige hover:text-white transition-colors text-sm font-semibold tracking-wide">GALLERY</a>
-                    <a href="#map" class="text-beige hover:text-white transition-colors text-sm font-semibold tracking-wide">GLOBAL MAP</a>
-                    <a href="#signup" class="bg-beige text-black px-5 py-2 hover:bg-white transition-all text-sm font-bold tracking-wide rounded-sm">SIGN UP</a>
-                    <div class="language-switcher" aria-label="Language selector">
-                        <button type="button" class="lang-toggle active" data-lang="en">EN</button>
-                        <button type="button" class="lang-toggle" data-lang="es">ES</button>
+                    <a class="text-beige hover:text-white transition-colors text-sm font-semibold tracking-wide" href="#about">ABOUT</a>
+                    <a class="text-beige hover:text-white transition-colors text-sm font-semibold tracking-wide" href="#gallery">GALLERY</a>
+                    <a class="text-beige hover:text-white transition-colors text-sm font-semibold tracking-wide" href="#videos">VIDEOS</a>
+                    <a class="text-beige hover:text-white transition-colors text-sm font-semibold tracking-wide" href="#map">GLOBAL MAP</a>
+                    <a class="bg-beige text-black px-5 py-2 hover:bg-white transition-all text-sm font-bold tracking-wide rounded-sm" href="#signup">SIGN UP</a>
+                    <div aria-label="Language selector" class="language-switcher">
+                        <button class="lang-toggle active" data-lang="en" type="button">EN</button>
+                        <button class="lang-toggle" data-lang="es" type="button">ES</button>
                     </div>
                 </div>
-                <button id="mobile-menu-btn" class="md:hidden text-beige">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
+                <button class="md:hidden text-beige" id="mobile-menu-btn">
+<i class="w-6 h-6" data-lucide="menu"></i>
+</button>
             </div>
-            <div id="mobile-menu" class="hidden md:hidden pb-4">
-                <a href="#about" class="block py-2 text-beige hover:text-white transition-colors text-sm font-semibold">ABOUT</a>
-                <a href="#gallery" class="block py-2 text-beige hover:text-white transition-colors text-sm font-semibold">GALLERY</a>
-                <a href="#map" class="block py-2 text-beige hover:text-white transition-colors text-sm font-semibold">GLOBAL MAP</a>
-                <a href="#signup" class="block py-2 text-beige hover:text-white transition-colors text-sm font-semibold">SIGN UP</a>
-                <div class="language-switcher language-switcher-mobile" aria-label="Language selector">
-                    <button type="button" class="lang-toggle active" data-lang="en">EN</button>
-                    <button type="button" class="lang-toggle" data-lang="es">ES</button>
+            <div class="hidden md:hidden pb-4" id="mobile-menu">
+                <a class="block py-2 text-beige hover:text-white transition-colors text-sm font-semibold" href="#about">ABOUT</a>
+                <a class="block py-2 text-beige hover:text-white transition-colors text-sm font-semibold" href="#gallery">GALLERY</a>
+                <a class="block py-2 text-beige hover:text-white transition-colors text-sm font-semibold" href="#videos">VIDEOS</a>
+                <a class="block py-2 text-beige hover:text-white transition-colors text-sm font-semibold" href="#map">GLOBAL MAP</a>
+                <a class="block py-2 text-beige hover:text-white transition-colors text-sm font-semibold" href="#signup">SIGN UP</a>
+                <div aria-label="Language selector" class="language-switcher language-switcher-mobile">
+                    <button class="lang-toggle active" data-lang="en" type="button">EN</button>
+                    <button class="lang-toggle" data-lang="es" type="button">ES</button>
                 </div>
             </div>
         </nav>
     </header>
-
     <!-- Hero Section / Moving Gallery -->
-    <section id="hero" class="hero-gallery relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-        <div id="hero-slides" class="absolute inset-0" aria-label="Cycle messenger moving gallery">
-            <div class="hero-slide active" style="background-image: url('images/Imagen_1.png');" data-caption="Heavy loads. Fast streets. Bogotá energy."></div>
-            <div class="hero-slide" style="background-image: url('images/Imagen_8.jpg');" data-caption="Night races, courier culture, and city lights."></div>
-            <div class="hero-slide" style="background-image: url('images/Imagen_3.jpg');" data-caption="Community before, during, and after every race."></div>
-            <div class="hero-slide" style="background-image: url('images/Imagen_2.jpg');" data-caption="Packages, checkpoints, radios, and pressure."></div>
-            <div class="hero-slide" style="background-image: url('images/Imagen_7.jpg');" data-caption="Cargo races built from messenger work."></div>
-            <div class="hero-slide" style="background-image: url('images/Imagen_12.png');" data-caption="The velodrome meets the street."></div>
-            <div class="hero-slide" style="background-image: url('images/Imagen_14.png');" data-caption="Bogotá nights. Bikes everywhere."></div>
+    <section class="hero-gallery relative min-h-screen flex items-center justify-center overflow-hidden pt-16" id="hero">
+        <div aria-label="Cycle messenger moving gallery" class="absolute inset-0" id="hero-slides">
+            <div class="hero-slide active" data-caption="Heavy loads. Fast streets. Bogotá energy." style="background-image: url('images/Imagen_1.png');"></div>
+            <div class="hero-slide" data-caption="Night races, courier culture, and city lights." style="background-image: url('images/Imagen_8.jpg');"></div>
+            <div class="hero-slide" data-caption="Community before, during, and after every race." style="background-image: url('images/Imagen_3.jpg');"></div>
+            <div class="hero-slide" data-caption="Packages, checkpoints, radios, and pressure." style="background-image: url('images/Imagen_2.jpg');"></div>
+            <div class="hero-slide" data-caption="Cargo races built from messenger work." style="background-image: url('images/Imagen_7.jpg');"></div>
+            <div class="hero-slide" data-caption="The velodrome meets the street." style="background-image: url('images/Imagen_12.png');"></div>
+            <div class="hero-slide" data-caption="Bogotá nights. Bikes everywhere." style="background-image: url('images/Imagen_14.png');"></div>
         </div>
-
         <div class="absolute inset-0 bg-black/60 z-[1]"></div>
         <div class="hero-vignette absolute inset-0 z-[2]"></div>
         <div class="hero-grain absolute inset-0 z-[3]"></div>
-
         <div class="relative z-10 text-center px-4 max-w-6xl">
-            <img src="images/PajaroOficialCMWC2027.png" alt="CMWC bird mark" class="hero-bird mx-auto mb-4">
+            <img alt="CMWC bird mark" class="hero-bird mx-auto mb-4" src="images/PajaroOficialCMWC2027.png" />
             <p class="hero-eyebrow mb-4">BOGOTÁ • 2027 • COURIER CULTURE</p>
             <h1 class="font-anton text-beige text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wider mb-4 leading-none">
-                CYCLE MESSENGER<br> WORLD CHAMPIONSHIP
+                CYCLE MESSENGER<br/> WORLD CHAMPIONSHIP
             </h1>
             <p class="text-beige/90 text-lg sm:text-xl mb-8 max-w-2xl mx-auto font-medium">
                 A moving gallery of speed, cargo, alleycats, night rides, and the global messenger community coming to Bogotá.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#signup" class="bg-beige text-black px-8 py-4 hover:bg-white transition-all font-bold tracking-wide rounded-sm">
+                <a class="bg-beige text-black px-8 py-4 hover:bg-white transition-all font-bold tracking-wide rounded-sm" href="#signup">
           REGISTER NOW
         </a>
-                <a href="#gallery" class="border-2 border-beige text-beige px-8 py-4 hover:bg-beige hover:text-black transition-all font-bold tracking-wide rounded-sm">
+                <a class="border-2 border-beige text-beige px-8 py-4 hover:bg-beige hover:text-black transition-all font-bold tracking-wide rounded-sm" href="#gallery">
           VIEW GALLERY
         </a>
             </div>
         </div>
-
-        <button id="hero-prev" type="button" aria-label="Previous hero image" class="hero-arrow hero-arrow-left">
-            <i data-lucide="chevron-left" class="w-7 h-7"></i>
-        </button>
-        <button id="hero-next" type="button" aria-label="Next hero image" class="hero-arrow hero-arrow-right">
-            <i data-lucide="chevron-right" class="w-7 h-7"></i>
-        </button>
-
+        <button aria-label="Previous hero image" class="hero-arrow hero-arrow-left" id="hero-prev" type="button">
+<i class="w-7 h-7" data-lucide="chevron-left"></i>
+</button>
+        <button aria-label="Next hero image" class="hero-arrow hero-arrow-right" id="hero-next" type="button">
+<i class="w-7 h-7" data-lucide="chevron-right"></i>
+</button>
         <div class="hero-bottom-bar">
-            <p id="hero-caption" class="hero-caption">Heavy loads. Fast streets. Bogotá energy.</p>
-            <div id="hero-dots" class="hero-dots" aria-label="Hero gallery controls"></div>
+            <p class="hero-caption" id="hero-caption">Heavy loads. Fast streets. Bogotá energy.</p>
+            <div aria-label="Hero gallery controls" class="hero-dots" id="hero-dots"></div>
         </div>
         <div class="hero-progress"><span id="hero-progress-bar"></span></div>
     </section>
-
     <!-- Stats Bar -->
     <section class="bg-black py-8 border-y-2 border-beige">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
@@ -120,21 +118,18 @@
             </div>
         </div>
     </section>
-
     <!-- About Section with Carousel -->
-    <section id="about" class="py-20 px-4 bg-beige">
+    <section class="py-20 px-4 bg-beige" id="about">
         <div class="max-w-7xl mx-auto">
             <h2 class="font-anton text-5xl md:text-6xl text-black mb-4 text-center">ABOUT THE CHAMPIONSHIPS</h2>
             <p class="text-black/70 text-center max-w-2xl mx-auto mb-12">
-                Seven years later... The world comes to Bogotá. The first World Bicycle Messenger Championship in South America
-            </p>
-
+                Seven years later... The world comes to Bogotá. The first World Bicycle Messenger Championship in South America</p>
             <!-- Carousel -->
             <div class="relative max-w-5xl mx-auto">
                 <div class="overflow-hidden rounded-sm border-4 border-black">
-                    <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
-                        <div class="min-w-full relative">
-                            <img src="https://static.photos/cityscape/1200x630/101" alt="Race start" class="w-full h-[400px] md:h-[500px] object-cover">
+                    <div class="flex transition-transform duration-500 ease-in-out" id="carousel">
+                        <!-- Add more About slides by copying one .min-w-full block below. The script automatically creates dots for every slide. -->
+                        <div class="min-w-full relative"><img alt="Heavy cargo messenger" class="w-full h-[400px] md:h-[500px] object-cover" src="DIEGOSOSA/AR0A5770.JPG" />
                             <div class="absolute inset-0 bg-black/50 flex items-end p-6 md:p-12">
                                 <div class="text-beige">
                                     <h3 class="font-anton text-3xl md:text-4xl mb-2">THE MAIN RACE</h3>
@@ -142,215 +137,340 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="min-w-full relative">
-                            <img src="https://static.photos/technology/1200x630/102" alt="Track events" class="w-full h-[400px] md:h-[500px] object-cover">
+                        <div class="min-w-full relative"><img alt="Night race lineup" class="w-full h-[400px] md:h-[500px] object-cover" src="images/Imagen_8.jpg" />
                             <div class="absolute inset-0 bg-black/50 flex items-end p-6 md:p-12">
                                 <div class="text-beige">
-                                    <h3 class="font-anton text-3xl md:text-4xl mb-2">TRACK COMPETITIONS</h3>
-                                    <p class="max-w-lg">Sprints, time trials, and skid contests. Pure cycling skill on closed circuits.</p>
+                                    <h3 class="font-anton text-3xl md:text-4xl mb-2">NIGHT RIDES</h3>
+                                    <p class="max-w-lg">Bogotá after dark: lights, alleycats, checkpoints, and the messenger community moving together.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="min-w-full relative">
-                            <img src="https://static.photos/people/1200x630/103" alt="Community" class="w-full h-[400px] md:h-[500px] object-cover">
+                        <div class="min-w-full relative"><img alt="Messenger community gathering" class="w-full h-[400px] md:h-[500px] object-cover" src="IVANNIETO/L05A3529.jpg" />
                             <div class="absolute inset-0 bg-black/50 flex items-end p-6 md:p-12">
                                 <div class="text-beige">
                                     <h3 class="font-anton text-3xl md:text-4xl mb-2">GLOBAL COMMUNITY</h3>
-                                    <p class="max-w-lg">Meet messengers from Tokyo to New York. Forge friendships that span continents.</p>
+                                    <p class="max-w-lg">Messengers from every city come together to race, trade stories, and build friendships that last beyond the event.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="min-w-full relative">
-                            <img src="https://static.photos/cityscape/1200x630/104" alt="Alleycat" class="w-full h-[400px] md:h-[500px] object-cover">
+                        <div class="min-w-full relative"><img alt="Cargo bike race" class="w-full h-[400px] md:h-[500px] object-cover" src="images/Imagen_7.jpg" />
+                            <div class="absolute inset-0 bg-black/50 flex items-end p-6 md:p-12">
+                                <div class="text-beige">
+                                    <h3 class="font-anton text-3xl md:text-4xl mb-2">CARGO BIKES</h3>
+                                    <p class="max-w-lg">Everyone needs a cargo bike. Load it, ride it, race it, and prove what courier culture is built on.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="min-w-full relative"><img alt="Velodrome race" class="w-full h-[400px] md:h-[500px] object-cover" src="IVANNIETO/6D3CA975-B209-49FB-A481-44B3634BA8BC.png" />
+                            <div class="absolute inset-0 bg-black/50 flex items-end p-6 md:p-12">
+                                <div class="text-beige">
+                                    <h3 class="font-anton text-3xl md:text-4xl mb-2">TRACK COMPETITIONS</h3>
+                                    <p class="max-w-lg">Sprints, time trials, and track events bring pure speed and bike handling into the championship weekend.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="min-w-full relative"><img alt="Bogota bike crowd" class="w-full h-[400px] md:h-[500px] object-cover" src="DIEGOSOSA/IMG_9719.JPG" />
                             <div class="absolute inset-0 bg-black/50 flex items-end p-6 md:p-12">
                                 <div class="text-beige">
                                     <h3 class="font-anton text-3xl md:text-4xl mb-2">ALLEYCAT RACES</h3>
-                                    <p class="max-w-lg">Open-street checkpoint races inspired by the daily work of bike messengers worldwide.</p>
+                                    <p class="max-w-lg">Open-street checkpoint races inspired by the daily work of bike messengers around the world.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="min-w-full relative"><img alt="Messenger checking package" class="w-full h-[400px] md:h-[500px] object-cover" src="IVANNIETO/L05A3554.jpg" />
+                            <div class="absolute inset-0 bg-black/50 flex items-end p-6 md:p-12">
+                                <div class="text-beige">
+                                    <h3 class="font-anton text-3xl md:text-4xl mb-2">CHECKPOINT PRESSURE</h3>
+                                    <p class="max-w-lg">Packages, manifests, radios, maps, and decisions. The fastest rider is not always the smartest rider.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="min-w-full relative"><img alt="Low light bike courier" class="w-full h-[400px] md:h-[500px] object-cover" src="DIEGOSOSA/IMG_5989.JPG" />
+                            <div class="absolute inset-0 bg-black/50 flex items-end p-6 md:p-12">
+                                <div class="text-beige">
+                                    <h3 class="font-anton text-3xl md:text-4xl mb-2">STREET SKILL</h3>
+                                    <p class="max-w-lg">A championship for riders who understand traffic, timing, balance, and the rhythm of the city.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- Carousel Controls -->
-                <button id="carousel-prev" class="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 bg-black text-beige w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:bg-beige hover:text-black transition-all rounded-sm border-2 border-beige">
-          <i data-lucide="chevron-left" class="w-6 h-6"></i>
-        </button>
-                <button id="carousel-next" class="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 bg-black text-beige w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:bg-beige hover:text-black transition-all rounded-sm border-2 border-beige">
-          <i data-lucide="chevron-right" class="w-6 h-6"></i>
-        </button>
-
+                <button class="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 bg-black text-beige w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:bg-beige hover:text-black transition-all rounded-sm border-2 border-beige" id="carousel-prev">
+<i class="w-6 h-6" data-lucide="chevron-left"></i>
+</button>
+                <button class="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 bg-black text-beige w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:bg-beige hover:text-black transition-all rounded-sm border-2 border-beige" id="carousel-next">
+<i class="w-6 h-6" data-lucide="chevron-right"></i>
+</button>
                 <!-- Carousel Dots -->
-                <div id="carousel-dots" class="flex justify-center gap-2 mt-6"></div>
+                <div class="flex justify-center gap-2 mt-6" id="carousel-dots"></div>
             </div>
         </div>
     </section>
-
+    <!-- Our Proud Sponsors -->
+    <section class="py-20 px-4 bg-black border-y-2 border-beige sponsors-section" id="sponsors">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-beige/70 text-center text-sm uppercase tracking-[0.35em] mb-3">OUR PROUD SPONSORS</p>
+            <h2 class="font-anton text-5xl md:text-6xl text-beige mb-4 text-center">PROUD SPONSORS</h2>
+            <p class="text-beige/70 text-center max-w-3xl mx-auto mb-12">
+                These brands, crews, and partners help power the championship and keep messenger culture moving forward.
+            </p>
+            <div aria-label="Sliding sponsor logos carousel" class="sponsor-marquee">
+                <div class="sponsor-track">
+                    <div class="sponsor-card"><img alt="UNO sponsor logo" src="images/sponsors/uno.png" /></div>
+                    <div class="sponsor-card"><img alt="Biker Sprints sponsor logo" src="images/sponsors/bikersprints.png" /></div>
+                    <div class="sponsor-card"><img alt="Clinch Industria sponsor logo" src="images/sponsors/clinch.png" /></div>
+                    <div class="sponsor-card"><img alt="Crit Series Colombia sponsor logo" src="images/sponsors/crit-series.png" /></div>
+                    <div class="sponsor-card"><img alt="Gear Photo sponsor logo" src="images/sponsors/gear-photo.png" /></div>
+                    <div class="sponsor-card"><img alt="Donkey sponsor logo" src="images/sponsors/donkey.png" /></div>
+                    <div class="sponsor-card"><img alt="Fundación Movilidad Activa sponsor logo" src="images/sponsors/fma.png" /></div>
+                    <div class="sponsor-card"><img alt="Grund sponsor logo" src="images/sponsors/grund.png" /></div>
+                    <div class="sponsor-card"><img alt="H sponsor logo" src="images/sponsors/h-logo.png" /></div>
+                    <div class="sponsor-card"><img alt="La Hermandad Bicimensajera sponsor logo" src="images/sponsors/la-hermandad.png" /></div>
+                    <div class="sponsor-card"><img alt="Nun Pines sponsor logo" src="images/sponsors/nun-pines.png" /></div>
+                    <div class="sponsor-card"><img alt="Oniric sponsor logo" src="images/sponsors/oniric.png" /></div>
+                    <div class="sponsor-card"><img alt="Rats Bags sponsor logo" src="images/sponsors/rats-bags.png" /></div>
+                    <div class="sponsor-card"><img alt="Tribu sponsor logo" src="images/sponsors/tribu.png" /></div>
+                    <div class="sponsor-card"><img alt="Yugo Messenger Bags sponsor logo" src="images/sponsors/yugo.png" /></div>
+                </div>
+                <div aria-hidden="true" class="sponsor-track">
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/uno.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/bikersprints.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/clinch.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/crit-series.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/gear-photo.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/donkey.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/fma.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/grund.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/h-logo.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/la-hermandad.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/nun-pines.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/oniric.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/rats-bags.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/tribu.png" /></div>
+                    <div class="sponsor-card"><img alt="" src="images/sponsors/yugo.png" /></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Video Gallery Section -->
+    <section class="py-20 px-4 bg-beige video-gallery-section" id="videos">
+        <div class="max-w-7xl mx-auto">
+            <p class="video-eyebrow text-black/70 text-center text-sm uppercase tracking-[0.35em] mb-3">WATCH THE CULTURE</p>
+            <h2 class="video-title font-anton text-5xl md:text-6xl text-black mb-4 text-center">VIDEO GALLERY</h2>
+            <p class="video-intro text-black/70 text-center max-w-3xl mx-auto mb-12">
+                Short clips from races, night rides, cargo runs, and the road to Bogotá 2027.
+            </p>
+            <div class="video-grid">
+                <article class="video-card">
+                    <div class="video-frame">
+                        <video controls="" poster="images/Imagen_1.png" preload="metadata">
+<source src="videos/cargo-main.mp4" type="video/mp4"/>
+</video>
+                    </div>
+                    <div class="video-card-copy">
+                        <h3 class="font-anton video-card-title">STREET LOADS</h3>
+                        <p class="video-card-text">Heavy cargo, fast decisions, and the pressure that makes messenger racing different.</p>
+                    </div>
+                </article>
+                <article class="video-card">
+                    <div class="video-frame">
+                        <video controls="" poster="images/Imagen_8.jpg" preload="metadata">
+<source src="videos/night-ride.mp4" type="video/mp4"/>
+</video>
+                    </div>
+                    <div class="video-card-copy">
+                        <h3 class="font-anton video-card-title">NIGHT RIDE ENERGY</h3>
+                        <p class="video-card-text">A look at the lights, crowds, and street atmosphere that define Bogotá bike culture.</p>
+                    </div>
+                </article>
+                <article class="video-card">
+                    <div class="video-frame">
+                        <video controls="" poster="images/Imagen_12.png" preload="metadata">
+<source src="videos/velodrome.mp4" type="video/mp4"/>
+</video>
+                    </div>
+                    <div class="video-card-copy">
+                        <h3 class="font-anton video-card-title">TRACK SPEED</h3>
+                        <p class="video-card-text">From the velodrome to the street, the championship brings every cycling discipline together.</p>
+                    </div>
+                </article>
+                <article class="video-card">
+                    <div class="video-frame">
+                        <video controls="" poster="images/Imagen_7.jpg" preload="metadata">
+<source src="videos/cargo-race.mp4" type="video/mp4"/>
+</video>
+                    </div>
+                    <div class="video-card-copy">
+                        <h3 class="font-anton video-card-title">CARGO RACE</h3>
+                        <p class="video-card-text">Packages, balance, teamwork, and the daily work of couriers turned into competition.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
     <!-- Gallery Section -->
-    <section id="gallery" class="py-20 px-4 bg-black">
+    <section class="py-20 px-4 bg-black" id="gallery">
         <div class="max-w-7xl mx-auto">
             <h2 class="font-anton text-5xl md:text-6xl text-beige mb-4 text-center">GALLERY</h2>
             <p class="text-beige/70 text-center max-w-2xl mx-auto mb-12">
                 Moments captured from past championships around the world.
             </p>
-
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
                 <div class="relative group overflow-hidden rounded-sm border-2 border-beige cursor-pointer gallery-item" data-full="https://static.photos/cityscape/640x360/201">
-                    <img src="https://static.photos/cityscape/320x240/201" alt="Gallery 1" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img alt="Gallery 1" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" src="https://static.photos/cityscape/320x240/201">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <i data-lucide="zoom-in" class="w-8 h-8 text-beige"></i>
+                        <i class="w-8 h-8 text-beige" data-lucide="zoom-in"></i>
                     </div>
+                    </img>
                 </div>
                 <div class="relative group overflow-hidden rounded-sm border-2 border-beige cursor-pointer gallery-item" data-full="https://static.photos/people/640x360/202">
-                    <img src="https://static.photos/people/320x240/202" alt="Gallery 2" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img alt="Gallery 2" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" src="https://static.photos/people/320x240/202">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <i data-lucide="zoom-in" class="w-8 h-8 text-beige"></i>
+                        <i class="w-8 h-8 text-beige" data-lucide="zoom-in"></i>
                     </div>
+                    </img>
                 </div>
                 <div class="relative group overflow-hidden rounded-sm border-2 border-beige cursor-pointer gallery-item" data-full="https://static.photos/sport/640x360/203">
-                    <img src="https://static.photos/sport/320x240/203" alt="Gallery 3" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img alt="Gallery 3" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" src="https://static.photos/sport/320x240/203">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <i data-lucide="zoom-in" class="w-8 h-8 text-beige"></i>
+                        <i class="w-8 h-8 text-beige" data-lucide="zoom-in"></i>
                     </div>
+                    </img>
                 </div>
                 <div class="relative group overflow-hidden rounded-sm border-2 border-beige cursor-pointer gallery-item" data-full="https://static.photos/cityscape/640x360/204">
-                    <img src="https://static.photos/cityscape/320x240/204" alt="Gallery 4" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img alt="Gallery 4" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" src="https://static.photos/cityscape/320x240/204">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <i data-lucide="zoom-in" class="w-8 h-8 text-beige"></i>
+                        <i class="w-8 h-8 text-beige" data-lucide="zoom-in"></i>
                     </div>
+                    </img>
                 </div>
                 <div class="relative group overflow-hidden rounded-sm border-2 border-beige cursor-pointer gallery-item" data-full="https://static.photos/people/640x360/205">
-                    <img src="https://static.photos/people/320x240/205" alt="Gallery 5" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img alt="Gallery 5" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" src="https://static.photos/people/320x240/205">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <i data-lucide="zoom-in" class="w-8 h-8 text-beige"></i>
+                        <i class="w-8 h-8 text-beige" data-lucide="zoom-in"></i>
                     </div>
+                    </img>
                 </div>
                 <div class="relative group overflow-hidden rounded-sm border-2 border-beige cursor-pointer gallery-item" data-full="https://static.photos/technology/640x360/206">
-                    <img src="https://static.photos/technology/320x240/206" alt="Gallery 6" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img alt="Gallery 6" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" src="https://static.photos/technology/320x240/206">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <i data-lucide="zoom-in" class="w-8 h-8 text-beige"></i>
+                        <i class="w-8 h-8 text-beige" data-lucide="zoom-in"></i>
                     </div>
+                    </img>
                 </div>
                 <div class="relative group overflow-hidden rounded-sm border-2 border-beige cursor-pointer gallery-item" data-full="https://static.photos/sport/640x360/207">
-                    <img src="https://static.photos/sport/320x240/207" alt="Gallery 7" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img alt="Gallery 7" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" src="https://static.photos/sport/320x240/207">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <i data-lucide="zoom-in" class="w-8 h-8 text-beige"></i>
+                        <i class="w-8 h-8 text-beige" data-lucide="zoom-in"></i>
                     </div>
+                    </img>
                 </div>
                 <div class="relative group overflow-hidden rounded-sm border-2 border-beige cursor-pointer gallery-item" data-full="https://static.photos/cityscape/640x360/208">
-                    <img src="https://static.photos/cityscape/320x240/208" alt="Gallery 8" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img alt="Gallery 8" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" src="https://static.photos/cityscape/320x240/208">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <i data-lucide="zoom-in" class="w-8 h-8 text-beige"></i>
+                        <i class="w-8 h-8 text-beige" data-lucide="zoom-in"></i>
                     </div>
+                    </img>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Map Section -->
-    <section id="map" class="py-20 px-4 bg-beige">
+    <section class="py-20 px-4 bg-beige" id="map">
         <div class="max-w-7xl mx-auto">
             <h2 class="font-anton text-5xl md:text-6xl text-black mb-4 text-center">GLOBAL SIGNUPS</h2>
             <p class="text-black/70 text-center max-w-2xl mx-auto mb-12">
                 See where messengers from around the world are signing up. Each marker represents a country with registered competitors.
             </p>
-
             <div class="flex flex-col lg:flex-row gap-6">
                 <div class="flex-1">
-                    <div id="leaflet-map" class="w-full h-[400px] md:h-[550px] rounded-sm border-4 border-black"></div>
+                    <div class="w-full h-[400px] md:h-[550px] rounded-sm border-4 border-black" id="leaflet-map"></div>
                 </div>
-
                 <!-- Country leaderboard -->
                 <div class="lg:w-80 bg-black text-beige rounded-sm border-4 border-black p-5">
                     <h3 class="font-anton text-2xl mb-4 border-b-2 border-beige pb-2">TOP COUNTRIES</h3>
-                    <div id="country-list" class="space-y-2 max-h-[450px] md:max-h-[500px] overflow-y-auto">
+                    <div class="space-y-2 max-h-[450px] md:max-h-[500px] overflow-y-auto" id="country-list">
                         <p class="text-beige/60 text-sm">No signups yet. Be the first!</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Sign Up Section -->
-    <section id="signup" class="py-20 px-4 bg-black">
+    <section class="py-20 px-4 bg-black" id="signup">
         <div class="max-w-2xl mx-auto">
             <h2 class="font-anton text-5xl md:text-6xl text-beige mb-4 text-center">SIGN UP</h2>
             <p class="text-beige/70 text-center mb-12">
                 Register your spot at the Cycle Messenger World Championship Bogotá 2027.
             </p>
-
-            <form id="signup-form" class="bg-beige text-black p-6 md:p-8 rounded-sm border-4 border-beige space-y-5">
+            <form class="bg-beige text-black p-6 md:p-8 rounded-sm border-4 border-beige space-y-5" id="signup-form">
                 <div>
-                    <label for="name" class="block text-sm font-bold mb-2 tracking-wide">FULL NAME</label>
-                    <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-white border-2 border-black rounded-sm focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all" placeholder="Your full name">
+                    <label class="block text-sm font-bold mb-2 tracking-wide" for="name">FULL NAME</label>
+                    <input class="w-full px-4 py-3 bg-white border-2 border-black rounded-sm focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all" id="name" name="name" placeholder="Your full name" required="" type="text" />
                 </div>
-
                 <div>
-                    <label for="email" class="block text-sm font-bold mb-2 tracking-wide">EMAIL</label>
-                    <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-white border-2 border-black rounded-sm focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all" placeholder="you@example.com">
+                    <label class="block text-sm font-bold mb-2 tracking-wide" for="email">EMAIL</label>
+                    <input class="w-full px-4 py-3 bg-white border-2 border-black rounded-sm focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all" id="email" name="email" placeholder="you@example.com" required="" type="email" />
                 </div>
-
                 <div>
-                    <label for="country" class="block text-sm font-bold mb-2 tracking-wide">COUNTRY</label>
-                    <select id="country" name="country" required class="w-full px-4 py-3 bg-white border-2 border-black rounded-sm focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all">
-            <option value="">-- Select your country --</option>
-          </select>
+                    <label class="block text-sm font-bold mb-2 tracking-wide" for="country">COUNTRY</label>
+                    <select class="w-full px-4 py-3 bg-white border-2 border-black rounded-sm focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all" id="country" name="country" required="">
+<option value="">-- Select your country --</option>
+</select>
                 </div>
-
                 <div>
-                    <label for="city" class="block text-sm font-bold mb-2 tracking-wide">CITY</label>
-                    <input type="text" id="city" name="city" required class="w-full px-4 py-3 bg-white border-2 border-black rounded-sm focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all" placeholder="Your city">
+                    <label class="block text-sm font-bold mb-2 tracking-wide" for="city">CITY</label>
+                    <input class="w-full px-4 py-3 bg-white border-2 border-black rounded-sm focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all" id="city" name="city" placeholder="Your city" required="" type="text" />
                 </div>
-
                 <div>
-                    <label for="experience" class="block text-sm font-bold mb-2 tracking-wide">YEARS OF EXPERIENCE</label>
-                    <input type="number" id="experience" name="experience" min="0" max="50" required class="w-full px-4 py-3 bg-white border-2 border-black rounded-sm focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all" placeholder="0">
+                    <label class="block text-sm font-bold mb-2 tracking-wide" for="experience">YEARS OF EXPERIENCE</label>
+                    <input class="w-full px-4 py-3 bg-white border-2 border-black rounded-sm focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all" id="experience" max="50" min="0" name="experience" placeholder="0" required="" type="number"
+                    />
                 </div>
-
                 <div class="flex items-start gap-3">
-                    <input type="checkbox" id="terms" required class="mt-1 w-5 h-5 accent-black">
-                    <label for="terms" class="text-sm">I agree to the championship rules and confirm I am 18 years or older.</label>
+                    <input class="mt-1 w-5 h-5 accent-black" id="terms" required="" type="checkbox" />
+                    <label class="text-sm" for="terms">I agree to the championship rules and confirm I am 18 years or older.</label>
                 </div>
-
-                <button type="submit" class="w-full bg-black text-beige py-4 hover:bg-gray-800 transition-all font-bold tracking-wide rounded-sm border-2 border-black">
+                <button class="w-full bg-black text-beige py-4 hover:bg-gray-800 transition-all font-bold tracking-wide rounded-sm border-2 border-black" type="submit">
           REGISTER NOW
         </button>
-
-                <div id="form-message" class="hidden p-4 rounded-sm text-center font-medium"></div>
+                <div class="hidden p-4 rounded-sm text-center font-medium" id="form-message"></div>
             </form>
         </div>
     </section>
-
     <!-- Footer -->
     <footer class="bg-black text-beige py-12 px-4 border-t-2 border-beige">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <div class="flex items-center gap-2 mb-4">
-                    <img src="images/cyclist-icon.png" alt="CMWC cyclist icon" class="brand-icon">
+                    <img alt="CMWC cyclist icon" class="brand-icon" src="images/cyclist-icon.png">
                     <span class="font-anton text-xl tracking-wider">CMWC 2027</span>
+                    </img>
                 </div>
                 <p class="text-beige/70 text-sm">World Bike Messenger Championships. The premier global event for urban cycling couriers.</p>
             </div>
             <div>
                 <h4 class="font-anton text-lg mb-4">QUICK LINKS</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#about" class="text-beige/70 hover:text-beige transition-colors">About</a></li>
-                    <li><a href="#gallery" class="text-beige/70 hover:text-beige transition-colors">Gallery</a></li>
-                    <li><a href="#map" class="text-beige/70 hover:text-beige transition-colors">Global Map</a></li>
-                    <li><a href="#signup" class="text-beige/70 hover:text-beige transition-colors">Sign Up</a></li>
+                    <li><a class="text-beige/70 hover:text-beige transition-colors" href="#about">About</a></li>
+                    <li><a class="text-beige/70 hover:text-beige transition-colors" href="#gallery">Gallery</a></li>
+                    <li><a class="text-beige/70 hover:text-beige transition-colors" href="#videos">Videos</a></li>
+                    <li><a class="text-beige/70 hover:text-beige transition-colors" href="#map">Global Map</a></li>
+                    <li><a class="text-beige/70 hover:text-beige transition-colors" href="#signup">Sign Up</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-anton text-lg mb-4">FOLLOW US</h4>
                 <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 border-2 border-beige flex items-center justify-center hover:bg-beige hover:text-black transition-all rounded-sm">
-                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    <a class="w-10 h-10 border-2 border-beige flex items-center justify-center hover:bg-beige hover:text-black transition-all rounded-sm" href="#">
+                        <i class="w-5 h-5" data-lucide="instagram"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 border-2 border-beige flex items-center justify-center hover:bg-beige hover:text-black transition-all rounded-sm">
-                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                    <a class="w-10 h-10 border-2 border-beige flex items-center justify-center hover:bg-beige hover:text-black transition-all rounded-sm" href="#">
+                        <i class="w-5 h-5" data-lucide="twitter"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 border-2 border-beige flex items-center justify-center hover:bg-beige hover:text-black transition-all rounded-sm">
-                        <i data-lucide="facebook" class="w-5 h-5"></i>
+                    <a class="w-10 h-10 border-2 border-beige flex items-center justify-center hover:bg-beige hover:text-black transition-all rounded-sm" href="#">
+                        <i class="w-5 h-5" data-lucide="facebook"></i>
                     </a>
                 </div>
             </div>
@@ -359,17 +479,16 @@
             © 2027 Cycle Messenger World Championship Bogotá. All rights reserved.
         </div>
     </footer>
-
     <!-- Lightbox -->
-    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/90 hidden items-center justify-center p-4">
-        <button id="lightbox-close" class="absolute top-4 right-4 text-beige hover:text-white">
-      <i data-lucide="x" class="w-10 h-10"></i>
-    </button>
-        <img id="lightbox-img" src="" alt="Full size" class="max-w-full max-h-full object-contain rounded-sm border-4 border-beige">
+    <div class="fixed inset-0 z-[100] bg-black/90 hidden items-center justify-center p-4" id="lightbox">
+        <button class="absolute top-4 right-4 text-beige hover:text-white" id="lightbox-close">
+<i class="w-10 h-10" data-lucide="x"></i>
+</button>
+        <img alt="Full size" class="max-w-full max-h-full object-contain rounded-sm border-4 border-beige" id="lightbox-img" src="">
+        </img>
     </div>
-
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=merged-video-1"></script>
 </body>
 
 </html>
