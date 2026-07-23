@@ -11,7 +11,7 @@ let currentLanguage = localStorage.getItem('cmwc_language') || 'en';
 
 const languageText = {
     en: {
-        navAbout: 'ABOUT', navGallery: 'GALLERY', navVideos: 'VIDEOS', navMap: 'GLOBAL MAP', navSignup: 'SIGN UP',
+        navAbout: 'ABOUT', navGallery: 'GALLERY', navVideos: 'VIDEOS', navDonate: 'DONATE', navMap: 'GLOBAL MAP', navSignup: 'SIGN UP',
         heroEyebrow: 'BOGOTÁ • 2027 • COURIER CULTURE',
         heroTitle: 'CYCLE MESSENGER<br> WORLD CHAMPIONSHIP',
         heroText: 'A moving gallery of speed, cargo, alleycats, night rides, and the global messenger community coming to Bogotá.',
@@ -23,6 +23,10 @@ const languageText = {
         sponsorsText: 'These brands, crews, and partners help power the championship and keep messenger culture moving forward.',
         videosEyebrow: 'WATCH THE CULTURE', videosTitle: 'VIDEO GALLERY',
         videosText: 'Short clips from races, night rides, cargo runs, and the road to Bogotá 2027.',
+        gofundmeEyebrow: 'HELP BRING THE WORLD TO BOGOTÁ', gofundmeTitle: 'SUPPORT CMWC 2027',
+        gofundmeText: 'Your donation helps support permits, race materials, safety, rider resources, volunteer tools, and the infrastructure needed to welcome messengers from around the world.',
+        gofundmeButton: 'DONATE ON GOFUNDME', gofundmeSponsor: 'BECOME A SPONSOR', gofundmeRaised: '$0 raised', gofundmeGoal: 'Goal: $10,000',
+        gofundmeNote: 'Replace the button link with your real GoFundMe URL when your campaign is ready.',
         videoTitles: ['STREET LOADS', 'NIGHT RIDE ENERGY', 'TRACK SPEED', 'CARGO RACE'],
         videoTexts: ['Heavy cargo, fast decisions, and the pressure that makes messenger racing different.', 'A look at the lights, crowds, and street atmosphere that define Bogotá bike culture.', 'From the velodrome to the street, the championship brings every cycling discipline together.', 'Packages, balance, teamwork, and the daily work of couriers turned into competition.'],
         galleryTitle: 'GALLERY', galleryText: 'Moments captured from past championships around the world.',
@@ -38,9 +42,9 @@ const languageText = {
         formSuccess: name => `Welcome to the championships, ${name}! 🚴 You're registered from`
     },
     es: {
-        navAbout: 'SOBRE EL EVENTO', navGallery: 'GALERÍA', navVideos: 'VIDEOS', navMap: 'MAPA GLOBAL', navSignup: 'INSCRÍBETE',
+        navAbout: 'SOBRE EL EVENTO', navGallery: 'GALERÍA', navVideos: 'VIDEOS', navDonate: 'DONAR', navMap: 'MAPA GLOBAL', navSignup: 'INSCRÍBETE',
         heroEyebrow: 'BOGOTÁ • 2027 • CULTURA MENSAJERA',
-        heroTitle: 'CAMPEONATO MUNDIAL<br> DE MENSAJERÍA EN BICICLETA',
+        heroTitle: 'CAMPEONATO MUNDIAL<br> DE CICLOMENSAJEROS',
         heroText: 'Una galería en movimiento de velocidad, carga, alleycats, rodadas nocturnas y la comunidad mensajera global llegando a Bogotá.',
         registerNow: 'INSCRÍBETE AHORA', viewGallery: 'VER GALERÍA',
         signups: 'Inscritos', countries: 'Países', events: 'Eventos', years: 'Años',
@@ -50,6 +54,10 @@ const languageText = {
         sponsorsText: 'Estas marcas, colectivos y aliados ayudan a impulsar el campeonato y a mantener viva la cultura mensajera.',
         videosEyebrow: 'MIRA LA CULTURA', videosTitle: 'GALERÍA DE VIDEO',
         videosText: 'Clips cortos de carreras, rodadas nocturnas, carga y el camino hacia Bogotá 2027.',
+        gofundmeEyebrow: 'AYUDA A TRAER EL MUNDO A BOGOTÁ', gofundmeTitle: 'APOYA CMWC 2027',
+        gofundmeText: 'Tu donación ayuda con permisos, materiales de carrera, seguridad, recursos para participantes, herramientas para voluntarios y la infraestructura necesaria para recibir mensajeros de todo el mundo.',
+        gofundmeButton: 'DONAR EN GOFUNDME', gofundmeSponsor: 'SER PATROCINADOR', gofundmeRaised: '$0 recaudados', gofundmeGoal: 'Meta: $10,000',
+        gofundmeNote: 'Reemplaza el enlace del botón con tu URL real de GoFundMe cuando la campaña esté lista.',
         videoTitles: ['CARGA EN LA CALLE', 'ENERGÍA NOCTURNA', 'VELOCIDAD EN PISTA', 'CARRERA DE CARGA'],
         videoTexts: ['Carga pesada, decisiones rápidas y la presión que hace diferente a las carreras mensajeras.', 'Una mirada a las luces, la gente y la atmósfera callejera que definen la cultura bici en Bogotá.', 'Del velódromo a la calle, el campeonato une todas las disciplinas del ciclismo.', 'Paquetes, equilibrio, trabajo en equipo y la labor diaria de los correos convertida en competencia.'],
         galleryTitle: 'GALERÍA', galleryText: 'Momentos capturados de campeonatos anteriores alrededor del mundo.',
@@ -87,6 +95,7 @@ function applyLanguage(lang) {
     setText('header a[href="#about"], footer a[href="#about"]', t.navAbout);
     setText('header a[href="#gallery"], footer a[href="#gallery"]', t.navGallery);
     setText('header a[href="#videos"], footer a[href="#videos"]', t.navVideos);
+    setText('header a[href="#gofundme"], footer a[href="#gofundme"]', t.navDonate);
     setText('header a[href="#map"], footer a[href="#map"]', t.navMap);
     setText('header a[href="#signup"], footer a[href="#signup"]', t.navSignup);
 
@@ -115,6 +124,15 @@ function applyLanguage(lang) {
     setText('#videos .video-intro', t.videosText);
     document.querySelectorAll('#videos .video-card-title').forEach((el, i) => { if (t.videoTitles[i]) el.textContent = t.videoTitles[i]; });
     document.querySelectorAll('#videos .video-card-text').forEach((el, i) => { if (t.videoTexts[i]) el.textContent = t.videoTexts[i]; });
+
+    setText('#gofundme .gofundme-eyebrow', t.gofundmeEyebrow);
+    setText('#gofundme .gofundme-title', t.gofundmeTitle);
+    setText('#gofundme .gofundme-text', t.gofundmeText);
+    setText('#gofundme .gofundme-button', t.gofundmeButton);
+    setText('#gofundme .gofundme-secondary', t.gofundmeSponsor);
+    setText('#gofundme .gofundme-raised', t.gofundmeRaised);
+    setText('#gofundme .gofundme-goal', t.gofundmeGoal);
+    setText('#gofundme .gofundme-note', t.gofundmeNote);
 
     setText('#gallery h2', t.galleryTitle);
     setText('#gallery > div > p', t.galleryText);
@@ -605,3 +623,7 @@ initLanguageSwitcher();
 
 // Re-initialize Lucide icons after dynamic content
 lucide.createIcons();
+
+// ===== GOFUNDME BACKGROUND SLIDESHOW =====
+// The GoFundMe background is now pure HTML + CSS.
+// This avoids path/cache/JavaScript-order problems, so the images show even if another script fails.

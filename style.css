@@ -595,8 +595,14 @@ input[type=number] {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .sponsor-track {
+    .sponsor-track,
+    .gofundme-bg-slide {
         animation: none;
+    }
+
+    .gofundme-bg-slide:first-child {
+        opacity: 0.28;
+        transform: none;
     }
 
     .sponsor-marquee {
@@ -671,5 +677,367 @@ input[type=number] {
 @media (max-width: 768px) {
     .video-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+
+/* GoFundMe fundraising section */
+.gofundme-section {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.gofundme-bg-slideshow,
+.gofundme-bg-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.gofundme-bg-slideshow {
+    z-index: 0;
+}
+
+.gofundme-bg-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.08);
+    animation: gofundme-bg-fade 30s infinite;
+    will-change: opacity, transform;
+}
+
+.gofundme-bg-slide:nth-child(1) { animation-delay: 0s; }
+.gofundme-bg-slide:nth-child(2) { animation-delay: 6s; }
+.gofundme-bg-slide:nth-child(3) { animation-delay: 12s; }
+.gofundme-bg-slide:nth-child(4) { animation-delay: 18s; }
+.gofundme-bg-slide:nth-child(5) { animation-delay: 24s; }
+
+.gofundme-bg-overlay {
+    z-index: 1;
+    background:
+        radial-gradient(circle at center, rgba(10, 10, 10, 0.35) 0%, rgba(10, 10, 10, 0.82) 70%),
+        linear-gradient(90deg, rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.58), rgba(10, 10, 10, 0.9));
+    backdrop-filter: blur(2px);
+}
+
+.gofundme-content-wrap {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes gofundme-bg-fade {
+    0% {
+        opacity: 0;
+        transform: scale(1.08);
+    }
+    6% {
+        opacity: 0.34;
+    }
+    20% {
+        opacity: 0.34;
+        transform: scale(1);
+    }
+    26% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.08);
+    }
+}
+
+.gofundme-card {
+    border: 4px solid var(--beige);
+    background:
+        radial-gradient(circle at top right, rgba(232, 220, 196, 0.14), transparent 34%),
+        rgba(10, 10, 10, 0.72);
+    backdrop-filter: blur(3px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.75fr);
+    gap: 2rem;
+    padding: clamp(1.25rem, 4vw, 3rem);
+    align-items: center;
+}
+
+.gofundme-eyebrow {
+    display: inline-block;
+    color: var(--beige);
+    border: 2px solid var(--beige);
+    padding: 0.4rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+}
+
+.gofundme-title {
+    color: var(--beige);
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+}
+
+.gofundme-text {
+    color: rgba(232, 220, 196, 0.78);
+    max-width: 760px;
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+.gofundme-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.gofundme-button,
+.gofundme-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.4rem;
+    padding: 0 1.4rem;
+    border: 2px solid var(--beige);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    transition: all 0.25s ease;
+}
+
+.gofundme-button {
+    background: var(--beige);
+    color: var(--black);
+}
+
+.gofundme-button:hover {
+    background: white;
+    border-color: white;
+}
+
+.gofundme-secondary {
+    color: var(--beige);
+}
+
+.gofundme-secondary:hover {
+    background: var(--beige);
+    color: var(--black);
+}
+
+.gofundme-meter {
+    background: var(--beige);
+    color: var(--black);
+    border: 4px solid var(--beige-dark);
+    padding: 1.35rem;
+}
+
+.gofundme-meter-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-weight: 900;
+    margin-bottom: 0.9rem;
+}
+
+.gofundme-raised {
+    font-family: 'Anton', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.03em;
+}
+
+.gofundme-goal {
+    font-size: 0.85rem;
+    opacity: 0.72;
+    text-align: right;
+}
+
+.gofundme-progress-track {
+    height: 18px;
+    border: 2px solid var(--black);
+    background: rgba(10, 10, 10, 0.12);
+    overflow: hidden;
+}
+
+.gofundme-progress-fill {
+    display: block;
+    width: 0%;
+    height: 100%;
+    background: var(--black);
+}
+
+.gofundme-note {
+    margin-top: 1rem;
+    font-size: 0.82rem;
+    color: rgba(10, 10, 10, 0.72);
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .gofundme-card {
+        grid-template-columns: 1fr;
+    }
+
+    .gofundme-meter-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .gofundme-goal {
+        text-align: left;
+    }
+}
+
+
+/* FIX: GoFundMe visible randomized background slideshow
+   The previous version used very low opacity + a heavy black overlay, so it could look black.
+   This version uses active classes controlled by script.js and a lighter overlay. */
+.gofundme-section {
+    background: #000;
+    min-height: 520px;
+}
+
+.gofundme-bg-slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.gofundme-bg-slide {
+    position: absolute;
+    inset: -4%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0 !important;
+    transform: scale(1.08);
+    animation: none !important;
+    transition: opacity 1400ms ease, transform 8000ms ease;
+    filter: saturate(1.08) contrast(1.05);
+}
+
+.gofundme-bg-slide.active {
+    opacity: 0.58 !important;
+    transform: scale(1);
+}
+
+.gofundme-bg-slide.next-ready {
+    opacity: 0;
+}
+
+.gofundme-bg-overlay {
+    background:
+        radial-gradient(circle at center, rgba(10, 10, 10, 0.12) 0%, rgba(10, 10, 10, 0.48) 72%),
+        linear-gradient(90deg, rgba(10, 10, 10, 0.62), rgba(10, 10, 10, 0.2), rgba(10, 10, 10, 0.62));
+    backdrop-filter: none;
+}
+
+.gofundme-card {
+    position: relative;
+    z-index: 2;
+    background:
+        radial-gradient(circle at top right, rgba(232, 220, 196, 0.16), transparent 34%),
+        rgba(10, 10, 10, 0.82);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+
+@media (max-width: 768px) {
+    .gofundme-section {
+        min-height: auto;
+    }
+
+    .gofundme-bg-slide.active {
+        opacity: 0.48 !important;
+    }
+}
+
+
+/* FINAL FIX: GoFundMe background slideshow that does not depend on JavaScript.
+   It uses real <img> tags from the images/ folder, so it still works even if script.js stops. */
+#gofundme.gofundme-section {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--black) !important;
+}
+
+#gofundme .gofundme-bg-slideshow {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    display: block !important;
+}
+
+#gofundme .gofundme-bg-img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    opacity: 0;
+    transform: scale(1.08);
+    animation: gofundme-real-image-fade 50s infinite;
+    filter: saturate(1.08) contrast(1.05);
+}
+
+#gofundme .gofundme-bg-img:nth-child(1) { animation-delay: 0s; }
+#gofundme .gofundme-bg-img:nth-child(2) { animation-delay: 5s; }
+#gofundme .gofundme-bg-img:nth-child(3) { animation-delay: 10s; }
+#gofundme .gofundme-bg-img:nth-child(4) { animation-delay: 15s; }
+#gofundme .gofundme-bg-img:nth-child(5) { animation-delay: 20s; }
+#gofundme .gofundme-bg-img:nth-child(6) { animation-delay: 25s; }
+#gofundme .gofundme-bg-img:nth-child(7) { animation-delay: 30s; }
+#gofundme .gofundme-bg-img:nth-child(8) { animation-delay: 35s; }
+#gofundme .gofundme-bg-img:nth-child(9) { animation-delay: 40s; }
+#gofundme .gofundme-bg-img:nth-child(10) { animation-delay: 45s; }
+
+@keyframes gofundme-real-image-fade {
+    0% { opacity: 0; transform: scale(1.08); }
+    4% { opacity: 0.72; }
+    12% { opacity: 0.72; transform: scale(1); }
+    16% { opacity: 0; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.08); }
+}
+
+#gofundme .gofundme-bg-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+    background:
+        radial-gradient(circle at center, rgba(10, 10, 10, 0.08) 0%, rgba(10, 10, 10, 0.36) 68%),
+        linear-gradient(90deg, rgba(10, 10, 10, 0.48), rgba(10, 10, 10, 0.10), rgba(10, 10, 10, 0.48)) !important;
+    backdrop-filter: none !important;
+    pointer-events: none !important;
+}
+
+#gofundme .gofundme-content-wrap {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+#gofundme .gofundme-card {
+    position: relative !important;
+    z-index: 3 !important;
+    background:
+        radial-gradient(circle at top right, rgba(232, 220, 196, 0.14), transparent 34%),
+        rgba(10, 10, 10, 0.86) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #gofundme .gofundme-bg-img {
+        animation: none !important;
+        opacity: 0 !important;
+    }
+    #gofundme .gofundme-bg-img:first-child {
+        opacity: 0.72 !important;
+        transform: none !important;
     }
 }
