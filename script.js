@@ -11,7 +11,7 @@ let currentLanguage = localStorage.getItem('cmwc_language') || 'en';
 
 const languageText = {
     en: {
-        navAbout: 'ABOUT', navGallery: 'GALLERY', navVideos: 'VIDEOS', navDonate: 'DONATE', navMap: 'GLOBAL MAP', navSignup: 'SIGN UP',
+        navAbout: 'ABOUT', navGallery: 'GALLERY', navVideos: 'VIDEOS', navDonate: 'DONATE', navSocial: 'SOCIAL', navMap: 'GLOBAL MAP', navSignup: 'SIGN UP',
         heroEyebrow: 'BOGOTÁ • 2027 • COURIER CULTURE',
         heroTitle: 'CYCLE MESSENGER<br> WORLD CHAMPIONSHIP',
         heroText: 'A moving gallery of speed, cargo, alleycats, night rides, and the global messenger community coming to Bogotá.',
@@ -27,6 +27,9 @@ const languageText = {
         gofundmeText: 'Your donation helps support permits, race materials, safety, rider resources, volunteer tools, and the infrastructure needed to welcome messengers from around the world.',
         gofundmeButton: 'DONATE ON GOFUNDME', gofundmeSponsor: 'BECOME A SPONSOR', gofundmeRaised: '$0 raised', gofundmeGoal: 'Goal: $10,000',
         gofundmeNote: 'Replace the button link with your real GoFundMe URL when your campaign is ready.',
+        socialEyebrow: 'CONNECT WITH THE CREW', socialTitle: 'FOLLOW CMWC 2027',
+        socialText: 'Follow the road to Bogotá, share your rides, meet the community, and stay close to race updates, parties, calls for volunteers, and sponsor news.',
+        socialActiveLabel: 'ACTIVE CHANNEL', socialCopy: 'COPY HANDLE', socialCopied: 'Copied!',
         navVolunteer: 'VOLUNTEER', navSponsorApply: 'SPONSOR',
         volunteerEyebrow: 'JOIN THE CREW', volunteerTitle: 'VOLUNTEER SIGN UP',
         volunteerText: 'Help us welcome messengers from around the world. Volunteers support checkpoints, registration, rider support, events, translation, setup, cleanup, and community operations.',
@@ -56,7 +59,7 @@ const languageText = {
         formSuccess: name => `Welcome to the championships, ${name}! 🚴 You're registered from`
     },
     es: {
-        navAbout: 'SOBRE EL EVENTO', navGallery: 'GALERÍA', navVideos: 'VIDEOS', navDonate: 'DONAR', navMap: 'MAPA GLOBAL', navSignup: 'INSCRÍBETE',
+        navAbout: 'SOBRE EL EVENTO', navGallery: 'GALERÍA', navVideos: 'VIDEOS', navDonate: 'DONAR', navSocial: 'REDES', navMap: 'MAPA GLOBAL', navSignup: 'INSCRÍBETE',
         heroEyebrow: 'BOGOTÁ • 2027 • CULTURA MENSAJERA',
         heroTitle: 'CAMPEONATO MUNDIAL<br> DE CICLOMENSAJEROS',
         heroText: 'Una galería en movimiento de velocidad, carga, alleycats, rodadas nocturnas y la comunidad mensajera global llegando a Bogotá.',
@@ -72,6 +75,9 @@ const languageText = {
         gofundmeText: 'Tu donación ayuda con permisos, materiales de carrera, seguridad, recursos para participantes, herramientas para voluntarios y la infraestructura necesaria para recibir mensajeros de todo el mundo.',
         gofundmeButton: 'DONAR EN GOFUNDME', gofundmeSponsor: 'SER PATROCINADOR', gofundmeRaised: '$0 recaudados', gofundmeGoal: 'Meta: $10,000',
         gofundmeNote: 'Reemplaza el enlace del botón con tu URL real de GoFundMe cuando la campaña esté lista.',
+        socialEyebrow: 'CONECTA CON EL PARCHE', socialTitle: 'SIGUE CMWC 2027',
+        socialText: 'Sigue el camino a Bogotá, comparte tus rodadas, conoce la comunidad y mantente cerca de noticias de carreras, fiestas, voluntariado y patrocinadores.',
+        socialActiveLabel: 'CANAL ACTIVO', socialCopy: 'COPIAR USUARIO', socialCopied: '¡Copiado!',
         navVolunteer: 'VOLUNTARIADO', navSponsorApply: 'PATROCINAR',
         volunteerEyebrow: 'ÚNETE AL EQUIPO', volunteerTitle: 'INSCRIPCIÓN DE VOLUNTARIOS',
         volunteerText: 'Ayúdanos a recibir mensajeros de todo el mundo. El voluntariado apoya puntos de control, registro, apoyo a participantes, eventos, traducción, montaje, desmontaje y operaciones comunitarias.',
@@ -124,6 +130,7 @@ function applyLanguage(lang) {
     setText('header a[href="#gallery"], footer a[href="#gallery"]', t.navGallery);
     setText('header a[href="#videos"], footer a[href="#videos"]', t.navVideos);
     setText('header a[href="#gofundme"], footer a[href="#gofundme"]', t.navDonate);
+    setText('header a[href="#social"], footer a[href="#social"]', t.navSocial);
     setText('header a[href="#volunteer"], footer a[href="#volunteer"]', t.navVolunteer);
     setText('header a[href="#sponsor-apply"], footer a[href="#sponsor-apply"]', t.navSponsorApply);
     setText('header a[href="#map"], footer a[href="#map"]', t.navMap);
@@ -163,6 +170,12 @@ function applyLanguage(lang) {
     setText('#gofundme .gofundme-raised', t.gofundmeRaised);
     setText('#gofundme .gofundme-goal', t.gofundmeGoal);
     setText('#gofundme .gofundme-note', t.gofundmeNote);
+
+    setText('#social .social-eyebrow', t.socialEyebrow);
+    setText('#social .social-title', t.socialTitle);
+    setText('#social .social-intro', t.socialText);
+    setText('#social .social-preview-label', t.socialActiveLabel);
+    setText('#copy-social-handle', t.socialCopy);
 
     setText('#volunteer .volunteer-eyebrow', t.volunteerEyebrow);
     setText('#volunteer .volunteer-title', t.volunteerTitle);
@@ -784,6 +797,41 @@ function openSignupFromHash() {
 
 window.addEventListener('hashchange', openSignupFromHash);
 openSignupFromHash();
+
+
+
+// ===== SOCIAL MEDIA SECTION =====
+const socialCards = document.querySelectorAll('.social-card');
+const socialPreviewTitle = document.querySelector('.social-preview-title');
+const socialPreviewText = document.querySelector('.social-preview-text');
+const copySocialHandleBtn = document.getElementById('copy-social-handle');
+const socialCopyStatus = document.getElementById('social-copy-status');
+
+function setActiveSocialCard(card) {
+    if (!card) return;
+    socialCards.forEach(item => item.classList.toggle('active', item === card));
+    if (socialPreviewTitle) socialPreviewTitle.textContent = card.dataset.platform || '';
+    if (socialPreviewText) socialPreviewText.textContent = card.dataset.description || '';
+    if (copySocialHandleBtn) copySocialHandleBtn.dataset.handle = card.dataset.handle || '';
+    if (socialCopyStatus) socialCopyStatus.textContent = '';
+}
+
+socialCards.forEach(card => {
+    card.addEventListener('mouseenter', () => setActiveSocialCard(card));
+    card.addEventListener('focus', () => setActiveSocialCard(card));
+});
+
+if (copySocialHandleBtn) {
+    copySocialHandleBtn.addEventListener('click', async () => {
+        const handle = copySocialHandleBtn.dataset.handle || '';
+        try {
+            await navigator.clipboard.writeText(handle);
+            if (socialCopyStatus) socialCopyStatus.textContent = languageText[currentLanguage].socialCopied;
+        } catch (e) {
+            if (socialCopyStatus) socialCopyStatus.textContent = handle;
+        }
+    });
+}
 
 // ===== INITIALIZE EVERYTHING =====
 initMap();
