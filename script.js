@@ -27,12 +27,26 @@ const languageText = {
         gofundmeText: 'Your donation helps support permits, race materials, safety, rider resources, volunteer tools, and the infrastructure needed to welcome messengers from around the world.',
         gofundmeButton: 'DONATE ON GOFUNDME', gofundmeSponsor: 'BECOME A SPONSOR', gofundmeRaised: '$0 raised', gofundmeGoal: 'Goal: $10,000',
         gofundmeNote: 'Replace the button link with your real GoFundMe URL when your campaign is ready.',
+        navVolunteer: 'VOLUNTEER', navSponsorApply: 'SPONSOR',
+        volunteerEyebrow: 'JOIN THE CREW', volunteerTitle: 'VOLUNTEER SIGN UP',
+        volunteerText: 'Help us welcome messengers from around the world. Volunteers support checkpoints, registration, rider support, events, translation, setup, cleanup, and community operations.',
+        volunteerName: 'FULL NAME', volunteerEmail: 'EMAIL', volunteerPhone: 'PHONE / WHATSAPP', volunteerCity: 'CITY', volunteerRole: 'PREFERRED ROLE', volunteerAvailability: 'AVAILABILITY', volunteerNotes: 'NOTES',
+        volunteerNamePlaceholder: 'Your full name', volunteerEmailPlaceholder: 'you@example.com', volunteerPhonePlaceholder: 'Your phone number', volunteerCityPlaceholder: 'Your city', volunteerNotesPlaceholder: 'Tell us about your skills, languages, or what you want to help with.',
+        volunteerButton: 'SIGN UP TO VOLUNTEER', volunteerSuccess: 'Thank you! Your volunteer signup was saved in this browser.',
+        rolePlaceholder: '-- Choose a role --', roleCheckpoints: 'Checkpoints', roleRegistration: 'Registration', roleRiderSupport: 'Rider support', roleEvents: 'Events / parties', roleTranslation: 'Translation', roleMedia: 'Photo / video / media',
+        availabilityPlaceholder: '-- Choose availability --', availabilityBefore: 'Before the event', availabilityDuring: 'During the event', availabilityAfter: 'After the event', availabilityAll: 'All weekend',
+        sponsorApplyEyebrow: 'PARTNER WITH CMWC', sponsorApplyTitle: 'SPONSOR SIGN UP',
+        sponsorApplyText: 'Support the championship through funds, products, services, prizes, food, tools, venues, transportation, media, or community partnerships.',
+        sponsorCompany: 'COMPANY / CREW NAME', sponsorContact: 'CONTACT NAME', sponsorEmail: 'EMAIL', sponsorPhone: 'PHONE / WHATSAPP', sponsorLevel: 'SPONSOR TYPE', sponsorWebsite: 'WEBSITE / INSTAGRAM', sponsorNotes: 'HOW WOULD YOU LIKE TO HELP?',
+        sponsorCompanyPlaceholder: 'Company, crew, or brand', sponsorContactPlaceholder: 'Contact person', sponsorEmailPlaceholder: 'you@example.com', sponsorPhonePlaceholder: 'Your phone number', sponsorWebsitePlaceholder: 'https:// or @handle', sponsorNotesPlaceholder: 'Tell us what you would like to contribute or discuss.',
+        sponsorApplyButton: 'APPLY TO SPONSOR', sponsorApplySuccess: 'Thank you! Your sponsor signup was saved in this browser.',
+        sponsorTypePlaceholder: '-- Choose sponsor type --', sponsorTypeCash: 'Financial contribution', sponsorTypeProduct: 'Product / prizes', sponsorTypeService: 'Services / logistics', sponsorTypeVenue: 'Venue / space', sponsorTypeMedia: 'Media partnership',
         videoTitles: ['STREET LOADS', 'NIGHT RIDE ENERGY', 'TRACK SPEED', 'CARGO RACE'],
         videoTexts: ['Heavy cargo, fast decisions, and the pressure that makes messenger racing different.', 'A look at the lights, crowds, and street atmosphere that define Bogotá bike culture.', 'From the velodrome to the street, the championship brings every cycling discipline together.', 'Packages, balance, teamwork, and the daily work of couriers turned into competition.'],
         galleryTitle: 'GALLERY', galleryText: 'Moments captured from past championships around the world.',
         mapTitle: 'GLOBAL SIGNUPS', mapText: 'See where messengers from around the world are signing up. Each marker represents a country with registered competitors.',
         topCountries: 'TOP COUNTRIES', countryEmpty: 'No signups yet. Be the first!',
-        signupTitle: 'SIGN UP', signupText: 'Register your spot at the Cycle Messenger World Championship Bogotá 2027.',
+        signupTitle: 'SIGN UP', signupText: 'Choose how you want to be part of CMWC Bogotá 2027: race, volunteer, or become a sponsor.', tabRider: 'RIDER', tabVolunteer: 'VOLUNTEER', tabSponsor: 'SPONSOR', riderEyebrow: 'RACE WITH US', riderTitle: 'RIDER REGISTRATION', riderText: 'Register your spot at the Cycle Messenger World Championship Bogotá 2027.',
         fullName: 'FULL NAME', email: 'EMAIL', country: 'COUNTRY', city: 'CITY', experience: 'YEARS OF EXPERIENCE',
         namePlaceholder: 'Your full name', cityPlaceholder: 'Your city', countryPlaceholder: '-- Select your country --',
         terms: 'I agree to the championship rules and confirm I am 18 years or older.',
@@ -58,12 +72,26 @@ const languageText = {
         gofundmeText: 'Tu donación ayuda con permisos, materiales de carrera, seguridad, recursos para participantes, herramientas para voluntarios y la infraestructura necesaria para recibir mensajeros de todo el mundo.',
         gofundmeButton: 'DONAR EN GOFUNDME', gofundmeSponsor: 'SER PATROCINADOR', gofundmeRaised: '$0 recaudados', gofundmeGoal: 'Meta: $10,000',
         gofundmeNote: 'Reemplaza el enlace del botón con tu URL real de GoFundMe cuando la campaña esté lista.',
+        navVolunteer: 'VOLUNTARIADO', navSponsorApply: 'PATROCINAR',
+        volunteerEyebrow: 'ÚNETE AL EQUIPO', volunteerTitle: 'INSCRIPCIÓN DE VOLUNTARIOS',
+        volunteerText: 'Ayúdanos a recibir mensajeros de todo el mundo. El voluntariado apoya puntos de control, registro, apoyo a participantes, eventos, traducción, montaje, desmontaje y operaciones comunitarias.',
+        volunteerName: 'NOMBRE COMPLETO', volunteerEmail: 'CORREO ELECTRÓNICO', volunteerPhone: 'TELÉFONO / WHATSAPP', volunteerCity: 'CIUDAD', volunteerRole: 'ROL PREFERIDO', volunteerAvailability: 'DISPONIBILIDAD', volunteerNotes: 'NOTAS',
+        volunteerNamePlaceholder: 'Tu nombre completo', volunteerEmailPlaceholder: 'tu@correo.com', volunteerPhonePlaceholder: 'Tu número de teléfono', volunteerCityPlaceholder: 'Tu ciudad', volunteerNotesPlaceholder: 'Cuéntanos sobre tus habilidades, idiomas o en qué quieres ayudar.',
+        volunteerButton: 'INSCRIBIRME COMO VOLUNTARIO/A', volunteerSuccess: '¡Gracias! Tu inscripción de voluntariado se guardó en este navegador.',
+        rolePlaceholder: '-- Elige un rol --', roleCheckpoints: 'Puntos de control', roleRegistration: 'Registro', roleRiderSupport: 'Apoyo a participantes', roleEvents: 'Eventos / fiestas', roleTranslation: 'Traducción', roleMedia: 'Foto / video / medios',
+        availabilityPlaceholder: '-- Elige disponibilidad --', availabilityBefore: 'Antes del evento', availabilityDuring: 'Durante el evento', availabilityAfter: 'Después del evento', availabilityAll: 'Todo el fin de semana',
+        sponsorApplyEyebrow: 'ALIADO CMWC', sponsorApplyTitle: 'INSCRIPCIÓN DE PATROCINADORES',
+        sponsorApplyText: 'Apoya el campeonato con fondos, productos, servicios, premios, comida, herramientas, espacios, transporte, medios o alianzas comunitarias.',
+        sponsorCompany: 'EMPRESA / COLECTIVO', sponsorContact: 'NOMBRE DE CONTACTO', sponsorEmail: 'CORREO ELECTRÓNICO', sponsorPhone: 'TELÉFONO / WHATSAPP', sponsorLevel: 'TIPO DE PATROCINIO', sponsorWebsite: 'WEB / INSTAGRAM', sponsorNotes: '¿CÓMO QUIERES APOYAR?',
+        sponsorCompanyPlaceholder: 'Empresa, colectivo o marca', sponsorContactPlaceholder: 'Persona de contacto', sponsorEmailPlaceholder: 'tu@correo.com', sponsorPhonePlaceholder: 'Tu número de teléfono', sponsorWebsitePlaceholder: 'https:// o @usuario', sponsorNotesPlaceholder: 'Cuéntanos qué te gustaría aportar o conversar.',
+        sponsorApplyButton: 'POSTULAR PARA PATROCINAR', sponsorApplySuccess: '¡Gracias! Tu solicitud de patrocinio se guardó en este navegador.',
+        sponsorTypePlaceholder: '-- Elige tipo de patrocinio --', sponsorTypeCash: 'Aporte económico', sponsorTypeProduct: 'Producto / premios', sponsorTypeService: 'Servicios / logística', sponsorTypeVenue: 'Espacio / sede', sponsorTypeMedia: 'Alianza de medios',
         videoTitles: ['CARGA EN LA CALLE', 'ENERGÍA NOCTURNA', 'VELOCIDAD EN PISTA', 'CARRERA DE CARGA'],
         videoTexts: ['Carga pesada, decisiones rápidas y la presión que hace diferente a las carreras mensajeras.', 'Una mirada a las luces, la gente y la atmósfera callejera que definen la cultura bici en Bogotá.', 'Del velódromo a la calle, el campeonato une todas las disciplinas del ciclismo.', 'Paquetes, equilibrio, trabajo en equipo y la labor diaria de los correos convertida en competencia.'],
         galleryTitle: 'GALERÍA', galleryText: 'Momentos capturados de campeonatos anteriores alrededor del mundo.',
         mapTitle: 'INSCRIPCIONES GLOBALES', mapText: 'Mira desde dónde se están inscribiendo mensajeros de todo el mundo. Cada marcador representa un país con competidores registrados.',
         topCountries: 'PAÍSES PRINCIPALES', countryEmpty: 'Todavía no hay inscritos. ¡Sé la primera persona!',
-        signupTitle: 'INSCRÍBETE', signupText: 'Registra tu cupo para el Cycle Messenger World Championship Bogotá 2027.',
+        signupTitle: 'INSCRÍBETE', signupText: 'Elige cómo quieres ser parte de CMWC Bogotá 2027: correr, ser voluntario/a o patrocinar.', tabRider: 'CORREDOR/A', tabVolunteer: 'VOLUNTARIADO', tabSponsor: 'PATROCINADOR', riderEyebrow: 'CORRE CON NOSOTROS', riderTitle: 'REGISTRO DE CORREDORES', riderText: 'Registra tu cupo para el Cycle Messenger World Championship Bogotá 2027.',
         fullName: 'NOMBRE COMPLETO', email: 'CORREO ELECTRÓNICO', country: 'PAÍS', city: 'CIUDAD', experience: 'AÑOS DE EXPERIENCIA',
         namePlaceholder: 'Tu nombre completo', cityPlaceholder: 'Tu ciudad', countryPlaceholder: '-- Selecciona tu país --',
         terms: 'Acepto las reglas del campeonato y confirmo que tengo 18 años o más.',
@@ -96,6 +124,8 @@ function applyLanguage(lang) {
     setText('header a[href="#gallery"], footer a[href="#gallery"]', t.navGallery);
     setText('header a[href="#videos"], footer a[href="#videos"]', t.navVideos);
     setText('header a[href="#gofundme"], footer a[href="#gofundme"]', t.navDonate);
+    setText('header a[href="#volunteer"], footer a[href="#volunteer"]', t.navVolunteer);
+    setText('header a[href="#sponsor-apply"], footer a[href="#sponsor-apply"]', t.navSponsorApply);
     setText('header a[href="#map"], footer a[href="#map"]', t.navMap);
     setText('header a[href="#signup"], footer a[href="#signup"]', t.navSignup);
 
@@ -134,6 +164,43 @@ function applyLanguage(lang) {
     setText('#gofundme .gofundme-goal', t.gofundmeGoal);
     setText('#gofundme .gofundme-note', t.gofundmeNote);
 
+    setText('#volunteer .volunteer-eyebrow', t.volunteerEyebrow);
+    setText('#volunteer .volunteer-title', t.volunteerTitle);
+    setText('#volunteer .volunteer-text', t.volunteerText);
+    setText('label[for="volunteer-name"]', t.volunteerName);
+    setText('label[for="volunteer-email"]', t.volunteerEmail);
+    setText('label[for="volunteer-phone"]', t.volunteerPhone);
+    setText('label[for="volunteer-city"]', t.volunteerCity);
+    setText('label[for="volunteer-role"]', t.volunteerRole);
+    setText('label[for="volunteer-availability"]', t.volunteerAvailability);
+    setText('label[for="volunteer-notes"]', t.volunteerNotes);
+    setText('#volunteer-form button[type="submit"]', t.volunteerButton);
+
+    setText('#sponsor-apply .sponsor-apply-eyebrow', t.sponsorApplyEyebrow);
+    setText('#sponsor-apply .sponsor-apply-title', t.sponsorApplyTitle);
+    setText('#sponsor-apply .sponsor-apply-text', t.sponsorApplyText);
+    setText('label[for="sponsor-company"]', t.sponsorCompany);
+    setText('label[for="sponsor-contact"]', t.sponsorContact);
+    setText('label[for="sponsor-email"]', t.sponsorEmail);
+    setText('label[for="sponsor-phone"]', t.sponsorPhone);
+    setText('label[for="sponsor-level"]', t.sponsorLevel);
+    setText('label[for="sponsor-website"]', t.sponsorWebsite);
+    setText('label[for="sponsor-notes"]', t.sponsorNotes);
+    setText('#sponsor-apply-form button[type="submit"]', t.sponsorApplyButton);
+
+    const volunteerPlaceholders = [
+        ['volunteer-name', t.volunteerNamePlaceholder], ['volunteer-email', t.volunteerEmailPlaceholder], ['volunteer-phone', t.volunteerPhonePlaceholder], ['volunteer-city', t.volunteerCityPlaceholder], ['volunteer-notes', t.volunteerNotesPlaceholder],
+        ['sponsor-company', t.sponsorCompanyPlaceholder], ['sponsor-contact', t.sponsorContactPlaceholder], ['sponsor-email', t.sponsorEmailPlaceholder], ['sponsor-phone', t.sponsorPhonePlaceholder], ['sponsor-website', t.sponsorWebsitePlaceholder], ['sponsor-notes', t.sponsorNotesPlaceholder]
+    ];
+    volunteerPlaceholders.forEach(([id, placeholder]) => { const el = document.getElementById(id); if (el) el.placeholder = placeholder; });
+
+    const roleOptions = document.querySelectorAll('#volunteer-role option');
+    [t.rolePlaceholder, t.roleCheckpoints, t.roleRegistration, t.roleRiderSupport, t.roleEvents, t.roleTranslation, t.roleMedia].forEach((text, i) => { if (roleOptions[i]) roleOptions[i].textContent = text; });
+    const availabilityOptions = document.querySelectorAll('#volunteer-availability option');
+    [t.availabilityPlaceholder, t.availabilityBefore, t.availabilityDuring, t.availabilityAfter, t.availabilityAll].forEach((text, i) => { if (availabilityOptions[i]) availabilityOptions[i].textContent = text; });
+    const sponsorTypeOptions = document.querySelectorAll('#sponsor-level option');
+    [t.sponsorTypePlaceholder, t.sponsorTypeCash, t.sponsorTypeProduct, t.sponsorTypeService, t.sponsorTypeVenue, t.sponsorTypeMedia].forEach((text, i) => { if (sponsorTypeOptions[i]) sponsorTypeOptions[i].textContent = text; });
+
     setText('#gallery h2', t.galleryTitle);
     setText('#gallery > div > p', t.galleryText);
 
@@ -143,6 +210,12 @@ function applyLanguage(lang) {
 
     setText('#signup h2', t.signupTitle);
     setText('#signup > div > p', t.signupText);
+    setText('.signup-type-tab[data-signup-tab="rider"]', t.tabRider);
+    setText('.signup-type-tab[data-signup-tab="volunteer"]', t.tabVolunteer);
+    setText('.signup-type-tab[data-signup-tab="sponsor"]', t.tabSponsor);
+    setText('#rider-signup .rider-eyebrow', t.riderEyebrow);
+    setText('#rider-signup .rider-title', t.riderTitle);
+    setText('#rider-signup .rider-text', t.riderText);
     setText('label[for="name"]', t.fullName);
     setText('label[for="email"]', t.email);
     setText('label[for="country"]', t.country);
@@ -517,6 +590,61 @@ function showFormMessage(msg, type) {
     }, 5000);
 }
 
+
+
+// ===== VOLUNTEER AND SPONSOR SIGNUP STORAGE =====
+function saveLocalFormEntry(storageKey, data) {
+    try {
+        const existing = JSON.parse(localStorage.getItem(storageKey)) || [];
+        existing.push({ ...data, timestamp: Date.now() });
+        localStorage.setItem(storageKey, JSON.stringify(existing));
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+function showInlineMessage(elementId, msg, type) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    el.textContent = msg;
+    el.className = `signup-message ${type === 'success' ? 'success' : 'error'}`;
+    el.classList.remove('hidden');
+    setTimeout(() => el.classList.add('hidden'), 6000);
+}
+
+const volunteerForm = document.getElementById('volunteer-form');
+if (volunteerForm) {
+    volunteerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(volunteerForm).entries());
+        const required = ['volunteerName', 'volunteerEmail', 'volunteerCity', 'volunteerRole', 'volunteerAvailability'];
+        if (required.some(key => !String(data[key] || '').trim())) {
+            showInlineMessage('volunteer-message', languageText[currentLanguage].formMissing, 'error');
+            return;
+        }
+        saveLocalFormEntry('cmwc_volunteer_signups', data);
+        volunteerForm.reset();
+        showInlineMessage('volunteer-message', languageText[currentLanguage].volunteerSuccess, 'success');
+    });
+}
+
+const sponsorApplyForm = document.getElementById('sponsor-apply-form');
+if (sponsorApplyForm) {
+    sponsorApplyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(sponsorApplyForm).entries());
+        const required = ['sponsorCompany', 'sponsorContact', 'sponsorEmail', 'sponsorLevel'];
+        if (required.some(key => !String(data[key] || '').trim())) {
+            showInlineMessage('sponsor-apply-message', languageText[currentLanguage].formMissing, 'error');
+            return;
+        }
+        saveLocalFormEntry('cmwc_sponsor_applications', data);
+        sponsorApplyForm.reset();
+        showInlineMessage('sponsor-apply-message', languageText[currentLanguage].sponsorApplySuccess, 'success');
+    });
+}
+
 // ===== CAROUSEL =====
 const carousel = document.getElementById('carousel');
 const carouselSlides = carousel.children;
@@ -614,6 +742,48 @@ mobileMenu.querySelectorAll('a').forEach(link => {
         mobileMenu.classList.add('hidden');
     });
 });
+
+
+
+// ===== UNIFIED SIGNUP TABS =====
+function showSignupTab(tabName) {
+    const tabs = document.querySelectorAll('.signup-type-tab');
+    const panels = document.querySelectorAll('.signup-panel');
+    if (!tabs.length || !panels.length) return;
+
+    tabs.forEach(tab => {
+        const isActive = tab.dataset.signupTab === tabName;
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    panels.forEach(panel => {
+        panel.classList.toggle('active', panel.dataset.signupPanel === tabName);
+    });
+}
+
+document.querySelectorAll('.signup-type-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        const tabName = tab.dataset.signupTab;
+        showSignupTab(tabName);
+        history.replaceState(null, '', '#signup');
+    });
+});
+
+function openSignupFromHash() {
+    if (window.location.hash === '#volunteer') {
+        showSignupTab('volunteer');
+        document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
+    } else if (window.location.hash === '#sponsor-apply') {
+        showSignupTab('sponsor');
+        document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
+    } else if (window.location.hash === '#signup') {
+        showSignupTab('rider');
+    }
+}
+
+window.addEventListener('hashchange', openSignupFromHash);
+openSignupFromHash();
 
 // ===== INITIALIZE EVERYTHING =====
 initMap();
