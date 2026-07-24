@@ -61,7 +61,7 @@ const languageText = {
     es: {
         navAbout: 'SOBRE EL EVENTO', navGallery: 'GALERÍA', navVideos: 'VIDEOS', navDonate: 'DONAR', navSocial: 'REDES', navMap: 'MAPA GLOBAL', navSignup: 'INSCRÍBETE',
         heroEyebrow: 'BOGOTÁ • 2027 • CULTURA MENSAJERA',
-        heroTitle: 'CAMPEONATO MUNDIAL<br> DE MENSAJERÍA DE BICYCLETAS',
+        heroTitle: 'CAMPEONATO MUNDIAL<br> DE MENSAJERÍA EN BICICLETA',
         heroText: 'Una galería en movimiento de velocidad, carga, alleycats, rodadas nocturnas y la comunidad mensajera global llegando a Bogotá.',
         registerNow: 'INSCRÍBETE AHORA', viewGallery: 'VER GALERÍA',
         signups: 'Inscritos', countries: 'Países', events: 'Eventos', years: 'Años',
