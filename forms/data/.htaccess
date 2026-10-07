@@ -1,0 +1,2 @@
+# Prevent direct browser access to CSV submission backups.
+Require all denied

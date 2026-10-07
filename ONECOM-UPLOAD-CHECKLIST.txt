@@ -1,0 +1,17 @@
+ONE.COM UPLOAD CHECKLIST
+
+Upload the contents of this folder to your one.com web root/public folder.
+
+Do not upload only index.html, style.css, and script.js. The images will break unless you also upload:
+
+- images/
+- images/sponsors/
+- videos/
+- DIEGOSOSA/
+- IVANNIETO/
+- forms/
+
+After uploading, visit your site and press Ctrl + Shift + R for a hard refresh.
+
+Then test PHP email:
+https://cmwc2027bogota.com/forms/test-mail.php

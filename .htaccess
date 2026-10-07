@@ -1,0 +1,9 @@
+# CMWC Bogotá 2027 production settings for cmwc2027bogota.com
+DirectoryIndex index.html
+
+# Canonical domain: use https://cmwc2027bogota.com/
+# If SSL is not active yet, temporarily comment out the RewriteRule lines below.
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.cmwc2027bogota\.com$ [NC,OR]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://cmwc2027bogota.com/$1 [R=301,L]

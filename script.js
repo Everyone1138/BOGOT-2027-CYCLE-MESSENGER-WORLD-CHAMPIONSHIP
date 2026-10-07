@@ -1,5 +1,7 @@
-// Initialize Lucide icons
-lucide.createIcons();
+// Initialize Lucide icons only when the CDN is available
+if (window.lucide && typeof lucide.createIcons === 'function') {
+    lucide.createIcons();
+}
 
 // ===== LANGUAGE SWITCHER =====
 
@@ -11,7 +13,7 @@ let currentLanguage = localStorage.getItem('cmwc_language') || 'en';
 
 const languageText = {
     en: {
-        navAbout: 'ABOUT', navGallery: 'GALLERY', navVideos: 'VIDEOS', navDonate: 'DONATE', navSocial: 'SOCIAL', navMap: 'GLOBAL MAP', navSignup: 'SIGN UP',
+        navAbout: 'ABOUT', navGallery: 'GALLERY', navVideos: 'VIDEOS', navDonate: 'DONATE', navEvents: 'EVENTS', navMemorial: 'MEMORIAL', navSocial: 'SOCIAL', navMerch: 'MERCH', navContact: 'CONTACT', navMap: 'GLOBAL MAP', navSignup: 'SIGN UP',
         heroEyebrow: 'BOGOTÁ • 2027 • COURIER CULTURE',
         heroTitle: 'CYCLE MESSENGER<br> WORLD CHAMPIONSHIP',
         heroText: 'A moving gallery of speed, cargo, alleycats, night rides, and the global messenger community coming to Bogotá.',
@@ -27,17 +29,31 @@ const languageText = {
         gofundmeText: 'Your donation helps support permits, race materials, safety, rider resources, volunteer tools, and the infrastructure needed to welcome messengers from around the world.',
         gofundmeButton: 'DONATE ON GOFUNDME', gofundmeSponsor: 'BECOME A SPONSOR', gofundmeRaised: '$0 raised', gofundmeGoal: 'Goal: $10,000',
         gofundmeNote: 'Replace the button link with your real GoFundMe URL when your campaign is ready.',
+        fundraiserEyebrow: 'RACE TO RAISE FUNDS', fundraiserTitle: 'FUNDRAISER EVENTS',
+        fundraiserText: 'Alleycats, criteriums, cargo races, and community rides that help fund CMWC Bogotá 2027.',
+        fundraiserFilters: ['ALL EVENTS', 'ALLEYCATS', 'CRITERIUMS', 'OTHER RACES'],
+        fundraiserHint: 'CLICK IMAGE FOR EVENT LINK', fundraiserCta: 'EVENT LINK', fundraiserNote: 'Replace each card image and href="#" with your real poster image and registration link.',
+        fundraiserBadges: ['ALLEYCAT', 'CRITERIUM', 'CARGO RACE', 'COMMUNITY RIDE'],
+        fundraiserTitles: ['NIGHT ALLEYCAT FUNDRAISER', 'FAST LAPS CRIT', 'CARGO CHALLENGE', 'ROLL TO BOGOTÁ'],
+        fundraiserMetas: ['Bogotá • Date TBA', 'Closed circuit • Date TBA', 'Load it up • Date TBA', 'Group ride • Date TBA'],
+        fundraiserTexts: ['Checkpoint racing, city routes, prizes, and a late-night community finish.', 'A fast spectator-friendly criterium to raise funds for permits, safety, and rider support.', 'Cargo bikes, strange loads, teamwork, balance, and courier-style problem solving.', 'A social ride and meetup for supporters, riders, volunteers, and future sponsors.'],
+        memorialEyebrow: 'MEMORIAL', memorialTitle: 'En memoria de Eduardo Mosquera',
+        memorialSubtitle: 'A dedicated space honoring Eduardo Mosquera, a cyclist who passed away while doing an ultra endurance event.',
+        memorialText: 'This section can hold a photo, a link to a tribute ride, a story from the community, or details for a memorial event.',
+        memorialCandle: 'LIGHT A VIRTUAL CANDLE', memorialLink: 'MEMORIAL LINK', memorialPhotoHint: 'CLICK IMAGE TO OPEN MEMORIAL LINK', memorialCandles: count => `${count} candle${count === 1 ? '' : 's'} lit by visitors`,
         socialEyebrow: 'CONNECT WITH THE CREW', socialTitle: 'FOLLOW CMWC 2027',
         socialText: 'Follow the road to Bogotá, share your rides, meet the community, and stay close to race updates, parties, calls for volunteers, and sponsor news.',
         socialActiveLabel: 'ACTIVE CHANNEL', socialCopy: 'COPY HANDLE', socialCopied: 'Copied!',
+        merchEyebrow: 'CMWC 2027 MERCH', merchTitle: 'MERCH COMING SOON', merchText: 'We are developing this idea with the team. Official CMWC Bogotá 2027 merchandise will be announced here when it is ready.', merchSoon: 'COMING SOON', merchSoonText: 'Future space for shirts, caps, bags, bottles, stickers, and limited event drops.',
+        contactEyebrow: 'CONTACT US', contactTitle: 'GET IN TOUCH', contactText: 'Questions about registration, volunteering, sponsorship, media, travel, or supporting CMWC Bogotá 2027? Send us a message and the crew will get back to you.', contactDirect: 'Direct email', contactName: 'FULL NAME', contactEmail: 'EMAIL', contactPhone: 'PHONE / WHATSAPP', contactTopic: 'TOPIC', contactMessageLabel: 'MESSAGE', contactButton: 'SEND MESSAGE', contactSuccess: 'Thank you! Your message was sent to the CMWC Bogotá 2027 crew.', contactNamePlaceholder: 'Your full name', contactEmailPlaceholder: 'you@example.com', contactPhonePlaceholder: 'Optional', contactMessagePlaceholder: 'Write your message here.', contactTopicPlaceholder: '-- Choose a topic --', contactTopics: ['Registration', 'Volunteer', 'Sponsor', 'Media', 'General question'],
         navVolunteer: 'VOLUNTEER', navSponsorApply: 'SPONSOR',
         volunteerEyebrow: 'JOIN THE CREW', volunteerTitle: 'VOLUNTEER SIGN UP',
         volunteerText: 'Help us welcome messengers from around the world. Volunteers support checkpoints, registration, rider support, events, translation, setup, cleanup, and community operations.',
-        volunteerName: 'FULL NAME', volunteerEmail: 'EMAIL', volunteerPhone: 'PHONE / WHATSAPP', volunteerCity: 'CITY', volunteerRole: 'PREFERRED ROLE', volunteerAvailability: 'AVAILABILITY', volunteerNotes: 'NOTES',
-        volunteerNamePlaceholder: 'Your full name', volunteerEmailPlaceholder: 'you@example.com', volunteerPhonePlaceholder: 'Your phone number', volunteerCityPlaceholder: 'Your city', volunteerNotesPlaceholder: 'Tell us about your skills, languages, or what you want to help with.',
+        volunteerName: 'FULL NAME', volunteerEmail: 'EMAIL', volunteerPhone: 'PHONE / WHATSAPP', volunteerCity: 'CITY', volunteerRole: 'PREFERRED ROLE', volunteerAvailability: 'AVAILABILITY', volunteerFoodPreference: 'FOOD PREFERENCE', volunteerFoodOther: 'OTHER FOOD PREFERENCE', volunteerFoodNotes: 'FOOD ALLERGIES / NOTES', volunteerNotes: 'NOTES',
+        volunteerNamePlaceholder: 'Your full name', volunteerEmailPlaceholder: 'you@example.com', volunteerPhonePlaceholder: 'Your phone number', volunteerCityPlaceholder: 'Your city', volunteerFoodOtherPlaceholder: 'Write your food preference', volunteerFoodNotesPlaceholder: 'Allergies, restrictions, or details', volunteerNotesPlaceholder: 'Tell us about your skills, languages, or what you want to help with.',
         volunteerButton: 'SIGN UP TO VOLUNTEER', volunteerSuccess: 'Thank you! Your volunteer signup was saved in this browser.',
         rolePlaceholder: '-- Choose a role --', roleCheckpoints: 'Checkpoints', roleRegistration: 'Registration', roleRiderSupport: 'Rider support', roleEvents: 'Events / parties', roleTranslation: 'Translation', roleMedia: 'Photo / video / media',
-        availabilityPlaceholder: '-- Choose availability --', availabilityBefore: 'Before the event', availabilityDuring: 'During the event', availabilityAfter: 'After the event', availabilityAll: 'All weekend',
+        availabilityPlaceholder: '-- Choose availability --', availabilityBefore: 'Before the event', availabilityDuring: 'During the event', availabilityAfter: 'After the event', availabilityAll: 'All weekend', foodOptionPlaceholder: '-- Choose an option --', foodOptionNone: 'No preference', foodOptionVegetarian: 'Vegetarian', foodOptionVegan: 'Vegan', foodOptionGlutenFree: 'Gluten-free', foodOptionLactoseFree: 'Lactose-free', foodOptionAllergies: 'Allergies / medical restriction', foodOptionOther: 'Other',
         sponsorApplyEyebrow: 'PARTNER WITH CMWC', sponsorApplyTitle: 'SPONSOR SIGN UP',
         sponsorApplyText: 'Support the championship through funds, products, services, prizes, food, tools, venues, transportation, media, or community partnerships.',
         sponsorCompany: 'COMPANY / CREW NAME', sponsorContact: 'CONTACT NAME', sponsorEmail: 'EMAIL', sponsorPhone: 'PHONE / WHATSAPP', sponsorLevel: 'SPONSOR TYPE', sponsorWebsite: 'WEBSITE / INSTAGRAM', sponsorNotes: 'HOW WOULD YOU LIKE TO HELP?',
@@ -50,8 +66,8 @@ const languageText = {
         mapTitle: 'GLOBAL SIGNUPS', mapText: 'See where messengers from around the world are signing up. Each marker represents a country with registered competitors.',
         topCountries: 'TOP COUNTRIES', countryEmpty: 'No signups yet. Be the first!',
         signupTitle: 'SIGN UP', signupText: 'Choose how you want to be part of CMWC Bogotá 2027: race, volunteer, or become a sponsor.', tabRider: 'RIDER', tabVolunteer: 'VOLUNTEER', tabSponsor: 'SPONSOR', riderEyebrow: 'RACE WITH US', riderTitle: 'RIDER REGISTRATION', riderText: 'Register your spot at the Cycle Messenger World Championship Bogotá 2027.',
-        fullName: 'FULL NAME', email: 'EMAIL', country: 'COUNTRY', city: 'CITY', experience: 'YEARS OF EXPERIENCE',
-        namePlaceholder: 'Your full name', cityPlaceholder: 'Your city', countryPlaceholder: '-- Select your country --',
+        fullName: 'FULL NAME', email: 'EMAIL', country: 'COUNTRY', city: 'CITY', category: 'CATEGORY', categoryPlaceholder: '-- Choose category --', categoryOpen: 'Open', categoryWTNB: 'WTNB', foodPreference: 'FOOD PREFERENCE / DIETARY NEEDS', foodOther: 'OTHER FOOD PREFERENCE', foodNotes: 'FOOD ALLERGIES / NOTES',
+        namePlaceholder: 'Your full name', cityPlaceholder: 'Your city', countryPlaceholder: '-- Select your country --', foodOtherPlaceholder: 'Write your food preference', foodNotesPlaceholder: 'Allergies, restrictions, or details',
         terms: 'I agree to the championship rules and confirm I am 18 years or older.',
         quickLinks: 'QUICK LINKS', followUs: 'FOLLOW US', footerText: 'World Bike Messenger Championships. The premier global event for urban cycling couriers.',
         footerCopyright: '© 2027 Cycle Messenger World Championship Bogotá. All rights reserved.',
@@ -59,9 +75,9 @@ const languageText = {
         formSuccess: name => `Welcome to the championships, ${name}! 🚴 You're registered from`
     },
     es: {
-        navAbout: 'SOBRE EL EVENTO', navGallery: 'GALERÍA', navVideos: 'VIDEOS', navDonate: 'DONAR', navSocial: 'REDES', navMap: 'MAPA GLOBAL', navSignup: 'INSCRÍBETE',
+        navAbout: 'SOBRE EL EVENTO', navGallery: 'GALERÍA', navVideos: 'VIDEOS', navDonate: 'DONAR', navEvents: 'EVENTOS', navSocial: 'REDES', navMerch: 'MERCH', navContact: 'CONTACTO', navMap: 'MAPA GLOBAL', navSignup: 'INSCRÍBETE',
         heroEyebrow: 'BOGOTÁ • 2027 • CULTURA MENSAJERA',
-        heroTitle: 'CAMPEONATO MUNDIAL<br> DE MENSAJERÍA EN BICICLETA',
+        heroTitle: 'CAMPEONATO MUNDIAL<br> DE CICLOMENSAJEROS',
         heroText: 'Una galería en movimiento de velocidad, carga, alleycats, rodadas nocturnas y la comunidad mensajera global llegando a Bogotá.',
         registerNow: 'INSCRÍBETE AHORA', viewGallery: 'VER GALERÍA',
         signups: 'Inscritos', countries: 'Países', events: 'Eventos', years: 'Años',
@@ -75,17 +91,31 @@ const languageText = {
         gofundmeText: 'Tu donación ayuda con permisos, materiales de carrera, seguridad, recursos para participantes, herramientas para voluntarios y la infraestructura necesaria para recibir mensajeros de todo el mundo.',
         gofundmeButton: 'DONAR EN GOFUNDME', gofundmeSponsor: 'SER PATROCINADOR', gofundmeRaised: '$0 recaudados', gofundmeGoal: 'Meta: $10,000',
         gofundmeNote: 'Reemplaza el enlace del botón con tu URL real de GoFundMe cuando la campaña esté lista.',
+        fundraiserEyebrow: 'CARRERAS PARA RECAUDAR FONDOS', fundraiserTitle: 'EVENTOS DE RECAUDACIÓN',
+        fundraiserText: 'Alleycats, criteriums, carreras de carga y rodadas comunitarias que ayudan a financiar CMWC Bogotá 2027.',
+        fundraiserFilters: ['TODOS', 'ALLEYCATS', 'CRITERIUMS', 'OTRAS CARRERAS'],
+        fundraiserHint: 'HAZ CLIC EN LA IMAGEN PARA VER EL EVENTO', fundraiserCta: 'ENLACE DEL EVENTO', fundraiserNote: 'Reemplaza cada imagen y href="#" con tu afiche real y enlace de inscripción.',
+        fundraiserBadges: ['ALLEYCAT', 'CRITERIUM', 'CARRERA DE CARGA', 'RODADA COMUNITARIA'],
+        fundraiserTitles: ['ALLEYCAT NOCTURNO DE RECAUDACIÓN', 'CRIT DE VUELTAS RÁPIDAS', 'RETO DE CARGA', 'RODANDO A BOGOTÁ'],
+        fundraiserMetas: ['Bogotá • Fecha por confirmar', 'Circuito cerrado • Fecha por confirmar', 'Cárgala • Fecha por confirmar', 'Rodada grupal • Fecha por confirmar'],
+        fundraiserTexts: ['Carrera de checkpoints, rutas urbanas, premios y un cierre comunitario nocturno.', 'Un criterium rápido y perfecto para espectadores que recauda fondos para permisos, seguridad y apoyo a corredores.', 'Cargo bikes, cargas raras, trabajo en equipo, balance y resolución de problemas estilo mensajero.', 'Una rodada social y encuentro para supporters, corredores, voluntarios y futuros patrocinadores.'],
+        memorialEyebrow: 'MEMORIAL', memorialTitle: 'En memoria de Eduardo Mosquera',
+        memorialSubtitle: 'Un espacio dedicado a honrar a Eduardo Mosquera, ciclista que falleció mientras realizaba un evento de ultra resistencia.',
+        memorialText: 'Esta sección puede guardar una foto, un enlace a una rodada homenaje, una historia de la comunidad o detalles de un evento memorial.',
+        memorialCandle: 'ENCENDER UNA VELA VIRTUAL', memorialLink: 'ENLACE MEMORIAL', memorialPhotoHint: 'HAZ CLIC EN LA IMAGEN PARA ABRIR EL ENLACE MEMORIAL', memorialCandles: count => `${count} vela${count === 1 ? '' : 's'} encendida${count === 1 ? '' : 's'} por visitantes`,
         socialEyebrow: 'CONECTA CON EL PARCHE', socialTitle: 'SIGUE CMWC 2027',
         socialText: 'Sigue el camino a Bogotá, comparte tus rodadas, conoce la comunidad y mantente cerca de noticias de carreras, fiestas, voluntariado y patrocinadores.',
         socialActiveLabel: 'CANAL ACTIVO', socialCopy: 'COPIAR USUARIO', socialCopied: '¡Copiado!',
+        merchEyebrow: 'MERCH CMWC 2027', merchTitle: 'MERCH PRÓXIMAMENTE', merchText: 'Estamos desarrollando esta idea con el equipo. La mercancía oficial de CMWC Bogotá 2027 se anunciará aquí cuando esté lista.', merchSoon: 'PRÓXIMAMENTE', merchSoonText: 'Espacio futuro para camisetas, gorras, bolsos, botellas, stickers y lanzamientos limitados del evento.',
+        contactEyebrow: 'CONTACTO', contactTitle: 'ESCRÍBENOS', contactText: '¿Preguntas sobre inscripción, voluntariado, patrocinio, prensa, viaje o cómo apoyar CMWC Bogotá 2027? Envíanos un mensaje y el equipo te responderá.', contactDirect: 'Correo directo', contactName: 'NOMBRE COMPLETO', contactEmail: 'CORREO ELECTRÓNICO', contactPhone: 'TELÉFONO / WHATSAPP', contactTopic: 'TEMA', contactMessageLabel: 'MENSAJE', contactButton: 'ENVIAR MENSAJE', contactSuccess: '¡Gracias! Tu mensaje fue enviado al equipo de CMWC Bogotá 2027.', contactNamePlaceholder: 'Tu nombre completo', contactEmailPlaceholder: 'tu@correo.com', contactPhonePlaceholder: 'Opcional', contactMessagePlaceholder: 'Escribe tu mensaje aquí.', contactTopicPlaceholder: '-- Elige un tema --', contactTopics: ['Inscripción', 'Voluntariado', 'Patrocinio', 'Prensa', 'Pregunta general'],
         navVolunteer: 'VOLUNTARIADO', navSponsorApply: 'PATROCINAR',
         volunteerEyebrow: 'ÚNETE AL EQUIPO', volunteerTitle: 'INSCRIPCIÓN DE VOLUNTARIOS',
         volunteerText: 'Ayúdanos a recibir mensajeros de todo el mundo. El voluntariado apoya puntos de control, registro, apoyo a participantes, eventos, traducción, montaje, desmontaje y operaciones comunitarias.',
-        volunteerName: 'NOMBRE COMPLETO', volunteerEmail: 'CORREO ELECTRÓNICO', volunteerPhone: 'TELÉFONO / WHATSAPP', volunteerCity: 'CIUDAD', volunteerRole: 'ROL PREFERIDO', volunteerAvailability: 'DISPONIBILIDAD', volunteerNotes: 'NOTAS',
-        volunteerNamePlaceholder: 'Tu nombre completo', volunteerEmailPlaceholder: 'tu@correo.com', volunteerPhonePlaceholder: 'Tu número de teléfono', volunteerCityPlaceholder: 'Tu ciudad', volunteerNotesPlaceholder: 'Cuéntanos sobre tus habilidades, idiomas o en qué quieres ayudar.',
+        volunteerName: 'NOMBRE COMPLETO', volunteerEmail: 'CORREO ELECTRÓNICO', volunteerPhone: 'TELÉFONO / WHATSAPP', volunteerCity: 'CIUDAD', volunteerRole: 'ROL PREFERIDO', volunteerAvailability: 'DISPONIBILIDAD', volunteerFoodPreference: 'PREFERENCIA DE COMIDA', volunteerFoodOther: 'OTRA PREFERENCIA DE COMIDA', volunteerFoodNotes: 'ALERGIAS / NOTAS DE COMIDA', volunteerNotes: 'NOTAS',
+        volunteerNamePlaceholder: 'Tu nombre completo', volunteerEmailPlaceholder: 'tu@correo.com', volunteerPhonePlaceholder: 'Tu número de teléfono', volunteerCityPlaceholder: 'Tu ciudad', volunteerFoodOtherPlaceholder: 'Escribe tu preferencia', volunteerFoodNotesPlaceholder: 'Alergias, restricciones o detalles', volunteerNotesPlaceholder: 'Cuéntanos sobre tus habilidades, idiomas o en qué quieres ayudar.',
         volunteerButton: 'INSCRIBIRME COMO VOLUNTARIO/A', volunteerSuccess: '¡Gracias! Tu inscripción de voluntariado se guardó en este navegador.',
         rolePlaceholder: '-- Elige un rol --', roleCheckpoints: 'Puntos de control', roleRegistration: 'Registro', roleRiderSupport: 'Apoyo a participantes', roleEvents: 'Eventos / fiestas', roleTranslation: 'Traducción', roleMedia: 'Foto / video / medios',
-        availabilityPlaceholder: '-- Elige disponibilidad --', availabilityBefore: 'Antes del evento', availabilityDuring: 'Durante el evento', availabilityAfter: 'Después del evento', availabilityAll: 'Todo el fin de semana',
+        availabilityPlaceholder: '-- Elige disponibilidad --', availabilityBefore: 'Antes del evento', availabilityDuring: 'Durante el evento', availabilityAfter: 'Después del evento', availabilityAll: 'Todo el fin de semana', foodOptionPlaceholder: '-- Elige una opción --', foodOptionNone: 'Sin preferencia', foodOptionVegetarian: 'Vegetariano/a', foodOptionVegan: 'Vegano/a', foodOptionGlutenFree: 'Sin gluten', foodOptionLactoseFree: 'Sin lactosa', foodOptionAllergies: 'Alergias / restricción médica', foodOptionOther: 'Otro',
         sponsorApplyEyebrow: 'ALIADO CMWC', sponsorApplyTitle: 'INSCRIPCIÓN DE PATROCINADORES',
         sponsorApplyText: 'Apoya el campeonato con fondos, productos, servicios, premios, comida, herramientas, espacios, transporte, medios o alianzas comunitarias.',
         sponsorCompany: 'EMPRESA / COLECTIVO', sponsorContact: 'NOMBRE DE CONTACTO', sponsorEmail: 'CORREO ELECTRÓNICO', sponsorPhone: 'TELÉFONO / WHATSAPP', sponsorLevel: 'TIPO DE PATROCINIO', sponsorWebsite: 'WEB / INSTAGRAM', sponsorNotes: '¿CÓMO QUIERES APOYAR?',
@@ -98,8 +128,8 @@ const languageText = {
         mapTitle: 'INSCRIPCIONES GLOBALES', mapText: 'Mira desde dónde se están inscribiendo mensajeros de todo el mundo. Cada marcador representa un país con competidores registrados.',
         topCountries: 'PAÍSES PRINCIPALES', countryEmpty: 'Todavía no hay inscritos. ¡Sé la primera persona!',
         signupTitle: 'INSCRÍBETE', signupText: 'Elige cómo quieres ser parte de CMWC Bogotá 2027: correr, ser voluntario/a o patrocinar.', tabRider: 'CORREDOR/A', tabVolunteer: 'VOLUNTARIADO', tabSponsor: 'PATROCINADOR', riderEyebrow: 'CORRE CON NOSOTROS', riderTitle: 'REGISTRO DE CORREDORES', riderText: 'Registra tu cupo para el Cycle Messenger World Championship Bogotá 2027.',
-        fullName: 'NOMBRE COMPLETO', email: 'CORREO ELECTRÓNICO', country: 'PAÍS', city: 'CIUDAD', experience: 'AÑOS DE EXPERIENCIA',
-        namePlaceholder: 'Tu nombre completo', cityPlaceholder: 'Tu ciudad', countryPlaceholder: '-- Selecciona tu país --',
+        fullName: 'NOMBRE COMPLETO', email: 'CORREO ELECTRÓNICO', country: 'PAÍS', city: 'CIUDAD', category: 'CATEGORÍA', categoryPlaceholder: '-- Elige categoría --', categoryOpen: 'Open', categoryWTNB: 'WTNB', foodPreference: 'PREFERENCIA DE COMIDA / NECESIDADES DIETARIAS', foodOther: 'OTRA PREFERENCIA DE COMIDA', foodNotes: 'ALERGIAS / NOTAS DE COMIDA',
+        namePlaceholder: 'Tu nombre completo', cityPlaceholder: 'Tu ciudad', countryPlaceholder: '-- Selecciona tu país --', foodOtherPlaceholder: 'Escribe tu preferencia', foodNotesPlaceholder: 'Alergias, restricciones o detalles',
         terms: 'Acepto las reglas del campeonato y confirmo que tengo 18 años o más.',
         quickLinks: 'ENLACES RÁPIDOS', followUs: 'SÍGUENOS', footerText: 'World Bike Messenger Championships. El evento global principal para mensajeros urbanos en bicicleta.',
         footerCopyright: '© 2027 Cycle Messenger World Championship Bogotá. Todos los derechos reservados.',
@@ -130,7 +160,10 @@ function applyLanguage(lang) {
     setText('header a[href="#gallery"], footer a[href="#gallery"]', t.navGallery);
     setText('header a[href="#videos"], footer a[href="#videos"]', t.navVideos);
     setText('header a[href="#gofundme"], footer a[href="#gofundme"]', t.navDonate);
+    setText('header a[href="#fundraiser-events"], footer a[href="#fundraiser-events"]', t.navEvents);
+    setText('header a[href="#memorial"], footer a[href="#memorial"]', t.navMemorial);
     setText('header a[href="#social"], footer a[href="#social"]', t.navSocial);
+    setText('header a[href="#merch"], footer a[href="#merch"]', t.navMerch);
     setText('header a[href="#volunteer"], footer a[href="#volunteer"]', t.navVolunteer);
     setText('header a[href="#sponsor-apply"], footer a[href="#sponsor-apply"]', t.navSponsorApply);
     setText('header a[href="#map"], footer a[href="#map"]', t.navMap);
@@ -171,11 +204,49 @@ function applyLanguage(lang) {
     setText('#gofundme .gofundme-goal', t.gofundmeGoal);
     setText('#gofundme .gofundme-note', t.gofundmeNote);
 
+    setText('#fundraiser-events .fundraiser-eyebrow', t.fundraiserEyebrow);
+    setText('#fundraiser-events .fundraiser-title', t.fundraiserTitle);
+    setText('#fundraiser-events .fundraiser-intro', t.fundraiserText);
+    document.querySelectorAll('#fundraiser-events .fundraiser-filter').forEach((el, i) => { if (t.fundraiserFilters[i]) el.textContent = t.fundraiserFilters[i]; });
+    document.querySelectorAll('#fundraiser-events .fundraiser-image-hint').forEach(el => { el.textContent = t.fundraiserHint; });
+    document.querySelectorAll('#fundraiser-events .fundraiser-card-cta').forEach(el => { el.textContent = t.fundraiserCta; });
+    setHTML('#fundraiser-events .fundraiser-editor-note', t.fundraiserNote);
+    document.querySelectorAll('#fundraiser-events .fundraiser-badge').forEach((el, i) => { if (t.fundraiserBadges[i]) el.textContent = t.fundraiserBadges[i]; });
+    document.querySelectorAll('#fundraiser-events .fundraiser-card-title').forEach((el, i) => { if (t.fundraiserTitles[i]) el.textContent = t.fundraiserTitles[i]; });
+    document.querySelectorAll('#fundraiser-events .fundraiser-card-meta').forEach((el, i) => { if (t.fundraiserMetas[i]) el.textContent = t.fundraiserMetas[i]; });
+    document.querySelectorAll('#fundraiser-events .fundraiser-card-text').forEach((el, i) => { if (t.fundraiserTexts[i]) el.textContent = t.fundraiserTexts[i]; });
+
+    setText('#memorial .memorial-eyebrow', t.memorialEyebrow);
+    setText('#memorial .memorial-title', t.memorialTitle);
+    setText('#memorial .memorial-subtitle', t.memorialSubtitle);
+    setText('#memorial .memorial-text', t.memorialText);
+    setText('#memorial .memorial-candle-btn', t.memorialCandle);
+    setText('#memorial .memorial-link', t.memorialLink);
+    setText('#memorial .memorial-photo-link span', t.memorialPhotoHint);
+    updateMemorialCandleText();
+
     setText('#social .social-eyebrow', t.socialEyebrow);
     setText('#social .social-title', t.socialTitle);
     setText('#social .social-intro', t.socialText);
     setText('#social .social-preview-label', t.socialActiveLabel);
     setText('#copy-social-handle', t.socialCopy);
+
+    setText('#contact .contact-eyebrow', t.contactEyebrow);
+    setText('#contact .contact-title', t.contactTitle);
+    setText('#contact .contact-text', t.contactText);
+    setText('#contact .contact-direct-box span', t.contactDirect);
+    setText('label[for="contact-name"]', t.contactName);
+    setText('label[for="contact-email"]', t.contactEmail);
+    setText('label[for="contact-phone"]', t.contactPhone);
+    setText('label[for="contact-topic"]', t.contactTopic);
+    setText('label[for="contact-message-text"]', t.contactMessageLabel);
+    setText('#contact-form button[type="submit"]', t.contactButton);
+    const contactPlaceholders = [
+        ['contact-name', t.contactNamePlaceholder], ['contact-email', t.contactEmailPlaceholder], ['contact-phone', t.contactPhonePlaceholder], ['contact-message-text', t.contactMessagePlaceholder]
+    ];
+    contactPlaceholders.forEach(([id, placeholder]) => { const el = document.getElementById(id); if (el) el.placeholder = placeholder; });
+    const contactTopicOptions = document.querySelectorAll('#contact-topic option');
+    [t.contactTopicPlaceholder, ...t.contactTopics].forEach((text, i) => { if (contactTopicOptions[i]) contactTopicOptions[i].textContent = text; });
 
     setText('#volunteer .volunteer-eyebrow', t.volunteerEyebrow);
     setText('#volunteer .volunteer-title', t.volunteerTitle);
@@ -186,6 +257,9 @@ function applyLanguage(lang) {
     setText('label[for="volunteer-city"]', t.volunteerCity);
     setText('label[for="volunteer-role"]', t.volunteerRole);
     setText('label[for="volunteer-availability"]', t.volunteerAvailability);
+    setText('#volunteer-food-preference-label', t.volunteerFoodPreference);
+    setText('label[for="volunteer-food-other"]', t.volunteerFoodOther || t.foodOther);
+    setText('label[for="volunteer-food-notes"]', t.volunteerFoodNotes);
     setText('label[for="volunteer-notes"]', t.volunteerNotes);
     setText('#volunteer-form button[type="submit"]', t.volunteerButton);
 
@@ -202,7 +276,7 @@ function applyLanguage(lang) {
     setText('#sponsor-apply-form button[type="submit"]', t.sponsorApplyButton);
 
     const volunteerPlaceholders = [
-        ['volunteer-name', t.volunteerNamePlaceholder], ['volunteer-email', t.volunteerEmailPlaceholder], ['volunteer-phone', t.volunteerPhonePlaceholder], ['volunteer-city', t.volunteerCityPlaceholder], ['volunteer-notes', t.volunteerNotesPlaceholder],
+        ['volunteer-name', t.volunteerNamePlaceholder], ['volunteer-email', t.volunteerEmailPlaceholder], ['volunteer-phone', t.volunteerPhonePlaceholder], ['volunteer-city', t.volunteerCityPlaceholder], ['volunteer-food-other', t.volunteerFoodOtherPlaceholder || t.foodOtherPlaceholder], ['volunteer-food-notes', t.volunteerFoodNotesPlaceholder], ['volunteer-notes', t.volunteerNotesPlaceholder],
         ['sponsor-company', t.sponsorCompanyPlaceholder], ['sponsor-contact', t.sponsorContactPlaceholder], ['sponsor-email', t.sponsorEmailPlaceholder], ['sponsor-phone', t.sponsorPhonePlaceholder], ['sponsor-website', t.sponsorWebsitePlaceholder], ['sponsor-notes', t.sponsorNotesPlaceholder]
     ];
     volunteerPlaceholders.forEach(([id, placeholder]) => { const el = document.getElementById(id); if (el) el.placeholder = placeholder; });
@@ -211,11 +285,25 @@ function applyLanguage(lang) {
     [t.rolePlaceholder, t.roleCheckpoints, t.roleRegistration, t.roleRiderSupport, t.roleEvents, t.roleTranslation, t.roleMedia].forEach((text, i) => { if (roleOptions[i]) roleOptions[i].textContent = text; });
     const availabilityOptions = document.querySelectorAll('#volunteer-availability option');
     [t.availabilityPlaceholder, t.availabilityBefore, t.availabilityDuring, t.availabilityAfter, t.availabilityAll].forEach((text, i) => { if (availabilityOptions[i]) availabilityOptions[i].textContent = text; });
+    setText('.food-option-none', t.foodOptionNone);
+    setText('.food-option-vegetarian', t.foodOptionVegetarian);
+    setText('.food-option-vegan', t.foodOptionVegan);
+    setText('.food-option-gluten-free', t.foodOptionGlutenFree);
+    setText('.food-option-lactose-free', t.foodOptionLactoseFree);
+    setText('.food-option-allergies', t.foodOptionAllergies);
+    setText('.food-option-other', t.foodOptionOther);
     const sponsorTypeOptions = document.querySelectorAll('#sponsor-level option');
     [t.sponsorTypePlaceholder, t.sponsorTypeCash, t.sponsorTypeProduct, t.sponsorTypeService, t.sponsorTypeVenue, t.sponsorTypeMedia].forEach((text, i) => { if (sponsorTypeOptions[i]) sponsorTypeOptions[i].textContent = text; });
 
     setText('#gallery h2', t.galleryTitle);
     setText('#gallery > div > p', t.galleryText);
+    setText('#gallery .moving-gallery-help', currentLanguage === 'es' ? 'Haz clic en cualquier foto para verla más grande. Pasa el cursor para pausar la galería.' : 'Click any photo to open it larger. Hover to pause the gallery.');
+
+    setText('#merch .merch-eyebrow', t.merchEyebrow);
+    setText('#merch .merch-title', t.merchTitle);
+    setText('#merch .merch-text', t.merchText);
+    setText('#merch .merch-coming-copy h3', t.merchSoon);
+    setText('#merch .merch-coming-copy p', t.merchSoonText);
 
     setText('#map h2', t.mapTitle);
     setText('#map > div > p', t.mapText);
@@ -233,15 +321,28 @@ function applyLanguage(lang) {
     setText('label[for="email"]', t.email);
     setText('label[for="country"]', t.country);
     setText('label[for="city"]', t.city);
-    setText('label[for="experience"]', t.experience);
+    setText('label[for="category"]', t.category);
+    setText('#food-preference-label', t.foodPreference);
+    setText('label[for="food-other"]', t.foodOther);
+    setText('label[for="food-notes"]', t.foodNotes);
     setText('label[for="terms"]', t.terms);
     setText('#signup-form button[type="submit"]', t.registerNow);
 
     const nameInput = document.getElementById('name');
     const cityInput = document.getElementById('city');
+    const categoryOptions = document.querySelectorAll('#category option');
+    if (categoryOptions[0]) categoryOptions[0].textContent = t.categoryPlaceholder;
+    if (categoryOptions[1]) categoryOptions[1].textContent = t.categoryOpen;
+    if (categoryOptions[2]) categoryOptions[2].textContent = t.categoryWTNB;
     const firstCountryOption = document.querySelector('#country option[value=""]');
     if (nameInput) nameInput.placeholder = t.namePlaceholder;
     if (cityInput) cityInput.placeholder = t.cityPlaceholder;
+    const foodOtherInput = document.getElementById('food-other');
+    if (foodOtherInput) foodOtherInput.placeholder = t.foodOtherPlaceholder;
+    const volunteerFoodOtherInput = document.getElementById('volunteer-food-other');
+    if (volunteerFoodOtherInput) volunteerFoodOtherInput.placeholder = t.volunteerFoodOtherPlaceholder || t.foodOtherPlaceholder;
+    const foodNotesInput = document.getElementById('food-notes');
+    if (foodNotesInput) foodNotesInput.placeholder = t.foodNotesPlaceholder;
     if (firstCountryOption) firstCountryOption.textContent = t.countryPlaceholder;
 
     setText('footer h4:first-of-type', t.quickLinks);
@@ -434,7 +535,28 @@ function saveSignup(signup) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(signups));
 }
 
+let serverCountryStats = null;
+
+function normalizeCountryStats(rawStats) {
+    const normalized = {};
+    if (!rawStats || typeof rawStats !== 'object') return normalized;
+
+    Object.entries(rawStats).forEach(([country, value]) => {
+        const count = typeof value === 'number' ? value : parseInt(value && value.count, 10);
+        if (!country || !count || count < 1) return;
+        normalized[country] = { count, names: [] };
+    });
+
+    return normalized;
+}
+
 function getSignupsByCountry() {
+    // Once the site is live, the public stats endpoint reads the rider CSV on the server.
+    // That makes the map show real submitted rider counts, not only this browser's localStorage.
+    if (serverCountryStats) {
+        return serverCountryStats;
+    }
+
     const signups = getSignups();
     const byCountry = {};
     signups.forEach(s => {
@@ -447,14 +569,22 @@ function getSignupsByCountry() {
     return byCountry;
 }
 
+function getSignupTotals() {
+    const byCountry = getSignupsByCountry();
+    const total = Object.values(byCountry).reduce((sum, data) => sum + (parseInt(data.count, 10) || 0), 0);
+    return {
+        signups: total,
+        countries: Object.keys(byCountry).length
+    };
+}
+
 // ===== STATS UPDATE =====
 function updateStats() {
-    const signups = getSignups();
-    const countries = new Set(signups.map(s => s.country));
+    const totals = getSignupTotals();
 
     // Animate the counter
-    animateCounter(document.getElementById('stat-signups'), signups.length);
-    animateCounter(document.getElementById('stat-countries'), countries.size);
+    animateCounter(document.getElementById('stat-signups'), totals.signups);
+    animateCounter(document.getElementById('stat-countries'), totals.countries);
 }
 
 function animateCounter(element, target) {
@@ -492,76 +622,178 @@ function updateCountryList() {
   `).join('');
 }
 
-// ===== LEAFLET MAP =====
+// ===== API-FREE SIGNUP MAP =====
+// This custom map does not use Leaflet, Google Maps, Mapbox, or any map tile API.
+// It plots the existing country latitude/longitude data onto a local, stylized world map.
 let map;
 let mapMarkers = [];
 
+function projectCountryToMap(lat, lng) {
+    const x = ((Number(lng) + 180) / 360) * 100;
+    const y = ((90 - Number(lat)) / 180) * 100;
+    return {
+        x: Math.max(4, Math.min(96, x)),
+        y: Math.max(8, Math.min(92, y))
+    };
+}
+
 function initMap() {
-    map = L.map('leaflet-map', {
-        zoomControl: true,
-        scrollWheelZoom: false,
-        worldCopyJump: true
-    }).setView([20, 0], 2);
+    const mapEl = document.getElementById('leaflet-map');
+    if (!mapEl) return;
 
-    // Use a clean, minimal tile layer
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '© OpenStreetMap, © CARTO',
-        maxZoom: 18,
-    }).addTo(map);
+    mapEl.innerHTML = `
+        <div class="static-map-stage" role="img" aria-label="API-free world signup map">
+            <div class="static-map-grid"></div>
+            <div class="continent continent-north-america"></div>
+            <div class="continent continent-south-america"></div>
+            <div class="continent continent-europe"></div>
+            <div class="continent continent-africa"></div>
+            <div class="continent continent-asia"></div>
+            <div class="continent continent-australia"></div>
+            <div class="static-map-marker-layer" id="static-map-marker-layer"></div>
+            <div class="static-map-empty" id="static-map-empty">${languageText[currentLanguage].countryEmpty}</div>
+            <div class="static-map-label">No map API required</div>
+        </div>
+    `;
 
+    map = mapEl;
     updateMapMarkers();
 }
 
 function updateMapMarkers() {
-    // Remove existing markers
-    mapMarkers.forEach(m => map.removeLayer(m));
+    const markerLayer = document.getElementById('static-map-marker-layer');
+    const emptyState = document.getElementById('static-map-empty');
+    if (!markerLayer) return;
+
+    markerLayer.innerHTML = '';
     mapMarkers = [];
 
     const byCountry = getSignupsByCountry();
+    const entries = Object.entries(byCountry).filter(([country, data]) => {
+        return countryData[country] && data && parseInt(data.count, 10) > 0;
+    });
 
-    Object.entries(byCountry).forEach(([country, data]) => {
+    if (emptyState) {
+        emptyState.textContent = languageText[currentLanguage].countryEmpty;
+        emptyState.classList.toggle('hidden', entries.length > 0);
+    }
+
+    entries.forEach(([country, data]) => {
         const coords = countryData[country];
-        if (!coords) return;
+        const point = projectCountryToMap(coords.lat, coords.lng);
+        const count = parseInt(data.count, 10) || 0;
+        const names = Array.isArray(data.names) ? data.names.filter(Boolean) : [];
+        const markerSize = Math.min(32 + count * 3, 54);
 
-        // Marker size based on count
-        const size = Math.min(40 + data.count * 4, 60);
-        const icon = L.divIcon({
-            className: 'custom-marker',
-            html: `<div style="width:${size}px;height:${size}px;">${data.count}</div>`,
-            iconSize: [size, size],
-            iconAnchor: [size / 2, size / 2]
+        const marker = document.createElement('button');
+        marker.type = 'button';
+        marker.className = 'static-map-marker';
+        marker.style.left = `${point.x}%`;
+        marker.style.top = `${point.y}%`;
+        marker.style.width = `${markerSize}px`;
+        marker.style.height = `${markerSize}px`;
+        marker.setAttribute('aria-label', `${country}: ${count} signup${count === 1 ? '' : 's'}`);
+
+        const countEl = document.createElement('span');
+        countEl.className = 'static-map-marker-count';
+        countEl.textContent = count;
+        marker.appendChild(countEl);
+
+        const popup = document.createElement('span');
+        popup.className = 'static-map-popup';
+        const namesText = names.length ? `<small>${names.slice(0, 5).join(', ')}${names.length > 5 ? ` + ${names.length - 5} more` : ''}</small>` : '<small>Rider registrations saved on the server.</small>';
+        popup.innerHTML = `<strong>${country}</strong><em>${count} rider signup${count === 1 ? '' : 's'}</em>${namesText}`;
+        marker.appendChild(popup);
+
+        marker.addEventListener('click', () => {
+            document.querySelectorAll('.static-map-marker.active').forEach(item => {
+                if (item !== marker) item.classList.remove('active');
+            });
+            marker.classList.toggle('active');
         });
 
-        const marker = L.marker([coords.lat, coords.lng], { icon }).addTo(map);
-
-        const namesList = data.names.slice(0, 5).join(', ');
-        const extra = data.count > 5 ? ` + ${data.count - 5} more` : '';
-
-        marker.bindPopup(`
-      <div class="popup-country">${country}</div>
-      <div class="popup-count">${data.count} messenger${data.count > 1 ? 's' : ''} signed up</div>
-      <div style="font-size:0.75rem;opacity:0.7;margin-top:6px;">${namesList}${extra}</div>
-    `);
-
+        markerLayer.appendChild(marker);
         mapMarkers.push(marker);
     });
+}
+
+async function loadPublicSignupStats() {
+    try {
+        const response = await fetch('forms/public-signup-stats.php?ts=' + Date.now(), {
+            headers: { 'Accept': 'application/json' },
+            cache: 'no-store'
+        });
+
+        if (!response.ok) return;
+        const result = await response.json();
+        serverCountryStats = normalizeCountryStats(result.countries || {});
+        updateStats();
+        updateCountryList();
+        updateMapMarkers();
+    } catch (err) {
+        // If PHP is not available while testing locally, the map still works with localStorage.
+        updateMapMarkers();
+    }
+}
+
+// ===== ONE.COM PHP FORM SUBMIT HELPER =====
+// These forms now submit to PHP files in /forms so one.com can email/save submissions.
+// The helper keeps the site feeling interactive instead of doing a plain page reload.
+async function submitFormToPhp(formElement) {
+    if (!formElement || !formElement.action) {
+        return { ok: false, message: 'Form action is missing.' };
+    }
+
+    try {
+        const response = await fetch(formElement.action, {
+            method: 'POST',
+            body: new FormData(formElement),
+            headers: { 'Accept': 'application/json' }
+        });
+
+        const text = await response.text();
+        let result;
+        try {
+            result = JSON.parse(text);
+        } catch (err) {
+            result = { ok: response.ok, message: text || 'Submission received.' };
+        }
+
+        return {
+            ok: response.ok && result.ok !== false,
+            message: result.message || (response.ok ? 'Submission received.' : 'Submission failed.')
+        };
+    } catch (err) {
+        return {
+            ok: false,
+            message: 'Could not reach the form handler. Make sure the site is uploaded to one.com with the /forms folder.'
+        };
+    }
 }
 
 // ===== FORM SUBMISSION =====
 const form = document.getElementById('signup-form');
 const formMessage = document.getElementById('form-message');
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const country = document.getElementById('country').value;
     const city = document.getElementById('city').value.trim();
-    const experience = document.getElementById('experience').value;
+    const category = document.getElementById('category').value;
 
-    if (!name || !email || !country || !city || experience === '') {
+    if (!name || !email || !country || !city || category === '') {
         showFormMessage(languageText[currentLanguage].formMissing, 'error');
+        return;
+    }
+
+    showFormMessage('Sending...', 'success');
+    const serverResult = await submitFormToPhp(form);
+
+    if (!serverResult.ok) {
+        showFormMessage(serverResult.message, 'error');
         return;
     }
 
@@ -570,24 +802,26 @@ form.addEventListener('submit', (e) => {
         email,
         country,
         city,
-        experience: parseInt(experience),
+        category,
+        foodPreference: Array.from(document.querySelectorAll('input[name="foodPreferences[]"]:checked')).map(input => input.value).join(', '),
+        foodOther: document.getElementById('food-other')?.value || '',
+        foodNotes: document.getElementById('food-notes')?.value || '',
         timestamp: Date.now()
     };
 
+    serverCountryStats = null;
     saveSignup(signup);
 
-    // Refresh everything
+    // Refresh everything locally too, so the map/counters update immediately.
     updateStats();
     updateCountryList();
     updateMapMarkers();
+    loadPublicSignupStats();
 
-    // Show success message
     showFormMessage(`${languageText[currentLanguage].formSuccess(name)} ${country}.`, 'success');
 
-    // Reset form
     form.reset();
 
-    // Scroll to map to show their marker
     setTimeout(() => {
         document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
     }, 1500);
@@ -628,12 +862,18 @@ function showInlineMessage(elementId, msg, type) {
 
 const volunteerForm = document.getElementById('volunteer-form');
 if (volunteerForm) {
-    volunteerForm.addEventListener('submit', (e) => {
+    volunteerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = Object.fromEntries(new FormData(volunteerForm).entries());
         const required = ['volunteerName', 'volunteerEmail', 'volunteerCity', 'volunteerRole', 'volunteerAvailability'];
         if (required.some(key => !String(data[key] || '').trim())) {
             showInlineMessage('volunteer-message', languageText[currentLanguage].formMissing, 'error');
+            return;
+        }
+        showInlineMessage('volunteer-message', 'Sending...', 'success');
+        const serverResult = await submitFormToPhp(volunteerForm);
+        if (!serverResult.ok) {
+            showInlineMessage('volunteer-message', serverResult.message, 'error');
             return;
         }
         saveLocalFormEntry('cmwc_volunteer_signups', data);
@@ -644,7 +884,7 @@ if (volunteerForm) {
 
 const sponsorApplyForm = document.getElementById('sponsor-apply-form');
 if (sponsorApplyForm) {
-    sponsorApplyForm.addEventListener('submit', (e) => {
+    sponsorApplyForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = Object.fromEntries(new FormData(sponsorApplyForm).entries());
         const required = ['sponsorCompany', 'sponsorContact', 'sponsorEmail', 'sponsorLevel'];
@@ -652,9 +892,38 @@ if (sponsorApplyForm) {
             showInlineMessage('sponsor-apply-message', languageText[currentLanguage].formMissing, 'error');
             return;
         }
+        showInlineMessage('sponsor-apply-message', 'Sending...', 'success');
+        const serverResult = await submitFormToPhp(sponsorApplyForm);
+        if (!serverResult.ok) {
+            showInlineMessage('sponsor-apply-message', serverResult.message, 'error');
+            return;
+        }
         saveLocalFormEntry('cmwc_sponsor_applications', data);
         sponsorApplyForm.reset();
         showInlineMessage('sponsor-apply-message', languageText[currentLanguage].sponsorApplySuccess, 'success');
+    });
+}
+
+
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(contactForm).entries());
+        const required = ['contactName', 'contactEmail', 'contactTopic', 'contactMessage'];
+        if (required.some(key => !String(data[key] || '').trim())) {
+            showInlineMessage('contact-message', languageText[currentLanguage].formMissing, 'error');
+            return;
+        }
+        showInlineMessage('contact-message', 'Sending...', 'success');
+        const serverResult = await submitFormToPhp(contactForm);
+        if (!serverResult.ok) {
+            showInlineMessage('contact-message', serverResult.message, 'error');
+            return;
+        }
+        saveLocalFormEntry('cmwc_contact_messages', data);
+        contactForm.reset();
+        showInlineMessage('contact-message', languageText[currentLanguage].contactSuccess, 'success');
     });
 }
 
@@ -800,6 +1069,40 @@ openSignupFromHash();
 
 
 
+
+
+// ===== MEMORIAL SECTION =====
+const MEMORIAL_CANDLE_KEY = 'cmwc_eduardo_mosquera_candles';
+const memorialCandleBtn = document.getElementById('memorial-candle-btn');
+const memorialCandleCount = document.getElementById('memorial-candle-count');
+
+function getMemorialCandleCount() {
+    return parseInt(localStorage.getItem(MEMORIAL_CANDLE_KEY) || '0', 10) || 0;
+}
+
+function updateMemorialCandleText() {
+    if (!memorialCandleCount) return;
+    const count = getMemorialCandleCount();
+    memorialCandleCount.textContent = count;
+    const line = memorialCandleCount.closest('.memorial-candle-count');
+    if (line && languageText[currentLanguage]?.memorialCandles) {
+        line.textContent = languageText[currentLanguage].memorialCandles(count);
+        line.prepend(memorialCandleCount);
+        memorialCandleCount.insertAdjacentText('afterend', ' ');
+    }
+}
+
+if (memorialCandleBtn) {
+    memorialCandleBtn.addEventListener('click', () => {
+        const nextCount = getMemorialCandleCount() + 1;
+        localStorage.setItem(MEMORIAL_CANDLE_KEY, String(nextCount));
+        updateMemorialCandleText();
+        memorialCandleBtn.classList.add('lit');
+        setTimeout(() => memorialCandleBtn.classList.remove('lit'), 650);
+    });
+}
+updateMemorialCandleText();
+
 // ===== SOCIAL MEDIA SECTION =====
 const socialCards = document.querySelectorAll('.social-card');
 const socialPreviewTitle = document.querySelector('.social-preview-title');
@@ -833,14 +1136,53 @@ if (copySocialHandleBtn) {
     });
 }
 
+
+// ===== FOOD PREFERENCE BUBBLES =====
+function initFoodPreferenceBubbles() {
+    document.querySelectorAll('input[data-other-toggle]').forEach(input => {
+        const target = document.getElementById(input.dataset.otherToggle);
+        const update = () => {
+            if (!target) return;
+            target.classList.toggle('hidden', !input.checked);
+            const textInput = target.querySelector('input');
+            if (textInput && !input.checked) textInput.value = '';
+        };
+        input.addEventListener('change', update);
+        update();
+    });
+
+    // If someone chooses "No preference", clear other food choices in that same bubble group.
+    document.querySelectorAll('.food-bubble-group').forEach(group => {
+        group.addEventListener('change', event => {
+            const changed = event.target;
+            if (!changed || changed.type !== 'checkbox') return;
+            const boxes = Array.from(group.querySelectorAll('input[type="checkbox"]'));
+            if (changed.value === 'no-preference' && changed.checked) {
+                boxes.forEach(box => { if (box !== changed) box.checked = false; });
+            } else if (changed.checked) {
+                const none = boxes.find(box => box.value === 'no-preference');
+                if (none) none.checked = false;
+            }
+            document.querySelectorAll('input[data-other-toggle]').forEach(input => {
+                const target = document.getElementById(input.dataset.otherToggle);
+                if (target) target.classList.toggle('hidden', !input.checked);
+            });
+        });
+    });
+}
+
 // ===== INITIALIZE EVERYTHING =====
+initFoodPreferenceBubbles();
 initMap();
 updateStats();
 updateCountryList();
+loadPublicSignupStats();
 initLanguageSwitcher();
 
-// Re-initialize Lucide icons after dynamic content
-lucide.createIcons();
+// Re-initialize Lucide icons after dynamic content when available
+if (window.lucide && typeof lucide.createIcons === 'function') {
+    lucide.createIcons();
+}
 
 // ===== GOFUNDME BACKGROUND SLIDESHOW =====
 // The GoFundMe background is now pure HTML + CSS.
