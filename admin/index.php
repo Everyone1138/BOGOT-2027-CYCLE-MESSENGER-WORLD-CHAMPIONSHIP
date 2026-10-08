@@ -4,7 +4,7 @@ require_admin_login();
 
 $csvFiles = [
     'riders' => [
-        'title' => 'Rider Signups',
+        'title' => 'Race Signups',
         'file' => __DIR__ . '/../forms/data/rider-signups.csv',
         'download' => 'rider-signups.csv'
     ],
@@ -17,6 +17,11 @@ $csvFiles = [
         'title' => 'Sponsor Applications',
         'file' => __DIR__ . '/../forms/data/sponsor-applications.csv',
         'download' => 'sponsor-applications.csv'
+    ],
+    'traffic' => [
+        'title' => 'Site Traffic',
+        'file' => __DIR__ . '/../forms/data/site-traffic.csv',
+        'download' => 'site-traffic.csv'
     ],
     'contacts' => [
         'title' => 'Contact Messages',
@@ -51,6 +56,46 @@ function read_csv_table($path) {
 function count_csv_rows($path) {
     $data = read_csv_table($path);
     return count($data['rows']);
+}
+
+function traffic_summary($table) {
+    $headers = $table['headers'];
+    $rows = $table['rows'];
+    $idx = array_flip($headers);
+    $sessionIndex = $idx['session_id'] ?? null;
+    $pathIndex = $idx['path'] ?? null;
+    $timestampIndex = $idx['timestamp'] ?? null;
+    $dateIndex = $idx['date'] ?? null;
+
+    $sessions = [];
+    $pageCounts = [];
+    $today = date('Y-m-d');
+    $todayCount = 0;
+
+    foreach ($rows as $row) {
+        if ($sessionIndex !== null && !empty($row[$sessionIndex])) {
+            $sessions[$row[$sessionIndex]] = true;
+        }
+        if ($pathIndex !== null) {
+            $path = $row[$pathIndex] ?? '';
+            if ($path !== '') {
+                $pageCounts[$path] = ($pageCounts[$path] ?? 0) + 1;
+            }
+        }
+        if ($dateIndex !== null && ($row[$dateIndex] ?? '') === $today) {
+            $todayCount++;
+        }
+    }
+
+    arsort($pageCounts);
+
+    return [
+        'total' => count($rows),
+        'unique_sessions' => count($sessions),
+        'today' => $todayCount,
+        'latest' => ($timestampIndex !== null && !empty($rows[0][$timestampIndex])) ? $rows[0][$timestampIndex] : '',
+        'top_pages' => array_slice($pageCounts, 0, 5, true),
+    ];
 }
 
 $active = $_GET['type'] ?? 'riders';
@@ -98,6 +143,26 @@ $table = read_csv_table($current['file']);
         </div>
         <a class="download-btn" href="download.php?type=<?= h($active) ?>">Download CSV</a>
       </div>
+
+      <?php if ($active === 'traffic'): ?>
+        <?php $traffic = traffic_summary($table); ?>
+        <div class="traffic-summary-grid">
+          <div class="mini-stat"><span>Total page views</span><strong><?= h($traffic['total']) ?></strong></div>
+          <div class="mini-stat"><span>Unique sessions</span><strong><?= h($traffic['unique_sessions']) ?></strong></div>
+          <div class="mini-stat"><span>Views today</span><strong><?= h($traffic['today']) ?></strong></div>
+          <div class="mini-stat"><span>Latest visit</span><strong><?= h($traffic['latest'] ?: 'None yet') ?></strong></div>
+        </div>
+        <?php if (!empty($traffic['top_pages'])): ?>
+          <div class="top-pages-box">
+            <h3>Top pages</h3>
+            <ol>
+              <?php foreach ($traffic['top_pages'] as $page => $count): ?>
+                <li><span><?= h($page) ?></span><strong><?= h($count) ?></strong></li>
+              <?php endforeach; ?>
+            </ol>
+          </div>
+        <?php endif; ?>
+      <?php endif; ?>
 
       <?php if (empty($table['rows'])): ?>
         <div class="empty-state">No submissions yet for this form.</div>

@@ -65,19 +65,19 @@ const languageText = {
         galleryTitle: 'GALLERY', galleryText: 'Moments captured from past championships around the world.',
         mapTitle: 'GLOBAL SIGNUPS', mapText: 'See where messengers from around the world are signing up. Each marker represents a country with registered competitors.',
         topCountries: 'TOP COUNTRIES', countryEmpty: 'No signups yet. Be the first!',
-        signupTitle: 'SIGN UP', signupText: 'Choose how you want to be part of CMWC Bogotá 2027: race, volunteer, or become a sponsor.', tabRider: 'RIDER', tabVolunteer: 'VOLUNTEER', tabSponsor: 'SPONSOR', riderEyebrow: 'RACE WITH US', riderTitle: 'RIDER REGISTRATION', riderText: 'Register your spot at the Cycle Messenger World Championship Bogotá 2027.',
+        signupTitle: 'SIGN UP', signupText: 'Choose how you want to be part of CMWC Bogotá 2027: race, volunteer, or become a sponsor.', tabRider: 'RIDER', tabVolunteer: 'VOLUNTEER', tabSponsor: 'SPONSOR', riderEyebrow: 'RACE WITH US', riderTitle: 'RIDER REGISTRATION', riderText: 'Register your spot at the World Bike Messenger Championship Bogotá 2027.',
         fullName: 'FULL NAME', email: 'EMAIL', country: 'COUNTRY', city: 'CITY', category: 'CATEGORY', categoryPlaceholder: '-- Choose category --', categoryOpen: 'Open', categoryWTNB: 'WTNB', foodPreference: 'FOOD PREFERENCE / DIETARY NEEDS', foodOther: 'OTHER FOOD PREFERENCE', foodNotes: 'FOOD ALLERGIES / NOTES',
         namePlaceholder: 'Your full name', cityPlaceholder: 'Your city', countryPlaceholder: '-- Select your country --', foodOtherPlaceholder: 'Write your food preference', foodNotesPlaceholder: 'Allergies, restrictions, or details',
         terms: 'I agree to the championship rules and confirm I am 18 years or older.',
         quickLinks: 'QUICK LINKS', followUs: 'FOLLOW US', footerText: 'World Bike Messenger Championships. The premier global event for urban cycling couriers.',
-        footerCopyright: '© 2027 Cycle Messenger World Championship Bogotá. All rights reserved.',
+        footerCopyright: '© 2027 World Bike Messenger Championship Bogotá. All rights reserved.',
         formMissing: 'Please fill in all fields.',
         formSuccess: name => `Welcome to the championships, ${name}! 🚴 You're registered from`
     },
     es: {
         navAbout: 'SOBRE EL EVENTO', navGallery: 'GALERÍA', navVideos: 'VIDEOS', navDonate: 'DONAR', navEvents: 'EVENTOS', navSocial: 'REDES', navMerch: 'MERCH', navContact: 'CONTACTO', navMap: 'MAPA GLOBAL', navSignup: 'INSCRÍBETE',
         heroEyebrow: 'BOGOTÁ • 2027 • CULTURA MENSAJERA',
-        heroTitle: 'CAMPEONATO MUNDIAL<br> DE CICLOMENSAJEROS',
+        heroTitle: 'CAMPEONATO MUNDIAL<br> DE BICIMENSAJERÍA',
         heroText: 'Una galería en movimiento de velocidad, carga, alleycats, rodadas nocturnas y la comunidad mensajera global llegando a Bogotá.',
         registerNow: 'INSCRÍBETE AHORA', viewGallery: 'VER GALERÍA',
         signups: 'Inscritos', countries: 'Países', events: 'Eventos', years: 'Años',
@@ -127,12 +127,12 @@ const languageText = {
         galleryTitle: 'GALERÍA', galleryText: 'Momentos capturados de campeonatos anteriores alrededor del mundo.',
         mapTitle: 'INSCRIPCIONES GLOBALES', mapText: 'Mira desde dónde se están inscribiendo mensajeros de todo el mundo. Cada marcador representa un país con competidores registrados.',
         topCountries: 'PAÍSES PRINCIPALES', countryEmpty: 'Todavía no hay inscritos. ¡Sé la primera persona!',
-        signupTitle: 'INSCRÍBETE', signupText: 'Elige cómo quieres ser parte de CMWC Bogotá 2027: correr, ser voluntario/a o patrocinar.', tabRider: 'CORREDOR/A', tabVolunteer: 'VOLUNTARIADO', tabSponsor: 'PATROCINADOR', riderEyebrow: 'CORRE CON NOSOTROS', riderTitle: 'REGISTRO DE CORREDORES', riderText: 'Registra tu cupo para el Cycle Messenger World Championship Bogotá 2027.',
+        signupTitle: 'INSCRÍBETE', signupText: 'Elige cómo quieres ser parte de CMWC Bogotá 2027: correr, ser voluntario/a o patrocinar.', tabRider: 'CORREDOR/A', tabVolunteer: 'VOLUNTARIADO', tabSponsor: 'PATROCINADOR', riderEyebrow: 'CORRE CON NOSOTROS', riderTitle: 'REGISTRO DE CORREDORES', riderText: 'Registra tu cupo para el Campeonato Mundial de Bicimensajería Bogotá 2027.',
         fullName: 'NOMBRE COMPLETO', email: 'CORREO ELECTRÓNICO', country: 'PAÍS', city: 'CIUDAD', category: 'CATEGORÍA', categoryPlaceholder: '-- Elige categoría --', categoryOpen: 'Open', categoryWTNB: 'WTNB', foodPreference: 'PREFERENCIA DE COMIDA / NECESIDADES DIETARIAS', foodOther: 'OTRA PREFERENCIA DE COMIDA', foodNotes: 'ALERGIAS / NOTAS DE COMIDA',
         namePlaceholder: 'Tu nombre completo', cityPlaceholder: 'Tu ciudad', countryPlaceholder: '-- Selecciona tu país --', foodOtherPlaceholder: 'Escribe tu preferencia', foodNotesPlaceholder: 'Alergias, restricciones o detalles',
         terms: 'Acepto las reglas del campeonato y confirmo que tengo 18 años o más.',
         quickLinks: 'ENLACES RÁPIDOS', followUs: 'SÍGUENOS', footerText: 'World Bike Messenger Championships. El evento global principal para mensajeros urbanos en bicicleta.',
-        footerCopyright: '© 2027 Cycle Messenger World Championship Bogotá. Todos los derechos reservados.',
+        footerCopyright: '© 2027 Campeonato Mundial de Bicimensajería Bogotá. Todos los derechos reservados.',
         formMissing: 'Por favor completa todos los campos.',
         formSuccess: name => `¡Bienvenido/a al campeonato, ${name}! 🚴 Estás inscrito/a desde`
     }
@@ -1187,3 +1187,33 @@ if (window.lucide && typeof lucide.createIcons === 'function') {
 // ===== GOFUNDME BACKGROUND SLIDESHOW =====
 // The GoFundMe background is now pure HTML + CSS.
 // This avoids path/cache/JavaScript-order problems, so the images show even if another script fails.
+
+
+// ===== SITE TRAFFIC TRACKING FOR ADMIN DASHBOARD =====
+(function trackSiteTraffic() {
+    try {
+        if (window.location.protocol === 'file:') return;
+        const sessionKey = 'cmwc_site_session_id';
+        let sessionId = sessionStorage.getItem(sessionKey);
+        if (!sessionId) {
+            sessionId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+            sessionStorage.setItem(sessionKey, sessionId);
+        }
+
+        const payload = new FormData();
+        payload.append('path', window.location.pathname + window.location.search + window.location.hash);
+        payload.append('title', document.title || 'CMWC 2027');
+        payload.append('referrer', document.referrer || '');
+        payload.append('session_id', sessionId);
+
+        const endpoint = 'forms/track-visit.php';
+        if (navigator.sendBeacon) {
+            navigator.sendBeacon(endpoint, payload);
+        } else {
+            fetch(endpoint, { method: 'POST', body: payload, keepalive: true }).catch(() => {});
+        }
+    } catch (error) {
+        // Never let analytics stop the public website from working.
+    }
+})();
+

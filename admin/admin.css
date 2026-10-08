@@ -135,3 +135,41 @@ td { color: rgba(232,220,196,.92); }
 @media (max-width: 700px) {
   .admin-header, .table-card-head { flex-direction: column; align-items: flex-start; }
 }
+
+
+.traffic-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: .75rem;
+  margin: 1rem 0;
+}
+.mini-stat {
+  border: 1px solid rgba(232,220,196,.35);
+  background: rgba(232,220,196,.07);
+  padding: .9rem;
+}
+.mini-stat span {
+  display: block;
+  color: rgba(232,220,196,.72);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.mini-stat strong {
+  display: block;
+  margin-top: .35rem;
+  font-size: 1.4rem;
+  overflow-wrap: anywhere;
+}
+.top-pages-box {
+  border: 1px solid rgba(232,220,196,.3);
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(10,10,10,.35);
+}
+.top-pages-box h3 { margin: 0 0 .75rem; text-transform: uppercase; }
+.top-pages-box ol { margin: 0; padding-left: 1.25rem; }
+.top-pages-box li { margin: .4rem 0; }
+.top-pages-box li span { overflow-wrap: anywhere; }
+.top-pages-box li strong { float: right; margin-left: 1rem; }

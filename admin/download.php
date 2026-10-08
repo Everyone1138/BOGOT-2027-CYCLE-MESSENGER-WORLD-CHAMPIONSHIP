@@ -6,6 +6,7 @@ $csvFiles = [
     'riders' => 'rider-signups.csv',
     'volunteers' => 'volunteer-signups.csv',
     'sponsors' => 'sponsor-applications.csv',
+    'traffic' => 'site-traffic.csv',
     'contacts' => 'contact-messages.csv',
     'subscribers' => 'subscribers.csv',
 ];

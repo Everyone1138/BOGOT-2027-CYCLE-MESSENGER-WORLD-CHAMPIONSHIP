@@ -2143,18 +2143,66 @@ button, input, select, textarea { font: inherit; }
 }
 
 
-/* Small admin login link in the footer */
-.admin-footer-link {
-    display: inline-block;
-    margin-top: 0.5rem;
-    color: rgba(232, 220, 196, 0.7);
+
+/* Prominent footer admin login button */
+.admin-footer-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 220px;
+    padding: 0.85rem 1.1rem;
+    border: 2px solid var(--beige);
+    background: var(--beige);
+    color: var(--black);
+    font-size: 0.88rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    box-shadow: 0 12px 30px rgba(232, 220, 196, 0.18);
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.admin-footer-button:hover,
+.admin-footer-button:focus {
+    transform: translateY(-3px);
+    background: transparent;
+    color: var(--beige);
+    outline: none;
+}
+
+.admin-footer-note {
+    margin-top: 0.75rem;
+    max-width: 260px;
+    color: rgba(232, 220, 196, 0.65);
     font-size: 0.8rem;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    line-height: 1.5;
+}
+
+/* Footer admin login button */
+.admin-footer-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.85rem;
+    padding: 0.65rem 1rem;
+    border: 2px solid var(--beige);
+    background: transparent;
+    color: var(--beige);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s ease;
 }
 
 .admin-footer-link:hover {
-    color: var(--beige);
+    background: var(--beige);
+    color: var(--black);
 }
 
 
