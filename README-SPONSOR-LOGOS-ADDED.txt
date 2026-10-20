@@ -1,1 +1,0 @@
-Added Ruta 45 (logoRuta.png) and Manifiesto Custom Culture (manifestoCustomCulture.jpeg) to both repeating sponsor carousel tracks. Originals are copied into images/sponsors as ruta-45.png and manifesto-custom-culture.jpeg. All other project assets, admin/payment files and signup forms preserved. Upload index.html, style.css, and the two new images/sponsors files to one.com.
