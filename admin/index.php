@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . '/auth.php';
 require_admin_login();
+require_once __DIR__ . '/payments.php';
+if (empty($_SESSION['payment_csrf'])) $_SESSION['payment_csrf'] = bin2hex(random_bytes(24));
+$paymentStatuses = payment_statuses();
 
 $csvFiles = [
     'riders' => [
@@ -49,6 +52,7 @@ function read_csv_table($path) {
         $rows[] = $row;
     }
     fclose($fp);
+    // Keep original CSV row number as stable identity for separate payment metadata.
     $rows = array_reverse($rows); // newest first
     return ['headers' => $headers, 'rows' => $rows];
 }
@@ -104,6 +108,17 @@ if (!isset($csvFiles[$active])) {
 }
 $current = $csvFiles[$active];
 $table = read_csv_table($current['file']);
+$paymentCounts = ['pending' => 0, 'paid' => 0, 'confirmed' => 0];
+$riderTable = read_csv_table($csvFiles['riders']['file']);
+foreach ($riderTable['rows'] as $position => $riderRow) {
+    $csvIndex = count($riderTable['rows']) - $position;
+    $key = payment_record_key($riderRow, $csvIndex);
+    $state = $paymentStatuses[$key]['status'] ?? 'pending';
+    if (!isset($paymentCounts[$state])) $state = 'pending';
+    $paymentCounts[$state]++;
+}
+$paymentFilter = $_GET['payment'] ?? 'all';
+if (!in_array($paymentFilter, ['all', 'pending', 'paid', 'confirmed'], true)) $paymentFilter = 'all';
 ?>
 <!doctype html>
 <html lang="en">
@@ -136,6 +151,15 @@ $table = read_csv_table($current['file']);
     </section>
 
     <section class="table-card">
+      <div class="payment-summary-grid">
+        <?php foreach ($paymentCounts as $status => $count): ?>
+          <a class="mini-stat" href="?type=riders&amp;payment=<?= h($status) ?>"><span><?= h(ucfirst($status)) ?> payments</span><strong><?= h($count) ?></strong></a>
+        <?php endforeach; ?>
+      </div>
+      <?php if ($active === 'riders'): ?>
+        <p class="muted">Payment statuses are updated manually. Mark Paid only after checking your payment provider; Confirmed means the team has verified and accepted the registration.</p>
+        <div class="payment-filters"><a href="?type=riders">All riders</a><a href="?type=riders&amp;payment=pending">Pending</a><a href="?type=riders&amp;payment=paid">Paid</a><a href="?type=riders&amp;payment=confirmed">Confirmed</a></div>
+      <?php endif; ?>
       <div class="table-card-head">
         <div>
           <h2><?= h($current['title']) ?></h2>
@@ -164,6 +188,8 @@ $table = read_csv_table($current['file']);
         <?php endif; ?>
       <?php endif; ?>
 
+      <?php if (isset($_GET['saved'])): ?><p class="payment-notice">Payment status updated.</p><?php endif; ?>
+      <?php if (isset($_GET['error'])): ?><p class="payment-error">Unable to update the status. Try again.</p><?php endif; ?>
       <?php if (empty($table['rows'])): ?>
         <div class="empty-state">No submissions yet for this form.</div>
       <?php else: ?>
@@ -171,14 +197,31 @@ $table = read_csv_table($current['file']);
           <table>
             <thead>
               <tr>
+                <?php if ($active === 'riders'): ?><th>Payment status / Action</th><?php endif; ?>
                 <?php foreach ($table['headers'] as $header): ?>
                   <th><?= h(str_replace('_', ' ', $header)) ?></th>
                 <?php endforeach; ?>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($table['rows'] as $row): ?>
+              <?php foreach ($table['rows'] as $position => $row): ?>
+                <?php
+                  $key = $active === 'riders' ? payment_record_key($row, count($table['rows']) - $position) : '';
+                  $status = $active === 'riders' ? ($paymentStatuses[$key]['status'] ?? 'pending') : '';
+                  if ($active === 'riders' && $paymentFilter !== 'all' && $status !== $paymentFilter) continue;
+                ?>
                 <tr>
+                  <?php if ($active === 'riders'): ?>
+                    <td><form method="post" action="update-payment.php" class="payment-form">
+                      <input type="hidden" name="csrf" value="<?= h($_SESSION['payment_csrf']) ?>">
+                      <input type="hidden" name="record" value="<?= h($key) ?>">
+                      <select name="status" aria-label="Payment status">
+                        <?php foreach (['pending' => 'Pending Payment', 'paid' => 'Paid', 'confirmed' => 'Confirmed'] as $value => $label): ?>
+                          <option value="<?= h($value) ?>" <?= $status === $value ? 'selected' : '' ?>><?= h($label) ?></option>
+                        <?php endforeach; ?>
+                      </select><button type="submit">Save</button>
+                    </form></td>
+                  <?php endif; ?>
                   <?php foreach ($table['headers'] as $i => $header): ?>
                     <td><?= h($row[$i] ?? '') ?></td>
                   <?php endforeach; ?>

@@ -173,3 +173,12 @@ td { color: rgba(232,220,196,.92); }
 .top-pages-box li { margin: .4rem 0; }
 .top-pages-box li span { overflow-wrap: anywhere; }
 .top-pages-box li strong { float: right; margin-left: 1rem; }
+
+/* Payment management */
+.payment-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.75rem;margin-bottom:1rem}
+.payment-summary-grid a{text-decoration:none}
+.payment-filters{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0}
+.payment-filters a,.payment-form button{color:#0a0a0a;background:#e8dcc4;padding:.55rem .8rem;text-decoration:none;border:0;font-weight:bold;cursor:pointer}
+.payment-form{display:flex;gap:.5rem;align-items:center;min-width:275px}
+.payment-form select{padding:.55rem;background:#fff;color:#111;border:1px solid #c9b98e;max-width:175px}
+.payment-notice{padding:.8rem;border:1px solid #9fd2a4}.payment-error{padding:.8rem;border:1px solid #dd7f7f}

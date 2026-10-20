@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CMWC Local Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+  <header class="admin-header">
+    <div>
+      <p class="eyebrow">CMWC Bogotá 2027</p>
+      <h1>Local Admin Dashboard</h1>
+      <p class="muted">VS Code preview data saved in this browser only.</p>
+    </div>
+    <nav>
+      <a href="../index.html">View site</a>
+      <a href="#" id="logout-link">Log out</a>
+    </nav>
+  </header>
+
+  <main class="dashboard-wrap">
+    <section class="stat-grid" id="stat-grid"></section>
+
+    <section class="table-card">
+      <div class="table-card-head">
+        <div>
+          <h2 id="table-title">Race Signups</h2>
+          <p class="muted">Newest local test submissions are shown first.</p>
+        </div>
+        <button class="download-btn" id="download-csv" type="button">Download CSV</button>
+      </div>
+      <div id="traffic-summary"></div>
+      <div id="table-output"></div>
+    </section>
+  </main>
+
+  <script>
+    if (sessionStorage.getItem('cmwc_local_admin_logged_in') !== 'true') {
+      window.location.href = 'local-login.html';
+    }
+
+    const datasets = {
+      riders: { title: 'Race Signups', key: 'wbmc_signups' },
+      volunteers: { title: 'Volunteer Signups', key: 'cmwc_volunteer_signups' },
+      sponsors: { title: 'Sponsor Applications', key: 'cmwc_sponsor_applications' },
+      traffic: { title: 'Site Traffic', key: 'cmwc_site_traffic' }
+    };
+
+    let active = new URLSearchParams(window.location.search).get('type') || 'riders';
+    if (!datasets[active]) active = 'riders';
+
+    function read(key) {
+      try { return JSON.parse(localStorage.getItem(key) || '[]'); }
+      catch { return []; }
+    }
+
+    function h(value) {
+      return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+    }
+
+    function normalizeRows(rows) {
+      return rows.map(row => ({ ...row })).reverse();
+    }
+
+    function getHeaders(rows) {
+      const priority = ['timestamp','name','email','country','city','messengerNumber','category','foodPreference','foodPreferences','foodOther','foodNotes','volunteerName','volunteerEmail','volunteerCity','volunteerRole','volunteerAvailability','sponsorCompany','sponsorContact','sponsorEmail','sponsorLevel','path','title','referrer','session_id'];
+      const all = new Set();
+      rows.forEach(row => Object.keys(row || {}).forEach(k => all.add(k)));
+      return [...priority.filter(k => all.has(k)), ...[...all].filter(k => !priority.includes(k)).sort()];
+    }
+
+    function formatValue(key, value) {
+      if (key === 'timestamp' && typeof value === 'number') return new Date(value).toLocaleString();
+      return value ?? '';
+    }
+
+    function renderStats() {
+      const grid = document.getElementById('stat-grid');
+      grid.innerHTML = Object.entries(datasets).map(([id, info]) => {
+        const count = read(info.key).length;
+        return `<a class="stat-card ${id === active ? 'active' : ''}" href="?type=${id}"><span>${h(info.title)}</span><strong>${count}</strong></a>`;
+      }).join('');
+    }
+
+    function renderTrafficSummary(rows) {
+      const box = document.getElementById('traffic-summary');
+      if (active !== 'traffic') { box.innerHTML = ''; return; }
+      const sessions = new Set(rows.map(r => r.session_id).filter(Boolean));
+      const today = new Date().toISOString().slice(0,10);
+      const viewsToday = rows.filter(r => r.date === today).length;
+      const pageCounts = {};
+      rows.forEach(r => { if (r.path) pageCounts[r.path] = (pageCounts[r.path] || 0) + 1; });
+      const topPages = Object.entries(pageCounts).sort((a,b)=>b[1]-a[1]).slice(0,5);
+      box.innerHTML = `
+        <div class="traffic-summary-grid">
+          <div class="mini-stat"><span>Total page views</span><strong>${rows.length}</strong></div>
+          <div class="mini-stat"><span>Unique sessions</span><strong>${sessions.size}</strong></div>
+          <div class="mini-stat"><span>Views today</span><strong>${viewsToday}</strong></div>
+          <div class="mini-stat"><span>Latest visit</span><strong>${rows[0]?.timestamp || 'None yet'}</strong></div>
+        </div>
+        ${topPages.length ? `<div class="top-pages-box"><h3>Top pages</h3><ol>${topPages.map(([p,c]) => `<li><span>${h(p)}</span><strong>${c}</strong></li>`).join('')}</ol></div>` : ''}
+      `;
+    }
+
+    function renderTable() {
+      const rows = normalizeRows(read(datasets[active].key));
+      document.getElementById('table-title').textContent = datasets[active].title;
+      renderTrafficSummary(rows);
+      const output = document.getElementById('table-output');
+      if (!rows.length) {
+        output.innerHTML = '<div class="empty-state">No local test records yet. Go back to the site and submit a form.</div>';
+        return;
+      }
+      const headers = getHeaders(rows);
+      output.innerHTML = `<div class="table-scroll"><table><thead><tr>${headers.map(hd => `<th>${h(hd.replaceAll('_',' '))}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${headers.map(hd => `<td>${h(formatValue(hd, row[hd]))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+    }
+
+    function toCsv(rows) {
+      const headers = getHeaders(rows);
+      const escape = value => '"' + String(value ?? '').replaceAll('"','""') + '"';
+      return [headers.map(escape).join(','), ...rows.map(row => headers.map(hd => escape(formatValue(hd, row[hd]))).join(','))].join('\n');
+    }
+
+    document.getElementById('download-csv').addEventListener('click', () => {
+      const rows = normalizeRows(read(datasets[active].key));
+      const blob = new Blob([toCsv(rows)], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${active}-local-preview.csv`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    document.getElementById('logout-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      sessionStorage.removeItem('cmwc_local_admin_logged_in');
+      window.location.href = 'local-login.html';
+    });
+
+    renderStats();
+    renderTable();
+  </script>
+</body>
+</html>

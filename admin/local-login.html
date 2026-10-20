@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CMWC Local Admin Login</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+  <main class="login-wrap">
+    <form class="login-card" id="local-login-form">
+      <p class="eyebrow">CMWC Bogotá 2027</p>
+      <h1>Admin Login</h1>
+      <p class="muted">Local VS Code preview. This reads test data from your browser.</p>
+      <div class="alert" id="local-error" style="display:none;"></div>
+      <label>Username
+        <input type="text" name="username" autocomplete="username" required value="admin">
+      </label>
+      <label>Password
+        <input type="password" name="password" autocomplete="current-password" required placeholder="ChangeMe2027!">
+      </label>
+      <button type="submit">Log In</button>
+      <a class="back-link" href="../index.html">← Back to site</a>
+      <p class="muted" style="margin-top:1rem;font-size:.82rem;">Live one.com login still uses admin/login.php.</p>
+    </form>
+  </main>
+  <script>
+    document.getElementById('local-login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const username = this.username.value.trim();
+      const password = this.password.value;
+      if (username === 'admin' && password === 'ChangeMe2027!') {
+        sessionStorage.setItem('cmwc_local_admin_logged_in', 'true');
+        window.location.href = 'local-dashboard.html';
+      } else {
+        const error = document.getElementById('local-error');
+        error.textContent = 'Invalid username or password. Use admin / ChangeMe2027! for local preview.';
+        error.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -45,42 +45,73 @@ function build_message($title, $labels) {
     return implode("\n", $lines);
 }
 
+function send_participant_receipt($type, $email, $name) {
+    global $FROM_EMAIL, $SITE_NAME, $RIDER_PAYMENT_URL, $VOLUNTEER_PAYMENT_URL, $SPONSOR_PAYMENT_URL;
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) return false;
+    $payment = ['Rider registration' => $RIDER_PAYMENT_URL,
+                'Volunteer signup' => $VOLUNTEER_PAYMENT_URL,
+                'Sponsor application' => $SPONSOR_PAYMENT_URL][$type] ?? '';
+    $is_spanish = strtolower(trim((string)($_POST['formLanguage'] ?? 'en'))) === 'es';
+    $clean_name = trim(preg_replace('/[\r\n]+/', ' ', (string)$name));
+    $subject = $is_spanish ? 'Registro recibido — CMWC Bogotá 2027' : 'Registration received — CMWC Bogotá 2027';
+    $lines = $is_spanish ? [
+        'Hola ' . $clean_name . ',', '',
+        'Recibimos tu registro para el Campeonato Mundial de Bicimensajería Bogotá 2027.',
+        'Tipo de registro: ' . $type . '.',
+        'Estado: pendiente de revisión / pago cuando corresponda.', ''
+    ] : [
+        'Hello ' . $clean_name . ',', '',
+        'We received your registration for CMWC Bogotá 2027.',
+        'Registration type: ' . $type . '.',
+        'Status: pending review / payment where applicable.', ''
+    ];
+    if ($payment && filter_var($payment, FILTER_VALIDATE_URL) && parse_url($payment, PHP_URL_SCHEME) === 'https') {
+        $lines[] = $is_spanish ? 'Enlace para el pago:' : 'Secure payment link:';
+        $lines[] = $payment;
+        $lines[] = $is_spanish ? 'El registro no se confirma automáticamente al abrir o pagar este enlace.' : 'Opening or paying via this link does not automatically confirm registration.';
+    } elseif ($type === 'Rider registration') {
+        $lines[] = $is_spanish ? 'Las instrucciones de pago se enviarán más adelante. No necesitas pagar todavía.' : 'Payment instructions will follow. No payment is required yet.';
+    } else {
+        $lines[] = $is_spanish ? 'Nuestro equipo se pondrá en contacto contigo con los próximos pasos.' : 'Our team will contact you about next steps.';
+    }
+    $lines[] = '';
+    $lines[] = $is_spanish ? 'Equipo CMWC Bogotá 2027' : 'CMWC Bogotá 2027 Team';
+    $headers = ['From: CMWC Bogotá 2027 <' . $FROM_EMAIL . '>',
+                'Reply-To: ' . $FROM_EMAIL,
+                'Content-Type: text/plain; charset=UTF-8'];
+    return @mail($email, $subject, implode("\n", $lines), implode("\r\n", $headers));
+}
+
 function send_submission($type, $subject, $message, $csv_file, $labels, $recipient = null) {
     global $TO_EMAIL, $SITE_NAME, $SAVE_CSV, $FROM_EMAIL;
-
     $mail_to = $recipient ?: $TO_EMAIL;
-
-    $server_name = $_SERVER['SERVER_NAME'] ?? 'localhost';
-    $from = isset($FROM_EMAIL) && filter_var($FROM_EMAIL, FILTER_VALIDATE_EMAIL)
-        ? $FROM_EMAIL
-        : 'no-reply@' . preg_replace('/[^a-zA-Z0-9.-]/', '', $server_name);
     $reply_to = '';
-    foreach (['email', 'volunteerEmail', 'sponsorEmail', 'subscriberEmail', 'contactEmail'] as $email_field) {
-        if (!empty($_POST[$email_field]) && filter_var($_POST[$email_field], FILTER_VALIDATE_EMAIL)) {
-            $reply_to = $_POST[$email_field];
-            break;
+    $participant_name = '';
+    foreach (['email', 'volunteerEmail', 'sponsorEmail', 'subscriberEmail', 'contactEmail'] as $field) {
+        if (!empty($_POST[$field]) && filter_var($_POST[$field], FILTER_VALIDATE_EMAIL)) {
+            $reply_to = $_POST[$field]; break;
         }
     }
-
-    $headers = [];
-    $headers[] = 'From: ' . $SITE_NAME . ' <' . $from . '>';
-    if ($reply_to) {
-        $headers[] = 'Reply-To: ' . $reply_to;
+    foreach (['name', 'volunteerName', 'sponsorContact', 'subscriberName', 'contactName'] as $field) {
+        if (!empty($_POST[$field])) { $participant_name = $_POST[$field]; break; }
     }
-    $headers[] = 'Content-Type: text/plain; charset=UTF-8';
-
-    $mail_ok = @mail($mail_to, '[' . $SITE_NAME . '] ' . $subject, $message, implode("\r\n", $headers));
-
-    if ($SAVE_CSV) {
-        save_csv($csv_file, $labels);
+    // Persist the record first. Mail delivery must never make the browser retry a saved signup.
+    if ($SAVE_CSV && !save_csv($csv_file, $labels)) {
+        json_response(false, 'Unable to save the registration on the server. Please contact the team.', 500);
     }
-
-    if (!$mail_ok) {
-        // CSV is still saved if enabled. This helps testing on hosts where mail is restricted.
-        json_response(false, 'The form was saved, but the email could not be sent. Check one.com mail/PHP settings.', 500);
+    $headers = ['From: ' . $SITE_NAME . ' <' . $FROM_EMAIL . '>',
+                'Content-Type: text/plain; charset=UTF-8'];
+    if ($reply_to) $headers[] = 'Reply-To: ' . $reply_to;
+    $admin_ok = @mail($mail_to, '[' . $SITE_NAME . '] ' . $subject, $message, implode("\r\n", $headers));
+    $receipt_ok = true;
+    if ($reply_to && in_array($type, ['Rider registration', 'Volunteer signup', 'Sponsor application'], true)) {
+        $receipt_ok = send_participant_receipt($type, $reply_to, $participant_name);
     }
-
-    json_response(true, $type . ' submission sent successfully.');
+    // Explicitly report saved even if SMTP/mail() did not accept the message.
+    $info = (!$admin_ok || !$receipt_ok)
+      ? 'Registration saved. One or more emails could not be sent; the team will follow up.'
+      : 'Registration saved and email notification sent.';
+    json_response(true, $info);
 }
 
 function save_csv($filename, $labels) {
@@ -130,7 +161,7 @@ function save_csv($filename, $labels) {
 
     $is_new = !file_exists($path);
     $fp = @fopen($path, 'a');
-    if (!$fp) return;
+    if (!$fp) return false;
 
     if ($is_new) {
         fputcsv($fp, $headers);
@@ -153,5 +184,6 @@ function save_csv($filename, $labels) {
 
     fputcsv($fp, $row);
     fclose($fp);
+    return true;
 }
 ?>

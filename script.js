@@ -23,6 +23,15 @@ const languageText = {
         aboutText: 'Seven years later... The world comes to Bogotá. The first World Bicycle Messenger Championship in South America',
         sponsorsEyebrow: 'OUR PROUD SPONSORS', sponsorsTitle: 'PROUD SPONSORS',
         sponsorsText: 'These brands, crews, and partners help power the championship and keep messenger culture moving forward.',
+        cinelliTopline: '— SPONSOR FEATURE / 01 —', cinelliIndex: '001 / RACE CULTURE', cinelliFoot: 'PHOTO ARCHIVE / CMWC COMMUNITY', cinelliSide: 'DESIGNED TO MOVE',
+        cinelliEyebrow: 'SPONSOR SPOTLIGHT', cinelliTitle: 'CINELLI', cinelliStatement: 'FROM MILANO.<br>TO THE STREETS.',
+        cinelliText: 'From Italian racing heritage to global cycling culture, Cinelli brings speed, design and a restless creative spirit to the road to Bogotá 2027.',
+        cinelliPill1: 'MILANO • 1948', cinelliPill2: 'ROAD • GRAVEL • URBAN', cinelliPill3: 'ART • CULTURE • SPEED',
+        cinelliVisit: 'EXPLORE CINELLI', cinelliBack: 'ALL SPONSORS',
+        cinelliBrandCopy: 'WHERE RACING HERITAGE MEETS THE CULTURE OF THE STREET.',
+        cinelliFeatureTitle1: 'Race heritage', cinelliFeatureText1: 'A legacy brand with deep roots in performance cycling and a strong visual identity.',
+        cinelliFeatureTitle2: 'Culture forward', cinelliFeatureText2: 'A perfect fit for CMWC: racing, style, experimentation, and street-level energy.',
+        cinelliFeatureTitle3: 'Interactive motion', cinelliFeatureText3: 'Moving gallery layers, floating brand marks, and soft fade-ins make the section feel alive.',
         videosEyebrow: 'WATCH THE CULTURE', videosTitle: 'VIDEO GALLERY',
         videosText: 'Short clips from races, night rides, cargo runs, and the road to Bogotá 2027.',
         gofundmeEyebrow: 'HELP BRING THE WORLD TO BOGOTÁ', gofundmeTitle: 'SUPPORT CMWC 2027',
@@ -66,8 +75,8 @@ const languageText = {
         mapTitle: 'GLOBAL SIGNUPS', mapText: 'See where messengers from around the world are signing up. Each marker represents a country with registered competitors.',
         topCountries: 'TOP COUNTRIES', countryEmpty: 'No signups yet. Be the first!',
         signupTitle: 'SIGN UP', signupText: 'Choose how you want to be part of CMWC Bogotá 2027: race, volunteer, or become a sponsor.', tabRider: 'RIDER', tabVolunteer: 'VOLUNTEER', tabSponsor: 'SPONSOR', riderEyebrow: 'RACE WITH US', riderTitle: 'RIDER REGISTRATION', riderText: 'Register your spot at the World Bike Messenger Championship Bogotá 2027.',
-        fullName: 'FULL NAME', email: 'EMAIL', country: 'COUNTRY', city: 'CITY', category: 'CATEGORY', categoryPlaceholder: '-- Choose category --', categoryOpen: 'Open', categoryWTNB: 'WTNB', foodPreference: 'FOOD PREFERENCE / DIETARY NEEDS', foodOther: 'OTHER FOOD PREFERENCE', foodNotes: 'FOOD ALLERGIES / NOTES',
-        namePlaceholder: 'Your full name', cityPlaceholder: 'Your city', countryPlaceholder: '-- Select your country --', foodOtherPlaceholder: 'Write your food preference', foodNotesPlaceholder: 'Allergies, restrictions, or details',
+        fullName: 'FULL NAME', email: 'EMAIL', country: 'COUNTRY', city: 'CITY', messengerNumber: 'MESSENGER NUMBER', category: 'CATEGORY', categoryPlaceholder: '-- Choose category --', categoryOpen: 'Open', categoryWTNB: 'WTNB', foodPreference: 'FOOD PREFERENCE / DIETARY NEEDS', foodOther: 'OTHER FOOD PREFERENCE', foodNotes: 'FOOD ALLERGIES / NOTES',
+        namePlaceholder: 'Your full name', cityPlaceholder: 'Your city', messengerNumberPlaceholder: 'Your messenger number', countryPlaceholder: '-- Select your country --', foodOtherPlaceholder: 'Write your food preference', foodNotesPlaceholder: 'Allergies, restrictions, or details',
         terms: 'I agree to the championship rules and confirm I am 18 years or older.',
         quickLinks: 'QUICK LINKS', followUs: 'FOLLOW US', footerText: 'World Bike Messenger Championships. The premier global event for urban cycling couriers.',
         footerCopyright: '© 2027 World Bike Messenger Championship Bogotá. All rights reserved.',
@@ -85,6 +94,15 @@ const languageText = {
         aboutText: 'Siete años después... el mundo llega a Bogotá. El primer Campeonato Mundial de Ciclo Mensajeros en Suramérica.',
         sponsorsEyebrow: 'NUESTROS PATROCINADORES', sponsorsTitle: 'PATROCINADORES',
         sponsorsText: 'Estas marcas, colectivos y aliados ayudan a impulsar el campeonato y a mantener viva la cultura mensajera.',
+        cinelliTopline: '— PATROCINADOR DESTACADO / 01 —', cinelliIndex: '001 / CULTURA DE CARRERAS', cinelliFoot: 'ARCHIVO FOTOGRÁFICO / COMUNIDAD CMWC', cinelliSide: 'DISEÑADO PARA MOVERSE',
+        cinelliEyebrow: 'PATROCINADOR DESTACADO', cinelliTitle: 'CINELLI', cinelliStatement: 'DE MILÁN.<br>A LAS CALLES.',
+        cinelliText: 'De la tradición italiana de carreras a la cultura ciclista global, Cinelli trae velocidad, diseño y un espíritu creativo inconforme al camino hacia Bogotá 2027.',
+        cinelliPill1: 'MILÁN • 1948', cinelliPill2: 'RUTA • GRAVEL • URBANO', cinelliPill3: 'ARTE • CULTURA • VELOCIDAD',
+        cinelliVisit: 'EXPLORAR CINELLI', cinelliBack: 'PATROCINADORES',
+        cinelliBrandCopy: 'DONDE LA HERENCIA DE LAS CARRERAS SE UNE A LA CULTURA DE LA CALLE.',
+        cinelliFeatureTitle1: 'Herencia de carrera', cinelliFeatureText1: 'Una marca con raíces profundas en el ciclismo de rendimiento y una identidad visual muy fuerte.',
+        cinelliFeatureTitle2: 'Cultura en movimiento', cinelliFeatureText2: 'Encaja perfecto con CMWC: competencia, estilo, experimentación y energía callejera.',
+        cinelliFeatureTitle3: 'Movimiento interactivo', cinelliFeatureText3: 'Capas de galería en movimiento, marcas flotantes y apariciones suaves hacen que esta sección se sienta viva.',
         videosEyebrow: 'MIRA LA CULTURA', videosTitle: 'GALERÍA DE VIDEO',
         videosText: 'Clips cortos de carreras, rodadas nocturnas, carga y el camino hacia Bogotá 2027.',
         gofundmeEyebrow: 'AYUDA A TRAER EL MUNDO A BOGOTÁ', gofundmeTitle: 'APOYA CMWC 2027',
@@ -128,8 +146,8 @@ const languageText = {
         mapTitle: 'INSCRIPCIONES GLOBALES', mapText: 'Mira desde dónde se están inscribiendo mensajeros de todo el mundo. Cada marcador representa un país con competidores registrados.',
         topCountries: 'PAÍSES PRINCIPALES', countryEmpty: 'Todavía no hay inscritos. ¡Sé la primera persona!',
         signupTitle: 'INSCRÍBETE', signupText: 'Elige cómo quieres ser parte de CMWC Bogotá 2027: correr, ser voluntario/a o patrocinar.', tabRider: 'CORREDOR/A', tabVolunteer: 'VOLUNTARIADO', tabSponsor: 'PATROCINADOR', riderEyebrow: 'CORRE CON NOSOTROS', riderTitle: 'REGISTRO DE CORREDORES', riderText: 'Registra tu cupo para el Campeonato Mundial de Bicimensajería Bogotá 2027.',
-        fullName: 'NOMBRE COMPLETO', email: 'CORREO ELECTRÓNICO', country: 'PAÍS', city: 'CIUDAD', category: 'CATEGORÍA', categoryPlaceholder: '-- Elige categoría --', categoryOpen: 'Open', categoryWTNB: 'WTNB', foodPreference: 'PREFERENCIA DE COMIDA / NECESIDADES DIETARIAS', foodOther: 'OTRA PREFERENCIA DE COMIDA', foodNotes: 'ALERGIAS / NOTAS DE COMIDA',
-        namePlaceholder: 'Tu nombre completo', cityPlaceholder: 'Tu ciudad', countryPlaceholder: '-- Selecciona tu país --', foodOtherPlaceholder: 'Escribe tu preferencia', foodNotesPlaceholder: 'Alergias, restricciones o detalles',
+        fullName: 'NOMBRE COMPLETO', email: 'CORREO ELECTRÓNICO', country: 'PAÍS', city: 'CIUDAD', messengerNumber: 'NÚMERO DE MENSAJERO/A', category: 'CATEGORÍA', categoryPlaceholder: '-- Elige categoría --', categoryOpen: 'Open', categoryWTNB: 'WTNB', foodPreference: 'PREFERENCIA DE COMIDA / NECESIDADES DIETARIAS', foodOther: 'OTRA PREFERENCIA DE COMIDA', foodNotes: 'ALERGIAS / NOTAS DE COMIDA',
+        namePlaceholder: 'Tu nombre completo', cityPlaceholder: 'Tu ciudad', messengerNumberPlaceholder: 'Tu número de mensajero/a', countryPlaceholder: '-- Selecciona tu país --', foodOtherPlaceholder: 'Escribe tu preferencia', foodNotesPlaceholder: 'Alergias, restricciones o detalles',
         terms: 'Acepto las reglas del campeonato y confirmo que tengo 18 años o más.',
         quickLinks: 'ENLACES RÁPIDOS', followUs: 'SÍGUENOS', footerText: 'World Bike Messenger Championships. El evento global principal para mensajeros urbanos en bicicleta.',
         footerCopyright: '© 2027 Campeonato Mundial de Bicimensajería Bogotá. Todos los derechos reservados.',
@@ -188,6 +206,27 @@ function applyLanguage(lang) {
     setText('#sponsors > div > p:first-child', t.sponsorsEyebrow);
     setText('#sponsors > div > h2', t.sponsorsTitle);
     setText('#sponsors > div > p.max-w-3xl', t.sponsorsText);
+
+    setText('#cinelli-spotlight .cinelli-eyebrow-text', t.cinelliEyebrow);
+    setText('#cinelli-spotlight .cinelli-topline-center', t.cinelliTopline);
+    setText('#cinelli-spotlight .cinelli-stage-index', t.cinelliIndex);
+    setText('#cinelli-spotlight .cinelli-stage-foot-label', t.cinelliFoot);
+    setText('#cinelli-spotlight .cinelli-side-label', t.cinelliSide);
+    // Keep the punctuation in CINELLI. wordmark; it is the same in both languages.
+    setText('#cinelli-spotlight .cinelli-intro', t.cinelliText);
+    setText('#cinelli-spotlight .cinelli-pill-1', t.cinelliPill1);
+    setText('#cinelli-spotlight .cinelli-pill-2', t.cinelliPill2);
+    setText('#cinelli-spotlight .cinelli-pill-3', t.cinelliPill3);
+    setText('#cinelli-spotlight .cinelli-button-primary .cinelli-cta-label', t.cinelliVisit);
+    setText('#cinelli-spotlight .cinelli-button-secondary .cinelli-cta-label', t.cinelliBack);
+    setText('#cinelli-spotlight .cinelli-brand-copy', t.cinelliBrandCopy);
+    setHTML('#cinelli-spotlight .cinelli-statement', t.cinelliStatement);
+    setText('#cinelli-spotlight .cinelli-feature-title-1', t.cinelliFeatureTitle1);
+    setText('#cinelli-spotlight .cinelli-feature-text-1', t.cinelliFeatureText1);
+    setText('#cinelli-spotlight .cinelli-feature-title-2', t.cinelliFeatureTitle2);
+    setText('#cinelli-spotlight .cinelli-feature-text-2', t.cinelliFeatureText2);
+    setText('#cinelli-spotlight .cinelli-feature-title-3', t.cinelliFeatureTitle3);
+    setText('#cinelli-spotlight .cinelli-feature-text-3', t.cinelliFeatureText3);
 
     setText('#videos .video-eyebrow', t.videosEyebrow);
     setText('#videos .video-title', t.videosTitle);
@@ -321,6 +360,7 @@ function applyLanguage(lang) {
     setText('label[for="email"]', t.email);
     setText('label[for="country"]', t.country);
     setText('label[for="city"]', t.city);
+    setText('label[for="messenger-number"]', t.messengerNumber);
     setText('label[for="category"]', t.category);
     setText('#food-preference-label', t.foodPreference);
     setText('label[for="food-other"]', t.foodOther);
@@ -330,6 +370,7 @@ function applyLanguage(lang) {
 
     const nameInput = document.getElementById('name');
     const cityInput = document.getElementById('city');
+    const messengerNumberInput = document.getElementById('messenger-number');
     const categoryOptions = document.querySelectorAll('#category option');
     if (categoryOptions[0]) categoryOptions[0].textContent = t.categoryPlaceholder;
     if (categoryOptions[1]) categoryOptions[1].textContent = t.categoryOpen;
@@ -337,6 +378,7 @@ function applyLanguage(lang) {
     const firstCountryOption = document.querySelector('#country option[value=""]');
     if (nameInput) nameInput.placeholder = t.namePlaceholder;
     if (cityInput) cityInput.placeholder = t.cityPlaceholder;
+    if (messengerNumberInput) messengerNumberInput.placeholder = t.messengerNumberPlaceholder;
     const foodOtherInput = document.getElementById('food-other');
     if (foodOtherInput) foodOtherInput.placeholder = t.foodOtherPlaceholder;
     const volunteerFoodOtherInput = document.getElementById('volunteer-food-other');
@@ -628,6 +670,28 @@ function updateCountryList() {
 let map;
 let mapMarkers = [];
 
+const mapCountryAliases = {
+    'colombia': 'Colombia', 'columbia': 'Colombia', 'brasil': 'Brazil',
+    'méxico': 'Mexico', 'mexico': 'Mexico', 'perú': 'Peru',
+    'argentina': 'Argentina', 'chile': 'Chile', 'españa': 'Spain',
+    'alemania': 'Germany', 'francia': 'France', 'italia': 'Italy',
+    'reino unido': 'United Kingdom', 'estados unidos': 'United States',
+    'united states of america': 'United States', 'usa': 'United States', 'us': 'United States',
+    'canadá': 'Canada', 'canada': 'Canada', 'países bajos': 'Netherlands',
+    'nederland': 'Netherlands', 'venezuela': 'Venezuela'
+};
+
+function resolveMapCountry(input) {
+    if (!input) return null;
+    const name = String(input).trim();
+    if (countryData[name]) return countryData[name];
+    const lower = name.toLocaleLowerCase();
+    const match = Object.keys(countryData).find(country => country.toLocaleLowerCase() === lower);
+    if (match) return countryData[match];
+    const alias = mapCountryAliases[lower];
+    return alias && countryData[alias] ? countryData[alias] : null;
+}
+
 function projectCountryToMap(lat, lng) {
     const x = ((Number(lng) + 180) / 360) * 100;
     const y = ((90 - Number(lat)) / 180) * 100;
@@ -642,17 +706,11 @@ function initMap() {
     if (!mapEl) return;
 
     mapEl.innerHTML = `
-        <div class="static-map-stage" role="img" aria-label="API-free world signup map">
-            <div class="static-map-grid"></div>
-            <div class="continent continent-north-america"></div>
-            <div class="continent continent-south-america"></div>
-            <div class="continent continent-europe"></div>
-            <div class="continent continent-africa"></div>
-            <div class="continent continent-asia"></div>
-            <div class="continent continent-australia"></div>
+        <div class="static-map-stage" aria-label="World map showing rider registration totals by country">
+            <img class="static-map-world" src="images/world-map.svg" alt="World map" draggable="false" />
             <div class="static-map-marker-layer" id="static-map-marker-layer"></div>
             <div class="static-map-empty" id="static-map-empty">${languageText[currentLanguage].countryEmpty}</div>
-            <div class="static-map-label">No map API required</div>
+            <div class="static-map-label">CMWC BOGOTÁ 2027 · RIDER REGISTRATIONS</div>
         </div>
     `;
 
@@ -670,7 +728,7 @@ function updateMapMarkers() {
 
     const byCountry = getSignupsByCountry();
     const entries = Object.entries(byCountry).filter(([country, data]) => {
-        return countryData[country] && data && parseInt(data.count, 10) > 0;
+        return resolveMapCountry(country) && data && parseInt(data.count, 10) > 0;
     });
 
     if (emptyState) {
@@ -679,7 +737,7 @@ function updateMapMarkers() {
     }
 
     entries.forEach(([country, data]) => {
-        const coords = countryData[country];
+        const coords = resolveMapCountry(country);
         const point = projectCountryToMap(coords.lat, coords.lng);
         const count = parseInt(data.count, 10) || 0;
         const names = Array.isArray(data.names) ? data.names.filter(Boolean) : [];
@@ -701,8 +759,8 @@ function updateMapMarkers() {
 
         const popup = document.createElement('span');
         popup.className = 'static-map-popup';
-        const namesText = names.length ? `<small>${names.slice(0, 5).join(', ')}${names.length > 5 ? ` + ${names.length - 5} more` : ''}</small>` : '<small>Rider registrations saved on the server.</small>';
-        popup.innerHTML = `<strong>${country}</strong><em>${count} rider signup${count === 1 ? '' : 's'}</em>${namesText}`;
+        // Public statistics display counts only. Never reveal participant names.
+        popup.textContent = `${country}: ${count} rider registration${count === 1 ? '' : 's'}`;
         marker.appendChild(popup);
 
         marker.addEventListener('click', () => {
@@ -724,7 +782,7 @@ async function loadPublicSignupStats() {
             cache: 'no-store'
         });
 
-        if (!response.ok) return;
+        if (!response.ok) { console.warn('Rider signup map: stats endpoint returned', response.status); return; }
         const result = await response.json();
         serverCountryStats = normalizeCountryStats(result.countries || {});
         updateStats();
@@ -736,18 +794,55 @@ async function loadPublicSignupStats() {
     }
 }
 
-// ===== ONE.COM PHP FORM SUBMIT HELPER =====
-// These forms now submit to PHP files in /forms so one.com can email/save submissions.
-// The helper keeps the site feeling interactive instead of doing a plain page reload.
+// ===== ONE.COM PHP FORM SUBMIT HELPER + VS CODE LOCAL PREVIEW MODE =====
+// On one.com, these forms submit to PHP files in /forms so the server can email/save submissions.
+// In VS Code/Live Server, PHP is usually not running. Local preview mode saves submissions
+// to localStorage so you can test the site and the admin dashboard before uploading.
+function isLocalPreviewMode() {
+    const host = window.location.hostname;
+    return window.location.protocol === 'file:' ||
+        host === 'localhost' ||
+        host === '127.0.0.1' ||
+        host === '' ||
+        host.endsWith('.local');
+}
+
+function formDataToObject(formElement) {
+    const data = {};
+    const fd = new FormData(formElement);
+    for (const [key, value] of fd.entries()) {
+        if (key === 'website') continue;
+        const cleanKey = key.replace(/\[\]$/, '');
+        if (data[cleanKey]) {
+            data[cleanKey] = Array.isArray(data[cleanKey]) ? data[cleanKey] : [data[cleanKey]];
+            data[cleanKey].push(value);
+        } else {
+            data[cleanKey] = value;
+        }
+    }
+    Object.keys(data).forEach(key => {
+        if (Array.isArray(data[key])) data[key] = data[key].join(', ');
+    });
+    return data;
+}
+
 async function submitFormToPhp(formElement) {
     if (!formElement || !formElement.action) {
         return { ok: false, message: 'Form action is missing.' };
     }
 
+    if (isLocalPreviewMode()) {
+        return {
+            ok: true,
+            localOnly: true,
+            message: 'Saved locally for VS Code preview. Upload to one.com for real email/CSV saving.'
+        };
+    }
+
     try {
         const response = await fetch(formElement.action, {
             method: 'POST',
-            body: new FormData(formElement),
+            body: (() => { const data = new FormData(formElement); data.set('formLanguage', currentLanguage); return data; })(),
             headers: { 'Accept': 'application/json' }
         });
 
@@ -771,6 +866,16 @@ async function submitFormToPhp(formElement) {
     }
 }
 
+function setupLocalAdminLinks() {
+    if (!isLocalPreviewMode()) return;
+    document.querySelectorAll('a[href="admin/login.php"]').forEach(link => {
+        link.setAttribute('href', 'admin/local-login.html');
+        link.setAttribute('title', 'Local VS Code admin preview');
+    });
+}
+
+setupLocalAdminLinks();
+
 // ===== FORM SUBMISSION =====
 const form = document.getElementById('signup-form');
 const formMessage = document.getElementById('form-message');
@@ -782,9 +887,10 @@ form.addEventListener('submit', async (e) => {
     const email = document.getElementById('email').value.trim();
     const country = document.getElementById('country').value;
     const city = document.getElementById('city').value.trim();
+    const messengerNumber = document.getElementById('messenger-number').value.trim();
     const category = document.getElementById('category').value;
 
-    if (!name || !email || !country || !city || category === '') {
+    if (!name || !email || !country || !city || !messengerNumber || category === '') {
         showFormMessage(languageText[currentLanguage].formMissing, 'error');
         return;
     }
@@ -802,6 +908,7 @@ form.addEventListener('submit', async (e) => {
         email,
         country,
         city,
+        messengerNumber,
         category,
         foodPreference: Array.from(document.querySelectorAll('input[name="foodPreferences[]"]:checked')).map(input => input.value).join(', '),
         foodOther: document.getElementById('food-other')?.value || '',
@@ -864,7 +971,7 @@ const volunteerForm = document.getElementById('volunteer-form');
 if (volunteerForm) {
     volunteerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const data = Object.fromEntries(new FormData(volunteerForm).entries());
+        const data = formDataToObject(volunteerForm);
         const required = ['volunteerName', 'volunteerEmail', 'volunteerCity', 'volunteerRole', 'volunteerAvailability'];
         if (required.some(key => !String(data[key] || '').trim())) {
             showInlineMessage('volunteer-message', languageText[currentLanguage].formMissing, 'error');
@@ -886,7 +993,7 @@ const sponsorApplyForm = document.getElementById('sponsor-apply-form');
 if (sponsorApplyForm) {
     sponsorApplyForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const data = Object.fromEntries(new FormData(sponsorApplyForm).entries());
+        const data = formDataToObject(sponsorApplyForm);
         const required = ['sponsorCompany', 'sponsorContact', 'sponsorEmail', 'sponsorLevel'];
         if (required.some(key => !String(data[key] || '').trim())) {
             showInlineMessage('sponsor-apply-message', languageText[currentLanguage].formMissing, 'error');
@@ -1171,8 +1278,48 @@ function initFoodPreferenceBubbles() {
     });
 }
 
+// ===== CINELLI SPOTLIGHT =====
+function initCinelliSpotlight() {
+    const section = document.getElementById('cinelli-spotlight');
+    if (!section) return;
+    const revealItems = section.querySelectorAll('.cinelli-reveal');
+    if (!revealItems.length) return;
+    // Only hide content after the observer is known to be available.
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) section.classList.add('cinelli-js');
+
+    const activateAll = () => revealItems.forEach(item => item.classList.add('in-view'));
+
+    if (!('IntersectionObserver' in window)) {
+        activateAll();
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.18 });
+
+    revealItems.forEach(item => observer.observe(item));
+    if (window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        section.addEventListener('pointermove', (event) => {
+            const rect = section.getBoundingClientRect();
+            section.style.setProperty('--cinelli-x', (((event.clientX - rect.left) / rect.width - 0.5) * 26).toFixed(1) + 'px');
+            section.style.setProperty('--cinelli-y', (((event.clientY - rect.top) / rect.height - 0.5) * 16).toFixed(1) + 'px');
+        });
+        section.addEventListener('pointerleave', () => {
+            section.style.setProperty('--cinelli-x', '0px');
+            section.style.setProperty('--cinelli-y', '0px');
+        });
+    }
+}
+
 // ===== INITIALIZE EVERYTHING =====
 initFoodPreferenceBubbles();
+initCinelliSpotlight();
 initMap();
 updateStats();
 updateCountryList();
@@ -1192,7 +1339,6 @@ if (window.lucide && typeof lucide.createIcons === 'function') {
 // ===== SITE TRAFFIC TRACKING FOR ADMIN DASHBOARD =====
 (function trackSiteTraffic() {
     try {
-        if (window.location.protocol === 'file:') return;
         const sessionKey = 'cmwc_site_session_id';
         let sessionId = sessionStorage.getItem(sessionKey);
         if (!sessionId) {
@@ -1200,11 +1346,25 @@ if (window.lucide && typeof lucide.createIcons === 'function') {
             sessionStorage.setItem(sessionKey, sessionId);
         }
 
+        const visit = {
+            timestamp: new Date().toISOString(),
+            date: new Date().toISOString().slice(0, 10),
+            path: window.location.pathname + window.location.search + window.location.hash,
+            title: document.title || 'CMWC 2027',
+            referrer: document.referrer || '',
+            session_id: sessionId
+        };
+
+        if (isLocalPreviewMode()) {
+            const key = 'cmwc_site_traffic';
+            const existing = JSON.parse(localStorage.getItem(key) || '[]');
+            existing.push(visit);
+            localStorage.setItem(key, JSON.stringify(existing.slice(-500)));
+            return;
+        }
+
         const payload = new FormData();
-        payload.append('path', window.location.pathname + window.location.search + window.location.hash);
-        payload.append('title', document.title || 'CMWC 2027');
-        payload.append('referrer', document.referrer || '');
-        payload.append('session_id', sessionId);
+        Object.entries(visit).forEach(([key, value]) => payload.append(key, value));
 
         const endpoint = 'forms/track-visit.php';
         if (navigator.sendBeacon) {
@@ -1217,3 +1377,75 @@ if (window.lucide && typeof lucide.createIcons === 'function') {
     }
 })();
 
+
+
+// CINELLI: playful logo hunt – click a floating logo to earn a point and make it dodge.
+(function(){
+  const root=document.getElementById('cinelli-spotlight'); if(!root)return;
+  const counter=root.querySelector('#cinelli-click-count');
+  let points=0;
+  root.querySelectorAll('.cinelli-new-float').forEach((logo,i)=>{
+    logo.setAttribute('role','button');
+    logo.setAttribute('tabindex','0');
+    logo.setAttribute('aria-label','Catch floating Cinelli logo, earn one point');
+    const catchLogo=(event)=>{
+      event.preventDefault();
+      points++;
+      if(counter) counter.textContent=String(points);
+      // Reposition within the section instead of letting the graphic disappear off-screen.
+      const area=logo.parentElement.getBoundingClientRect();
+      const bounds=logo.getBoundingClientRect();
+      const maxX=Math.max(0,area.width-bounds.width-14);
+      const maxY=Math.max(0,area.height-bounds.height-14);
+      const x=Math.random()*maxX;
+      const y=Math.random()*maxY;
+      logo.style.left=x+'px';
+      logo.style.top=y+'px';
+      logo.style.translate='0px 0px';
+      logo.style.opacity='.95';
+      window.setTimeout(()=>{logo.style.opacity='';},700);
+    };
+    logo.addEventListener('click',catchLogo);
+    logo.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){catchLogo(event);}});
+  });
+  const apply=()=>{const lang=document.documentElement.lang==='es'?'es':'en';root.querySelectorAll('[data-en][data-es]').forEach(el=>{el.textContent=el.dataset[lang]});};
+  apply();
+  const toggles=document.querySelectorAll('.lang-toggle'); toggles.forEach(btn=>btn.addEventListener('click',()=>requestAnimationFrame(apply)));
+})();;
+
+
+// ===== CINELLI CONTINUOUS FILMSTRIPS =====
+(function initCinelliFilmstrips(){
+  const section=document.getElementById('cinelli-spotlight');
+  if(!section) return;
+  const strips=Array.from(section.querySelectorAll('.cinelli-photo-strip'));
+  const originals=strips.map(strip=>Array.from(strip.children));
+  function rebuild(){
+    strips.forEach((strip,index)=>{
+      // Retain the original, distinct images and rebuild only animation clones.
+      Array.from(strip.querySelectorAll('[data-cinelli-clone="1"]')).forEach(node=>node.remove());
+      const items=originals[index];
+      const distance=items.reduce((sum,item)=>sum+item.getBoundingClientRect().width,0);
+      if(!distance) return;
+      strip.style.setProperty('--cinelli-loop-distance',`${distance}px`);
+      // Keep enough cards to cover even very wide screens throughout the loop.
+      const clonesNeeded=Math.max(1,Math.ceil(section.clientWidth/distance));
+      for(let copy=0;copy<clonesNeeded;copy++){
+        items.forEach(item=>{
+          const clone=item.cloneNode(true);
+          clone.dataset.cinelliClone='1';
+          clone.setAttribute('aria-hidden','true');
+          const im=clone.querySelector('img');
+          if(im) im.alt='';
+          strip.appendChild(clone);
+        });
+      }
+    });
+  }
+  rebuild();
+  let resizeId;
+  window.addEventListener('resize',()=>{
+    clearTimeout(resizeId);
+    resizeId=setTimeout(rebuild,150);
+  });
+})();

@@ -6,10 +6,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 stop_spam();
-require_fields(['name', 'email', 'country', 'city', 'category']);
+require_fields(['name', 'email', 'country', 'city', 'messengerNumber', 'category']);
 
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     json_response(false, 'Please enter a valid email address.', 400);
+}
+
+if (!preg_match('/^[0-9]+$/', trim((string)($_POST['messengerNumber'] ?? '')))) {
+    json_response(false, 'Please enter a valid messenger number.', 400);
 }
 
 $labels = [
@@ -17,6 +21,7 @@ $labels = [
     'email' => 'Email',
     'country' => 'Country',
     'city' => 'City',
+    'messengerNumber' => 'Messenger Number',
     'category' => 'Category',
     'foodPreferences' => 'Food Preferences / Dietary Needs',
     'foodOther' => 'Other Food Preference',
