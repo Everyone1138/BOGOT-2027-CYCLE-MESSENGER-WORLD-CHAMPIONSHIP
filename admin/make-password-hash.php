@@ -1,4 +1,5 @@
 <?php
+header('X-Robots-Tag: noindex, nofollow, noarchive');
 // Optional helper. Use this once to create a new password hash, paste it into admin/config.php,
 // then delete this file from the server.
 $hash = '';

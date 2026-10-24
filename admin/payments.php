@@ -1,4 +1,5 @@
 <?php
+header('X-Robots-Tag: noindex, nofollow, noarchive');
 // Store payment tracking separately so historic signup CSVs remain untouched.
 function payment_record_key($row, $csvIndex) {
     return hash('sha256', (string)$csvIndex . '|' . json_encode($row, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));

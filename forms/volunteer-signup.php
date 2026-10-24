@@ -22,7 +22,8 @@ $labels = [
     'volunteerFoodPreferences' => 'Food Preferences',
     'volunteerFoodOther' => 'Other Food Preference',
     'volunteerFoodNotes' => 'Food Allergies / Notes',
-    'volunteerNotes' => 'Notes'
+    'volunteerNotes' => 'Notes',
+    'volunteerNeedsHousing' => 'Needs Housing (Yes/No)'
 ];
 
 $message = build_message('New Volunteer Signup', $labels);

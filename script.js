@@ -46,10 +46,22 @@ const languageText = {
         fundraiserTitles: ['NIGHT ALLEYCAT FUNDRAISER', 'FAST LAPS CRIT', 'CARGO CHALLENGE', 'ROLL TO BOGOTÁ'],
         fundraiserMetas: ['Bogotá • Date TBA', 'Closed circuit • Date TBA', 'Load it up • Date TBA', 'Group ride • Date TBA'],
         fundraiserTexts: ['Checkpoint racing, city routes, prizes, and a late-night community finish.', 'A fast spectator-friendly criterium to raise funds for permits, safety, and rider support.', 'Cargo bikes, strange loads, teamwork, balance, and courier-style problem solving.', 'A social ride and meetup for supporters, riders, volunteers, and future sponsors.'],
-        memorialEyebrow: 'MEMORIAL', memorialTitle: 'En memoria de Eduardo Mosquera',
-        memorialSubtitle: 'A dedicated space honoring Eduardo Mosquera, a cyclist who passed away while doing an ultra endurance event.',
+        santaHeading: 'The drive on two wheels',
+        santaP1: 'Santa rode through and loved Bogotá with boundless energy. To him, cycling was more than transportation: it was a way to find freedom, build community, and transform the city.',
+        santaP2: 'An artist and passionate bicycle activist, he left his mark on walls and on the people who rode alongside him. With his dear friend Olga Guerrero, “Guitta”, he founded Manifiesto Custom Culture, bringing art and bicycle metal together under an unforgettable idea: “We tattoo metal.”',
+        santaP3: 'Friends, collectives, bicycle messengers, riders, and artists keep his memory alive. His creativity, courage, and spirit of solidarity continue to ride with us.',
+        santaQuote: '“The mark he left on our hearts and memories will last forever.”',
+        santaSignoff: 'WE LOVE YOU, SANTA.',
+        santaHeading: 'El ímpetu sobre ruedas',
+        santaP1: 'Santa recorrió y amó Bogotá con un ímpetu inagotable. Para él, la bicicleta era mucho más que transporte: una forma de libertad, de encuentro y de transformar la ciudad.',
+        santaP2: 'Artista y apasionado activista de la bici, dejó su huella en los muros y en quienes rodaron a su lado. Con su amiga Olga Guerrero, «Guitta», dio vida a Manifiesto Custom Culture, donde el arte se unió al metal de las bicicletas bajo una idea inolvidable: «Tatuamos el metal».',
+        santaP3: 'Amigos, colectivos, bicimensajeros, ciclistas y artistas mantienen viva su memoria. Su creatividad, su valentía y su hermandad siguen rodando con nosotros.',
+        santaQuote: '«La impronta que dejó en el corazón y en la memoria será eterna».',
+        santaSignoff: 'TE AMAMOS, SANTA.',
+        memorialEyebrow: 'MEMORIAL', memorialTitle: 'En Memoria De:',
+        memorialSubtitle: 'A cyclist who passed away while participating in an ultra-endurance event.',
         memorialText: 'This section can hold a photo, a link to a tribute ride, a story from the community, or details for a memorial event.',
-        memorialCandle: 'LIGHT A VIRTUAL CANDLE', memorialLink: 'MEMORIAL LINK', memorialPhotoHint: 'CLICK IMAGE TO OPEN MEMORIAL LINK', memorialCandles: count => `${count} candle${count === 1 ? '' : 's'} lit by visitors`,
+        memorialCandle: 'LIGHT A CANDLE FOR BOTH', memorialLink: 'MEMORIAL LINK', memorialPhotoHint: 'CLICK IMAGE TO OPEN MEMORIAL LINK', memorialCandles: count => `${count} candle${count === 1 ? '' : 's'} lit in their memory`,
         socialEyebrow: 'CONNECT WITH THE CREW', socialTitle: 'FOLLOW CMWC 2027',
         socialText: 'Follow the road to Bogotá, share your rides, meet the community, and stay close to race updates, parties, calls for volunteers, and sponsor news.',
         socialActiveLabel: 'ACTIVE CHANNEL', socialCopy: 'COPY HANDLE', socialCopied: 'Copied!',
@@ -58,7 +70,7 @@ const languageText = {
         navVolunteer: 'VOLUNTEER', navSponsorApply: 'SPONSOR',
         volunteerEyebrow: 'JOIN THE CREW', volunteerTitle: 'VOLUNTEER SIGN UP',
         volunteerText: 'Help us welcome messengers from around the world. Volunteers support checkpoints, registration, rider support, events, translation, setup, cleanup, and community operations.',
-        volunteerName: 'FULL NAME', volunteerEmail: 'EMAIL', volunteerPhone: 'PHONE / WHATSAPP', volunteerCity: 'CITY', volunteerRole: 'PREFERRED ROLE', volunteerAvailability: 'AVAILABILITY', volunteerFoodPreference: 'FOOD PREFERENCE', volunteerFoodOther: 'OTHER FOOD PREFERENCE', volunteerFoodNotes: 'FOOD ALLERGIES / NOTES', volunteerNotes: 'NOTES',
+        volunteerName: 'FULL NAME', volunteerEmail: 'EMAIL', volunteerPhone: 'PHONE / WHATSAPP', volunteerCity: 'CITY', volunteerRole: 'PREFERRED ROLE', volunteerAvailability: 'AVAILABILITY', volunteerFoodPreference: 'FOOD PREFERENCE', volunteerFoodOther: 'OTHER FOOD PREFERENCE', volunteerFoodNotes: 'FOOD ALLERGIES / NOTES', volunteerNotes: 'NOTES', housingQuestion: 'DO YOU NEED HOUSING IN BOGOTÁ?', housingYes: 'Yes, I need help finding accommodation',
         volunteerNamePlaceholder: 'Your full name', volunteerEmailPlaceholder: 'you@example.com', volunteerPhonePlaceholder: 'Your phone number', volunteerCityPlaceholder: 'Your city', volunteerFoodOtherPlaceholder: 'Write your food preference', volunteerFoodNotesPlaceholder: 'Allergies, restrictions, or details', volunteerNotesPlaceholder: 'Tell us about your skills, languages, or what you want to help with.',
         volunteerButton: 'SIGN UP TO VOLUNTEER', volunteerSuccess: 'Thank you! Your volunteer signup was saved in this browser.',
         rolePlaceholder: '-- Choose a role --', roleCheckpoints: 'Checkpoints', roleRegistration: 'Registration', roleRiderSupport: 'Rider support', roleEvents: 'Events / parties', roleTranslation: 'Translation', roleMedia: 'Photo / video / media',
@@ -117,10 +129,10 @@ const languageText = {
         fundraiserTitles: ['ALLEYCAT NOCTURNO DE RECAUDACIÓN', 'CRIT DE VUELTAS RÁPIDAS', 'RETO DE CARGA', 'RODANDO A BOGOTÁ'],
         fundraiserMetas: ['Bogotá • Fecha por confirmar', 'Circuito cerrado • Fecha por confirmar', 'Cárgala • Fecha por confirmar', 'Rodada grupal • Fecha por confirmar'],
         fundraiserTexts: ['Carrera de checkpoints, rutas urbanas, premios y un cierre comunitario nocturno.', 'Un criterium rápido y perfecto para espectadores que recauda fondos para permisos, seguridad y apoyo a corredores.', 'Cargo bikes, cargas raras, trabajo en equipo, balance y resolución de problemas estilo mensajero.', 'Una rodada social y encuentro para supporters, corredores, voluntarios y futuros patrocinadores.'],
-        memorialEyebrow: 'MEMORIAL', memorialTitle: 'En memoria de Eduardo Mosquera',
-        memorialSubtitle: 'Un espacio dedicado a honrar a Eduardo Mosquera, ciclista que falleció mientras realizaba un evento de ultra resistencia.',
+        memorialEyebrow: 'MEMORIAL', memorialTitle: 'En Memoria De:',
+        memorialSubtitle: 'Un ciclista que partió mientras participaba en un evento de ultra resistencia.',
         memorialText: 'Esta sección puede guardar una foto, un enlace a una rodada homenaje, una historia de la comunidad o detalles de un evento memorial.',
-        memorialCandle: 'ENCENDER UNA VELA VIRTUAL', memorialLink: 'ENLACE MEMORIAL', memorialPhotoHint: 'HAZ CLIC EN LA IMAGEN PARA ABRIR EL ENLACE MEMORIAL', memorialCandles: count => `${count} vela${count === 1 ? '' : 's'} encendida${count === 1 ? '' : 's'} por visitantes`,
+        memorialCandle: 'ENCENDER UNA VELA PARA AMBOS', memorialLink: 'ENLACE MEMORIAL', memorialPhotoHint: 'HAZ CLIC EN LA IMAGEN PARA ABRIR EL ENLACE MEMORIAL', memorialCandles: count => `${count} vela${count === 1 ? '' : 's'} encendida${count === 1 ? '' : 's'} por la comunidad`,
         socialEyebrow: 'CONECTA CON EL PARCHE', socialTitle: 'SIGUE CMWC 2027',
         socialText: 'Sigue el camino a Bogotá, comparte tus rodadas, conoce la comunidad y mantente cerca de noticias de carreras, fiestas, voluntariado y patrocinadores.',
         socialActiveLabel: 'CANAL ACTIVO', socialCopy: 'COPIAR USUARIO', socialCopied: '¡Copiado!',
@@ -129,7 +141,7 @@ const languageText = {
         navVolunteer: 'VOLUNTARIADO', navSponsorApply: 'PATROCINAR',
         volunteerEyebrow: 'ÚNETE AL EQUIPO', volunteerTitle: 'INSCRIPCIÓN DE VOLUNTARIOS',
         volunteerText: 'Ayúdanos a recibir mensajeros de todo el mundo. El voluntariado apoya puntos de control, registro, apoyo a participantes, eventos, traducción, montaje, desmontaje y operaciones comunitarias.',
-        volunteerName: 'NOMBRE COMPLETO', volunteerEmail: 'CORREO ELECTRÓNICO', volunteerPhone: 'TELÉFONO / WHATSAPP', volunteerCity: 'CIUDAD', volunteerRole: 'ROL PREFERIDO', volunteerAvailability: 'DISPONIBILIDAD', volunteerFoodPreference: 'PREFERENCIA DE COMIDA', volunteerFoodOther: 'OTRA PREFERENCIA DE COMIDA', volunteerFoodNotes: 'ALERGIAS / NOTAS DE COMIDA', volunteerNotes: 'NOTAS',
+        volunteerName: 'NOMBRE COMPLETO', volunteerEmail: 'CORREO ELECTRÓNICO', volunteerPhone: 'TELÉFONO / WHATSAPP', volunteerCity: 'CIUDAD', volunteerRole: 'ROL PREFERIDO', volunteerAvailability: 'DISPONIBILIDAD', volunteerFoodPreference: 'PREFERENCIA DE COMIDA', volunteerFoodOther: 'OTRA PREFERENCIA DE COMIDA', volunteerFoodNotes: 'ALERGIAS / NOTAS DE COMIDA', volunteerNotes: 'NOTAS', housingQuestion: '¿NECESITAS ALOJAMIENTO EN BOGOTÁ?', housingYes: 'Sí, necesito ayuda para encontrar alojamiento',
         volunteerNamePlaceholder: 'Tu nombre completo', volunteerEmailPlaceholder: 'tu@correo.com', volunteerPhonePlaceholder: 'Tu número de teléfono', volunteerCityPlaceholder: 'Tu ciudad', volunteerFoodOtherPlaceholder: 'Escribe tu preferencia', volunteerFoodNotesPlaceholder: 'Alergias, restricciones o detalles', volunteerNotesPlaceholder: 'Cuéntanos sobre tus habilidades, idiomas o en qué quieres ayudar.',
         volunteerButton: 'INSCRIBIRME COMO VOLUNTARIO/A', volunteerSuccess: '¡Gracias! Tu inscripción de voluntariado se guardó en este navegador.',
         rolePlaceholder: '-- Elige un rol --', roleCheckpoints: 'Puntos de control', roleRegistration: 'Registro', roleRiderSupport: 'Apoyo a participantes', roleEvents: 'Eventos / fiestas', roleTranslation: 'Traducción', roleMedia: 'Foto / video / medios',
@@ -155,6 +167,23 @@ const languageText = {
         formSuccess: name => `¡Bienvenido/a al campeonato, ${name}! 🚴 Estás inscrito/a desde`
     }
 };
+
+const aboutManifestoSpanish = Array.from(document.querySelectorAll('#nacimos-en-la-calle .about-manifesto-copy p'), p => p.textContent);
+const aboutManifestoEnglish = [
+  "Born in the streets",
+  "Before there was a world championship, there was the street. And out on that street was someone who rode in the rain, when traffic closed in, when their body had nothing left to give, because there was something to deliver and someone waiting.",
+  "That is how it all began: with a bicycle, a package, and a commitment. Nobody taught us to love this work. We learned by riding, and we learned together.",
+  "Over the years came the hardships. The tough days, the crashes, the cities that were not built for us, and the moments when carrying on felt harder than stopping. And still, we are here. Not because it was easy, but because we were never alone. There was always someone who stopped to help with a flat tire, lent you a part, or waited for you on the corner. That hand on your shoulder is what has kept us going.",
+  "This is who we are: a community that grew around a love for our work and became strong by looking out for one another.",
+  "That is why, before showing the world anything, we want to remind ourselves who we want to be. We want to be a community that respects newcomers and does not abandon those who fall. One that shares what it has, recognizes fellow riders, and celebrates each other’s efforts as its own. One that knows the real victory is not getting there first, but getting there together.",
+  "Because a world championship is not built on logistics or budgets alone, although we need those too. It is built on trust, unity, and acts of kindness, day after day, among ourselves.",
+  "And once we have cared for that, once we look at one another and recognize the family we are, then we will open the doors.",
+  "Bogotá has something to give: its people, its passion for cycling, its own way of riding and welcoming others. And today, with pride, we begin to share it.",
+  "Welcome to CMWC Bogotá 2027.",
+  "Welcome to our home.",
+  "Today we open the digital door to that home:",
+  "We ride together."
+];
 
 function setText(selector, value) {
     document.querySelectorAll(selector).forEach(el => { el.textContent = value; });
@@ -206,6 +235,25 @@ function applyLanguage(lang) {
     setText('#sponsors > div > p:first-child', t.sponsorsEyebrow);
     setText('#sponsors > div > h2', t.sponsorsTitle);
     setText('#sponsors > div > p.max-w-3xl', t.sponsorsText);
+    setText('#stat-source-label', lang === 'es' ? 'Inscripciones de corredores por país · datos en vivo' : 'Live rider registrations by country');
+    setText('#stat-riders-label', lang === 'es' ? 'CORREDORES INSCRITOS' : 'REGISTERED RIDERS');
+    setText('#stat-countries-label', lang === 'es' ? 'PAÍSES REPRESENTADOS' : 'COUNTRIES REPRESENTED');
+    setText('#about-story-caption-kicker', lang === 'es' ? 'LA COMUNIDAD EN MOVIMIENTO' : 'THE COMMUNITY IN MOTION');
+    const aboutCta = document.getElementById('about-story-cta');
+    if (aboutCta) aboutCta.innerHTML = (lang === 'es' ? 'ÚNETE A LA COMUNIDAD' : 'JOIN THE COMMUNITY') + ' <span aria-hidden="true">↗</span>';
+    // Translate the full manifesto while preserving the original Spanish paragraphs.
+    const manifesto = document.querySelector('#nacimos-en-la-calle');
+    if (manifesto) {
+        manifesto.lang = lang;
+        const heading = manifesto.querySelector('.about-manifesto-heading');
+        const label = manifesto.querySelector('.about-manifesto-label');
+        if (heading) heading.textContent = lang === 'es' ? 'Nacimos en la calle' : aboutManifestoEnglish[0];
+        if (label) label.textContent = lang === 'es' ? 'CMWC BOGOTÁ 2027 · NUESTRA COMUNIDAD' : 'CMWC BOGOTÁ 2027 · OUR COMMUNITY';
+        const paragraphs = manifesto.querySelectorAll('.about-manifesto-copy p');
+        if (lang === 'en') paragraphs.forEach((p,i) => { if (aboutManifestoEnglish[i+1]) p.textContent = aboutManifestoEnglish[i+1]; });
+        else paragraphs.forEach((p,i) => { if (aboutManifestoSpanish[i]) p.textContent = aboutManifestoSpanish[i]; });
+    }
+
 
     setText('#cinelli-spotlight .cinelli-eyebrow-text', t.cinelliEyebrow);
     setText('#cinelli-spotlight .cinelli-topline-center', t.cinelliTopline);
@@ -257,11 +305,30 @@ function applyLanguage(lang) {
 
     setText('#memorial .memorial-eyebrow', t.memorialEyebrow);
     setText('#memorial .memorial-title', t.memorialTitle);
+    setText('#memorial .memorial-person-eduardo h3', lang === 'es' ? 'En memoria de Eduardo Mosquera' : 'In memory of Eduardo Mosquera');
+    setText('#memorial .memorial-person-santa h3', lang === 'es' ? 'En memoria de Santa' : 'In memory of Santa');
+    setText('#memorial .memorial-unified-intro', 'Eduardo Mosquera · Santa');
+    setText('#memorial .memorial-person-eduardo .memorial-subtitle', lang === 'es' ? 'Un espacio dedicado a honrar a Eduardo Mosquera, ciclista que falleció mientras realizaba un evento de ultra resistencia.' : 'Honoring Eduardo Mosquera, a cyclist who passed away during an ultra-endurance event.');
+    setText('#memorial .santa-memorial-p1', lang === 'es' ? 'David Santacoloma, «Santa», amó Bogotá, la bicicleta y la libertad de rodar. Su vida dejó una huella imborrable en la comunidad.' : 'David Santacoloma, “Santa,” loved Bogotá, bicycles and the freedom of riding. His life left a lasting mark on the community.');
+    setText('#memorial .santa-memorial-p2', lang === 'es' ? 'Junto a Olga Guerrero («Guitta») creó Manifiesto Custom Culture: arte y metal unidos para «tatuar» bicicletas. Su amistad y su ímpetu siguen vivos en nuestras calles.' : 'Together with Olga Guerrero (“Guitta”), he founded Manifiesto Custom Culture, bringing art and metal together to “tattoo” bicycles. His friendship and spirit live on in our streets.');
+
+    setText('#memorial .memorial-unified-intro', lang === 'es' ? 'Dos vidas, muchas historias y una comunidad que sigue rodando con ellas.' : 'Two lives, countless stories, and a community that keeps riding in their memory.');
+    setText('#memorial .eduardo-memory-quote', lang === 'es' ? 'Cada kilómetro guarda una historia. Su recuerdo sigue rodando con nosotros.' : 'Every kilometer holds a story. His memory keeps riding with us.');
+    setText('#memorial .eduardo-memory-signature', lang === 'es' ? 'SIEMPRE EN NUESTRAS RODADAS' : 'FOREVER ON OUR RIDES');
+    setText('#memorial .memorial-candle-heading', lang === 'es' ? 'UNA LUZ PARA SU MEMORIA' : 'A LIGHT IN THEIR MEMORY');
+    setText('#memorial .memorial-candle-intro', lang === 'es' ? 'Enciende una vela por Eduardo y Santa. Su recuerdo vive en cada rodada.' : 'Light a candle for Eduardo and Santa. Their memory lives on with every ride.');
     setText('#memorial .memorial-subtitle', t.memorialSubtitle);
-    setText('#memorial .memorial-text', t.memorialText);
+    setText('#memorial .memorial-text', lang === 'es' ? 'Su pasión por recorrer largas distancias permanece en el recuerdo de la comunidad ciclista. Seguimos rodando con su memoria.' : 'His passion for long-distance cycling remains in the memories of the cycling community. We keep riding in his memory.');
     setText('#memorial .memorial-candle-btn', t.memorialCandle);
     setText('#memorial .memorial-link', t.memorialLink);
     setText('#memorial .memorial-photo-link span', t.memorialPhotoHint);
+    setText('#santa-memorial .santa-memorial-heading', t.santaHeading);
+    setText('#santa-memorial .santa-memorial-p1', t.santaP1);
+    setText('#santa-memorial .santa-memorial-p2', t.santaP2);
+    setText('#santa-memorial .santa-memorial-p3', t.santaP3);
+    setText('#santa-memorial .santa-memorial-quote', t.santaQuote);
+    const santaSignoff = document.querySelector('#santa-memorial .santa-memorial-signoff');
+    if (santaSignoff) santaSignoff.textContent = t.santaSignoff + ' 💜';
     updateMemorialCandleText();
 
     setText('#social .social-eyebrow', t.socialEyebrow);
@@ -300,6 +367,8 @@ function applyLanguage(lang) {
     setText('label[for="volunteer-food-other"]', t.volunteerFoodOther || t.foodOther);
     setText('label[for="volunteer-food-notes"]', t.volunteerFoodNotes);
     setText('label[for="volunteer-notes"]', t.volunteerNotes);
+    setText('#volunteer-housing-title', t.housingQuestion);
+    setText('#volunteer-form .housing-check-text', t.housingYes);
     setText('#volunteer-form button[type="submit"]', t.volunteerButton);
 
     setText('#sponsor-apply .sponsor-apply-eyebrow', t.sponsorApplyEyebrow);
@@ -366,6 +435,8 @@ function applyLanguage(lang) {
     setText('label[for="food-other"]', t.foodOther);
     setText('label[for="food-notes"]', t.foodNotes);
     setText('label[for="terms"]', t.terms);
+    setText('#rider-housing-title', t.housingQuestion);
+    setText('#signup-form .housing-check-text', t.housingYes);
     setText('#signup-form button[type="submit"]', t.registerNow);
 
     const nameInput = document.getElementById('name');
@@ -387,13 +458,15 @@ function applyLanguage(lang) {
     if (foodNotesInput) foodNotesInput.placeholder = t.foodNotesPlaceholder;
     if (firstCountryOption) firstCountryOption.textContent = t.countryPlaceholder;
 
+    setText('#footer-volunteer-page', lang === 'es' ? 'Inscripción de voluntarios' : 'Volunteer Signup');
+    setText('#footer-sponsor-page', lang === 'es' ? 'Inscripción de patrocinadores' : 'Sponsor Signup');
     setText('footer h4:first-of-type', t.quickLinks);
     const footerHeadings = document.querySelectorAll('footer h4');
     if (footerHeadings[0]) footerHeadings[0].textContent = t.quickLinks;
     if (footerHeadings[1]) footerHeadings[1].textContent = t.followUs;
     const footerParagraph = document.querySelector('footer p');
     if (footerParagraph) footerParagraph.textContent = t.footerText;
-    const copyright = document.querySelector('footer .text-center[class*="text-beige/60"]');
+    const copyright = document.querySelector('footer .cmwc-footer-copyright');
     if (copyright) copyright.textContent = t.footerCopyright;
 
     const emptyCountryList = document.querySelector('#country-list p');
@@ -414,7 +487,7 @@ const heroDots = document.getElementById('hero-dots');
 const heroCaption = document.getElementById('hero-caption');
 const heroProgress = document.getElementById('hero-progress-bar');
 const heroSection = document.getElementById('hero');
-const HERO_DELAY = 5500;
+const HERO_DELAY = 8200;
 let heroCurrent = 0;
 let heroTimer;
 
@@ -913,6 +986,7 @@ form.addEventListener('submit', async (e) => {
         foodPreference: Array.from(document.querySelectorAll('input[name="foodPreferences[]"]:checked')).map(input => input.value).join(', '),
         foodOther: document.getElementById('food-other')?.value || '',
         foodNotes: document.getElementById('food-notes')?.value || '',
+        needsHousing: document.getElementById('rider-housing')?.checked ? 'Yes' : 'No',
         timestamp: Date.now()
     };
 
@@ -972,6 +1046,7 @@ if (volunteerForm) {
     volunteerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = formDataToObject(volunteerForm);
+        data.volunteerNeedsHousing = document.getElementById('volunteer-housing')?.checked ? 'Yes' : 'No';
         const required = ['volunteerName', 'volunteerEmail', 'volunteerCity', 'volunteerRole', 'volunteerAvailability'];
         if (required.some(key => !String(data[key] || '').trim())) {
             showInlineMessage('volunteer-message', languageText[currentLanguage].formMissing, 'error');
@@ -1051,6 +1126,8 @@ for (let i = 0; i < totalSlides; i++) {
 
 function updateCarousel() {
     carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+    const aboutPosition = document.getElementById('about-story-index');
+    if (aboutPosition) aboutPosition.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
     // Update dots
     Array.from(dotsContainer.children).forEach((dot, i) => {
         dot.classList.toggle('active', i === currentSlide);
@@ -1074,13 +1151,13 @@ document.getElementById('carousel-next').addEventListener('click', nextSlide);
 document.getElementById('carousel-prev').addEventListener('click', prevSlide);
 
 // Auto-advance carousel
-let carouselInterval = setInterval(nextSlide, 5000);
+let carouselInterval = setInterval(nextSlide, 7800);
 
 // Pause on hover
 const carouselContainer = carousel.parentElement;
 carouselContainer.addEventListener('mouseenter', () => clearInterval(carouselInterval));
 carouselContainer.addEventListener('mouseleave', () => {
-    carouselInterval = setInterval(nextSlide, 5000);
+    carouselInterval = setInterval(nextSlide, 7800);
 });
 
 // Initialize first dot
@@ -1191,11 +1268,11 @@ function updateMemorialCandleText() {
     if (!memorialCandleCount) return;
     const count = getMemorialCandleCount();
     memorialCandleCount.textContent = count;
-    const line = memorialCandleCount.closest('.memorial-candle-count');
-    if (line && languageText[currentLanguage]?.memorialCandles) {
-        line.textContent = languageText[currentLanguage].memorialCandles(count);
-        line.prepend(memorialCandleCount);
-        memorialCandleCount.insertAdjacentText('afterend', ' ');
+    const label = document.getElementById('memorial-candle-label');
+    if (label) {
+        label.textContent = currentLanguage === 'es'
+            ? ` vela${count === 1 ? '' : 's'} encendida${count === 1 ? '' : 's'} por la comunidad`
+            : ` candle${count === 1 ? '' : 's'} lit in their memory`;
     }
 }
 
@@ -1205,10 +1282,19 @@ if (memorialCandleBtn) {
         localStorage.setItem(MEMORIAL_CANDLE_KEY, String(nextCount));
         updateMemorialCandleText();
         memorialCandleBtn.classList.add('lit');
+        const candle = document.querySelector('.memorial-candle-visual');
+        if (candle) {
+            candle.classList.add('candle-lit');
+            candle.classList.remove('candle-reignite');
+            void candle.offsetWidth;
+            candle.classList.add('candle-reignite');
+        }
         setTimeout(() => memorialCandleBtn.classList.remove('lit'), 650);
     });
 }
 updateMemorialCandleText();
+
+if (getMemorialCandleCount() > 0) document.querySelector('.memorial-candle-visual')?.classList.add('candle-lit');
 
 // ===== SOCIAL MEDIA SECTION =====
 const socialCards = document.querySelectorAll('.social-card');
@@ -1448,4 +1534,82 @@ if (window.lucide && typeof lucide.createIcons === 'function') {
     clearTimeout(resizeId);
     resizeId=setTimeout(rebuild,150);
   });
+})();
+
+// Sponsor galleries: calculate how far each unique row can travel without empty space.
+function initSponsorsThreeRows() {
+  const rows = document.querySelectorAll('#sponsors .sponsors-slide-row');
+  if (!rows.length) return;
+  let resizeTimer;
+  function build() {
+    rows.forEach(row => {
+      const track = row.querySelector('.sponsors-slide-track');
+      if (!track) return;
+      track.style.animation = 'none';
+      track.querySelectorAll('[data-sponsor-clone]').forEach(el => el.remove());
+      // Original seven sponsor cards remain unique; clone only for seamless scrolling.
+      const originals = Array.from(track.children);
+      if (!originals.length) return;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const firstLeft = originals[0].getBoundingClientRect().left;
+      const finalRight = originals[originals.length - 1].getBoundingClientRect().right;
+      const groupWidth = Math.max(1, finalRight - firstLeft + gap);
+      // Fill enough for the viewport throughout the entire cycle.
+      const repeatCount = Math.max(2, Math.ceil(row.clientWidth / groupWidth) + 2);
+      for (let n = 1; n < repeatCount; n++) {
+        originals.forEach(card => {
+          const copy = card.cloneNode(true);
+          copy.setAttribute('data-sponsor-clone','');
+          copy.setAttribute('aria-hidden','true');
+          copy.querySelectorAll('img').forEach(img => {img.alt=''; img.loading='eager';});
+          track.appendChild(copy);
+        });
+      }
+      track.style.setProperty('--sponsor-loop-distance', `${groupWidth}px`);
+      track.style.removeProperty('animation');
+    });
+  }
+  build();
+  window.addEventListener('load',build,{once:true});
+  window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(build,200);},{passive:true});
+}
+initSponsorsThreeRows();
+
+// CMWC fundraiser catch-the-logo game; independent from Cinelli and registration scripts.
+(function initializeCmwcFundraiserGame(){
+  const arena = document.getElementById('cmwc-game-pieces');
+  const output = document.getElementById('cmwc-logo-score');
+  if (!arena || !output) return;
+  let score = 0;
+  const icons = [];
+  function reposition(button) {
+    const x = 3 + Math.random() * 83;
+    const y = 4 + Math.random() * 75;
+    button.style.left = x + '%'; button.style.top = y + '%';
+  }
+  for(let i=0;i<13;i++){
+    const button = document.createElement('button');
+    button.type='button'; button.className='cmwc-game-logo';
+    button.setAttribute('aria-label','Catch CMWC logo for one point');
+    button.style.setProperty('--bob',(2.8+(i%6)*.7)+'s');
+    const img=document.createElement('img'); img.src='images/LogoOficialCMWC2027.png';
+    img.alt='';img.draggable=false;img.style.cssText='width:100%;height:100%;object-fit:contain;pointer-events:none';
+    button.appendChild(img);reposition(button);
+    button.addEventListener('click',()=>{score++;output.textContent=String(score);reposition(button);});
+    arena.appendChild(button);icons.push(button);
+  }
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    const move=()=>{for(const el of icons)reposition(el);};
+    const interval=setInterval(move,3700);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)move();});
+  }
+})();
+// Translate new sections without changing the original localization system.
+(function(){
+ const update=()=>{ const lang=document.querySelector('.lang-toggle.active')?.dataset.lang || 'en';
+ document.querySelectorAll('.cmwc-coming-soon [data-en],.cmwc-admin-quick-link[data-en]').forEach(el=>{
+ el.textContent=el.dataset[lang]||el.dataset.en;
+ });};
+ document.querySelectorAll('.lang-toggle').forEach(b=>b.addEventListener('click',()=>requestAnimationFrame(update)));
+ update();
 })();

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sponsor Application | CMWC Bogotá 2027</title>
+<meta name="description" content="Partner with CMWC Bogotá 2027."/>
+<link rel="canonical" href="https://cmwc2027bogota.com/sponsor.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="style.css" rel="stylesheet"/>
+<link href="signup-pages.css" rel="stylesheet"/>
+</head>
+<body class="bg-beige text-black standalone-signup" data-signup-page="sponsor">
+<header class="standalone-header">
+  <a href="index.html" class="standalone-brand"><img src="images/cyclist-icon.png" alt="CMWC cyclist"/><span>CMWC BOGOTÁ 2027</span></a>
+  <div class="standalone-header-actions"><a class="standalone-back" href="index.html" data-copy="back">← Back to website</a><div class="standalone-langs"><button type="button" data-lang="en" class="standalone-lang active">EN</button><button type="button" data-lang="es" class="standalone-lang">ES</button></div></div>
+</header>
+<main>
+  <section class="standalone-hero"><div class="standalone-hero-image" aria-hidden="true"></div><div class="standalone-hero-inner"><p class="standalone-eyebrow" data-copy="eyebrow">CMWC / BOGOTÁ 2027 / SPONSOR</p><h1 class="font-anton" data-copy="title">SPONSOR APPLICATION</h1><p data-copy="subtitle">Partner with CMWC Bogotá 2027.</p></div></section>
+  <section class="standalone-main">
+    <div class="standalone-form-heading"><p data-copy="formIntro">Tell us about your company or crew and how you would like to support the championship.</p></div>
+    <form action="forms/sponsor-signup.php" class="signup-card sponsor-card-form unified-form-card" id="sponsor-apply-form" method="POST">
+<input aria-hidden="true" autocomplete="off" class="form-hp" name="website" tabindex="-1" type="text"/>
+<div class="grid md:grid-cols-2 gap-4">
+<div>
+<label for="sponsor-company">COMPANY / CREW NAME</label>
+<input id="sponsor-company" name="sponsorCompany" placeholder="Company, crew, or brand" required="" type="text"/>
+</div>
+<div>
+<label for="sponsor-contact">CONTACT NAME</label>
+<input id="sponsor-contact" name="sponsorContact" placeholder="Contact person" required="" type="text"/>
+</div>
+<div>
+<label for="sponsor-email">EMAIL</label>
+<input id="sponsor-email" name="sponsorEmail" placeholder="you@example.com" required="" type="email"/>
+</div>
+<div>
+<label for="sponsor-phone">PHONE / WHATSAPP</label>
+<input id="sponsor-phone" name="sponsorPhone" placeholder="Your phone number" type="tel"/>
+</div>
+<div>
+<label for="sponsor-level">SPONSOR TYPE</label>
+<select id="sponsor-level" name="sponsorLevel" required="">
+<option value="">-- Choose sponsor type --</option>
+<option value="cash">Financial contribution</option>
+<option value="product">Product / prizes</option>
+<option value="service">Services / logistics</option>
+<option value="venue">Venue / space</option>
+<option value="media">Media partnership</option>
+</select>
+</div>
+<div>
+<label for="sponsor-website">WEBSITE / INSTAGRAM</label>
+<input id="sponsor-website" name="sponsorWebsite" placeholder="https:// or @handle" type="text"/>
+</div>
+</div>
+<div>
+<label for="sponsor-notes">HOW WOULD YOU LIKE TO HELP?</label>
+<textarea id="sponsor-notes" name="sponsorNotes" placeholder="Tell us what you would like to contribute or discuss." rows="4"></textarea>
+</div>
+<button type="submit">APPLY TO SPONSOR</button>
+<div class="hidden signup-message" id="sponsor-apply-message"></div>
+</form>
+    <p class="standalone-privacy" data-copy="privacy">Your information is sent to the CMWC registration team.</p>
+  </section>
+</main>
+<footer class="standalone-footer"><span>CMWC 2027 · BICIMENSAJERÍA</span><a href="index.html" data-copy="home">Back to home ↗</a><a href="admin/login.php" id="standalone-admin">Admin Login</a></footer>
+<script src="signup-pages.js"></script>
+</body></html>

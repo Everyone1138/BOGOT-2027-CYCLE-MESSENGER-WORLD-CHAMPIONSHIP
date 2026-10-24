@@ -1,4 +1,5 @@
 <?php
+header('X-Robots-Tag: noindex, nofollow, noarchive');
 // ADMIN LOGIN CONFIGURATION
 // Default login after upload:
 // Username: admin

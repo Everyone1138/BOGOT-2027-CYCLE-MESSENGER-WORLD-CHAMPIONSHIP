@@ -25,7 +25,8 @@ $labels = [
     'category' => 'Category',
     'foodPreferences' => 'Food Preferences / Dietary Needs',
     'foodOther' => 'Other Food Preference',
-    'foodNotes' => 'Food Allergies / Notes'
+    'foodNotes' => 'Food Allergies / Notes',
+    'needsHousing' => 'Needs Housing (Yes/No)'
 ];
 
 $message = build_message('New Rider Registration', $labels);

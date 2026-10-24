@@ -1,4 +1,5 @@
 <?php
+header('X-Robots-Tag: noindex, nofollow, noarchive');
 require_once __DIR__ . '/auth.php';
 $error = '';
 

@@ -2945,3 +2945,295 @@ button, input, select, textarea { font: inherit; }
 #cinelli-spotlight .cinelli-real-card {flex:0 0 clamp(340px,37vw,580px);}
 @keyframes cinelliFilmstripContinuous {from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--cinelli-loop-distance, 1200px)))}}
 @media(prefers-reduced-motion:reduce){#cinelli-spotlight .cinelli-photo-strip{animation:none !important}}
+
+
+/* Footer layout cleanup: scoped; leaves all other sections untouched. */
+.cmwc-site-footer .cmwc-footer-link-list{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr;row-gap:0.58rem;}
+.cmwc-site-footer .cmwc-footer-link-list li{margin:0;padding:0;line-height:1.45;}
+.cmwc-site-footer .cmwc-footer-link-list a{color:rgba(232,220,196,.76);display:inline-block;text-decoration:none;transition:color .18s ease,transform .18s ease;}
+.cmwc-site-footer .cmwc-footer-link-list a:hover,.cmwc-site-footer .cmwc-footer-link-list a:focus-visible{color:var(--beige);transform:translateX(3px);}
+.cmwc-site-footer .cmwc-footer-follow{display:flex;flex-direction:column;align-items:flex-start;}
+.cmwc-site-footer .cmwc-footer-socials{display:flex;align-items:center;gap:12px;margin:0 0 22px;}
+.cmwc-site-footer .cmwc-footer-social{display:flex;align-items:center;justify-content:center;width:49px;height:49px;border:2px solid var(--beige);border-radius:2px;color:var(--beige);font-size:22px;text-decoration:none;transition:background .2s ease,color .2s ease,transform .2s ease;}
+.cmwc-site-footer .cmwc-footer-social:hover,.cmwc-site-footer .cmwc-footer-social:focus-visible{background:var(--beige);color:var(--black);transform:translateY(-3px);}
+.cmwc-site-footer .cmwc-footer-icon-backup{display:none;font-weight:900;font-size:17px;}
+.cmwc-site-footer .admin-footer-button{width:auto;min-width:206px;max-width:none;min-height:49px;box-shadow:none;gap:10px;padding:11px 18px;margin:0;}
+.cmwc-site-footer .cmwc-admin-lock{font-size:16px;line-height:1;}
+.cmwc-site-footer .admin-footer-note{max-width:260px;margin:12px 0 0;}
+@media (max-width:767px){.cmwc-site-footer .cmwc-footer-layout{gap:32px;}.cmwc-site-footer .cmwc-footer-link-list{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:12px;}}
+
+
+/* Additive tribute card for David Santacoloma (Santa) — Eduardo's existing memorial is unchanged. */
+.santa-memorial-card{display:grid;grid-template-columns:minmax(240px,.82fr) minmax(0,1.18fr);margin-top:2.25rem;border:3px solid var(--beige);background:rgba(8,8,8,.9);box-shadow:0 24px 60px rgba(0,0,0,.52);overflow:hidden}
+.santa-memorial-image-wrap{position:relative;min-height:530px;background:#0b0b0b}
+.santa-memorial-image{display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center 43%;filter:contrast(1.05)}
+.santa-memorial-image-wrap:after{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.8));pointer-events:none}
+.santa-memorial-image-credit{position:absolute;bottom:1.15rem;left:1.15rem;right:1rem;z-index:1;color:var(--beige);font-weight:800;font-size:.76rem;letter-spacing:.18em}
+.santa-memorial-content{padding:clamp(1.5rem,3.2vw,3rem);color:var(--beige);display:flex;flex-direction:column;align-items:flex-start}
+.santa-memorial-kicker{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;font-weight:900;color:rgba(232,220,196,.72);margin-bottom:1rem}
+.santa-memorial-title{font-size:clamp(2.4rem,4.8vw,5.4rem);line-height:.99;letter-spacing:.025em;margin-bottom:1.1rem}
+.santa-memorial-title span{display:block;color:white}
+.santa-memorial-heading{font-size:clamp(1.2rem,1.8vw,1.5rem);font-weight:900;margin-bottom:1.1rem}
+.santa-memorial-paragraph{font-size:1rem;line-height:1.73;color:rgba(232,220,196,.85);margin-bottom:1rem;max-width:70ch}
+.santa-memorial-quote{border-left:3px solid var(--beige);padding:.3rem 0 .3rem 1.05rem;font-size:1.04rem;line-height:1.55;font-style:italic;color:white;margin:1rem 0 1.2rem}
+.santa-memorial-signoff{font-size:.86rem;letter-spacing:.18em;font-weight:900;margin-top:auto;padding-top:.6rem}
+@media(max-width:850px){.santa-memorial-card{grid-template-columns:1fr}.santa-memorial-image-wrap{min-height:420px}.santa-memorial-image{object-position:center 38%}}
+@media(max-width:520px){.santa-memorial-image-wrap{min-height:350px}.santa-memorial-content{padding:1.35rem}.santa-memorial-title{font-size:2.8rem}}
+
+
+/* Unified memorial: Eduardo and Santa share one section and candle action. */
+.memorial-unified{display:flex;flex-direction:column;gap:1.75rem}
+.memorial-unified-heading{text-align:center;padding:1.2rem 0 .8rem}
+.memorial-unified-heading .memorial-title{font-size:clamp(3.6rem,7.3vw,7rem);text-transform:none;margin:.35rem 0 .8rem}
+.memorial-unified-intro{color:rgba(232,220,196,.83);font-size:clamp(.95rem,1.45vw,1.15rem);max-width:720px;margin:auto}
+.memorial-people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.15rem;align-items:stretch}
+.memorial-person{min-width:0;display:flex;flex-direction:column;border:2px solid var(--beige);background:rgba(7,7,7,.88);box-shadow:0 18px 40px rgba(0,0,0,.4);overflow:hidden}
+.memorial-person-photo{height:340px;position:relative;overflow:hidden;background:#141414}
+.memorial-person-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 44%;filter:saturate(.75) contrast(1.06);transition:transform .55s ease}
+.memorial-person:hover .memorial-person-photo img{transform:scale(1.045)}
+.memorial-person-photo:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.72));pointer-events:none}
+.memorial-person-photo span{position:absolute;bottom:1rem;left:1.2rem;z-index:1;font-size:.69rem;font-weight:900;letter-spacing:.2em}
+.memorial-person-copy{flex:1;padding:clamp(1.25rem,2.1vw,2rem)}
+.memorial-person-kicker{font-size:.72rem;letter-spacing:.23em;font-weight:800;color:rgba(232,220,196,.74)}
+.memorial-person-copy h3{font-size:clamp(2.6rem,4vw,4.6rem);line-height:1.04;margin:1rem 0 1.15rem;overflow-wrap:anywhere}
+.memorial-person-copy h3 em{font-style:normal;color:white}
+.memorial-person-copy .memorial-text,.memorial-person-copy .memorial-subtitle{margin-top:1rem;font-size:1rem;line-height:1.65}
+.memorial-person-copy .santa-memorial-paragraph{font-size:.99rem;line-height:1.7;margin:0 0 .85rem}
+.memorial-person-copy .santa-memorial-quote{font-size:1rem;margin:1rem 0 .8rem}
+.memorial-person-copy .santa-memorial-signoff{padding-top:0;margin-top:0}
+.memorial-shared-candles{display:grid;grid-template-columns:60px 1fr auto;align-items:center;gap:1.1rem;padding:1.25rem 1.6rem;border:2px solid var(--beige);background:rgba(8,8,8,.9)}
+.memorial-shared-emblem{font-size:2.5rem;text-align:center;color:var(--beige)}
+.memorial-candle-heading{display:block;font-size:1.12rem;letter-spacing:.09em}
+.memorial-candle-intro{color:rgba(232,220,196,.78);margin-top:.5rem;line-height:1.5}
+.memorial-shared-action{text-align:center}.memorial-shared-action .memorial-candle-count{margin-top:.55rem;font-size:.8rem}
+@media(max-width:780px){.memorial-people{grid-template-columns:1fr}.memorial-person-photo{height:360px}.memorial-shared-candles{grid-template-columns:1fr;text-align:center}.memorial-shared-action{width:100%}}
+@media(max-width:450px){.memorial-person-photo{height:300px}.memorial-person-copy h3{font-size:2.8rem}.memorial-shared-candles{padding:1.1rem}.memorial-unified-heading .memorial-title{font-size:3.6rem}}
+
+/* Memorial cards: original tribute motifs restored to both portraits. */
+.memorial-unified .memorial-person{position:relative;border:1px solid #e5d8c2;background:linear-gradient(160deg,rgba(29,27,22,.94),rgba(5,5,5,.96));}
+.memorial-unified .memorial-person-photo{height:390px;border-bottom:1px solid #e5d8c2;}
+.memorial-unified .memorial-person-photo img{filter:saturate(.92) contrast(1.04);}
+.memorial-unified .memorial-person-photo span{font-weight:800;letter-spacing:.22em;color:#f1e5cd;}
+.memorial-unified .memorial-person-copy{padding:clamp(1.5rem,2.5vw,2.6rem);display:flex;flex-direction:column;gap:.45rem;}
+.memorial-unified .memorial-card-top{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem;}
+.memorial-unified .memorial-card-symbol{width:66px;height:66px;flex:none;display:grid;place-items:center;border:1px solid rgba(229,216,194,.65);border-radius:50%;background:rgba(229,216,194,.09)}
+.memorial-unified .memorial-card-symbol img{width:40px;height:40px;object-fit:contain;filter:brightness(0) saturate(100%) invert(87%) sepia(9%) saturate(420%) hue-rotate(350deg);}
+.memorial-unified .memorial-person-kicker{font-size:.7rem;line-height:1.6;letter-spacing:.17em;}
+.memorial-unified .memorial-person-copy h3{margin:.2rem 0 1rem;font-size:clamp(2.7rem,4vw,4.25rem);line-height:1.02;}
+.memorial-unified .memorial-person .memorial-subtitle{font-size:1.14rem;font-weight:650;line-height:1.55;color:#e5d8c2;}
+.memorial-unified .memorial-card-line{height:1px;background:linear-gradient(90deg,rgba(229,216,194,.85),rgba(229,216,194,.05));margin:1.25rem 0 .85rem;}
+.memorial-unified .memorial-person-tribute,.memorial-unified .santa-memorial-quote{margin:.2rem 0 .65rem;border-left:3px solid #e5d8c2;padding:.2rem 0 .2rem 1.1rem;font-size:1.13rem;font-style:italic;line-height:1.6;color:#f3e9d7;}
+.memorial-unified .memorial-card-signature,.memorial-unified .santa-memorial-signoff{margin-top:auto;padding-top:1.3rem;letter-spacing:.13em;font-size:.75rem;font-weight:850;color:#e5d8c2;}
+.memorial-unified .memorial-people{gap:1.4rem;}
+.memorial-unified .memorial-shared-candles{margin-top:.45rem;}
+@media(max-width:780px){.memorial-unified .memorial-person-photo{height:360px}.memorial-unified .memorial-card-symbol{width:54px;height:54px}.memorial-unified .memorial-card-symbol img{width:34px;height:34px}}
+
+
+/* CMWC About manifesto — additive; keeps original carousel */
+.about-manifesto{max-width:900px;margin:3.5rem auto 0;padding:clamp(1.5rem,4vw,3.75rem);border:3px solid #101010;background:#f1e4cc;color:#111;box-shadow:12px 12px 0 #111}
+.about-manifesto-label{font-size:.72rem;letter-spacing:.22em;font-weight:900;border-bottom:1px solid #181818;padding-bottom:1.2rem;margin-bottom:1.5rem}
+.about-manifesto-heading{font-size:clamp(3.4rem,8vw,6.5rem);line-height:.96;margin-bottom:2rem}
+.about-manifesto-copy{font-size:clamp(1.02rem,1.5vw,1.2rem);line-height:1.8}
+.about-manifesto-copy p{margin:0 0 1.4rem}
+.about-manifesto-copy p:nth-last-child(-n+4){font-weight:800}
+.about-manifesto-copy p:last-child{font-family:Anton,Impact,sans-serif;font-size:clamp(2.2rem,5vw,4.3rem);line-height:1.15;text-transform:uppercase;margin-bottom:0}
+/* The actual approved memorial uses original tall photo-right/card-left layout */
+.memorial-editorial{border:3px solid #e5d8c2;padding:clamp(1.2rem,3vw,2.8rem);background:#0b0b0b;color:#e5d8c2;max-width:1350px}
+.memorial-editorial-header{text-align:left;margin-bottom:1.8rem}
+.memorial-editorial-tag,.memorial-editorial .memorial-person-kicker{display:inline-block;border:2px solid #e5d8c2;padding:.5rem .9rem;font-weight:900;letter-spacing:.16em;font-size:.75rem}
+.memorial-editorial-header .memorial-title{font-size:clamp(3.9rem,8vw,8rem);line-height:1.02;margin:1rem 0 .3rem}
+.memorial-editorial-header .memorial-unified-intro{margin:0;font-family:Anton,Impact,sans-serif;font-size:clamp(2rem,4vw,3.6rem);color:#e5d8c2}
+.memorial-editorial .memorial-people{gap:1rem;grid-template-columns:repeat(2,minmax(0,1fr))}
+.memorial-editorial .memorial-person{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);min-height:590px;border:1px solid #e5d8c2;background:#101010}
+.memorial-editorial .memorial-person-copy{order:1;min-width:0;padding:clamp(1rem,2vw,1.65rem);gap:.3rem;display:flex;flex-direction:column}
+.memorial-editorial .memorial-person-photo{order:2;min-height:100%;height:auto;border:0;position:relative}
+.memorial-editorial .memorial-person-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.memorial-editorial .memorial-person-copy h3{font-size:clamp(2.4rem,3.7vw,4rem);line-height:.99;margin:1rem 0 .7rem}
+.memorial-editorial-cyclist{width:75px;height:75px;object-fit:contain;filter:brightness(0) saturate(100%) invert(87%) sepia(9%) saturate(420%) hue-rotate(350deg);margin:.4rem 0}
+.memorial-editorial .memorial-person-copy p,.memorial-editorial .memorial-person-copy blockquote{line-height:1.5;font-size:clamp(.83rem,1vw,1rem);margin:.35rem 0}
+.memorial-editorial .memorial-person-copy blockquote{font-style:italic;border-left:2px solid #e5d8c2;padding-left:.65rem}
+.memorial-editorial .memorial-shared-candles{margin-top:1.4rem}
+@media(max-width:1050px){.memorial-editorial .memorial-people{grid-template-columns:1fr}.memorial-editorial .memorial-person{min-height:520px}.memorial-editorial .memorial-person-copy h3{font-size:clamp(2.8rem,6vw,5rem)}}
+@media(max-width:600px){.memorial-editorial{padding:1rem}.memorial-editorial .memorial-person{grid-template-columns:1fr}.memorial-editorial .memorial-person-photo{order:1;min-height:360px}.memorial-editorial .memorial-person-copy{order:2}.memorial-editorial .memorial-person-copy h3{font-size:3.1rem}.about-manifesto{box-shadow:6px 6px 0 #111}}
+
+/* Sponsor gallery: three independent rows; distinct logos only (7 per row). */
+#sponsors .sponsors-three-rows { display:grid; gap:0; width:100%; overflow:hidden; border-top:1px solid rgba(232,220,196,.2); border-bottom:1px solid rgba(232,220,196,.2); }
+#sponsors .sponsors-slide-row { position:relative; overflow:hidden; width:100%; padding:8px 0; }
+#sponsors .sponsors-slide-row + .sponsors-slide-row { border-top:1px solid rgba(232,220,196,.12); }
+#sponsors .sponsors-slide-track { display:flex; align-items:center; gap:14px; width:max-content; min-width:max-content; will-change:transform; transform:translateX(0); animation:sponsors-distinct-sweep 24s ease-in-out infinite alternate; }
+#sponsors .sponsors-slide-row-2 .sponsors-slide-track { animation-direction:alternate-reverse; animation-duration:29s; }
+#sponsors .sponsors-slide-row-3 .sponsors-slide-track { animation-duration:26s; }
+#sponsors .sponsors-slide-row:hover .sponsors-slide-track { animation-play-state:paused; }
+#sponsors .sponsor-card { flex:0 0 clamp(190px,18vw,245px); width:clamp(190px,18vw,245px); height:126px; }
+@keyframes sponsors-distinct-sweep { from{ transform:translateX(0) } to{ transform:translateX(calc(-1 * var(--sponsors-travel, 160px))) } }
+@media(max-width:768px) { #sponsors .sponsor-card { width:190px; flex-basis:190px; height:108px; } #sponsors .sponsors-slide-track{ animation-duration:20s; } }
+@media(prefers-reduced-motion:reduce) { #sponsors .sponsors-slide-row { overflow-x:auto; } #sponsors .sponsors-slide-track{ animation:none!important; transform:none!important; will-change:auto; } }
+
+/* 2026-10-24: connected About story + real rider statistics; scoped to new classes */
+.cmwc-live-stats{padding:30px 0}
+.cmwc-live-stats-inner{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(2,minmax(155px,.65fr));gap:24px;align-items:center}
+.cmwc-stat-kicker{color:#d5c3a3;letter-spacing:.22em;font-size:.72rem;font-weight:800}
+.cmwc-stat-intro h2{color:#e5d8c2;font-size:clamp(25px,3.1vw,42px);line-height:1.12;margin:8px 0}
+.cmwc-stat-intro p{color:#baa98d;font-size:.88rem}
+.cmwc-stat-item{min-height:116px;border-left:2px solid #e5d8c2;padding:3px 0 3px 23px;display:flex;flex-direction:column;justify-content:center}
+.cmwc-stat-item>div{font-size:clamp(3.2rem,6vw,5rem);line-height:1}
+.cmwc-stat-item span{color:#d6c7ae;font-size:.7rem;letter-spacing:.13em;font-weight:800;margin-top:10px}
+#about .about-story-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(22px,3vw,55px);align-items:start;margin:30px auto 0;max-width:1320px}
+#about .about-story-gallery{position:sticky;top:90px;min-width:0}
+#about .about-story-caption{display:flex;justify-content:space-between;align-items:center;border-top:3px solid #171717;border-bottom:1px solid #171717;padding:12px 2px;margin-bottom:18px;gap:10px;color:#161616;font-weight:900;letter-spacing:.15em;font-size:.72rem}
+#about .about-manifesto{max-width:none;width:100%;margin:0;box-shadow:7px 7px 0 #111;padding:clamp(1.2rem,2.7vw,2.4rem)}
+#about .about-manifesto-heading{font-size:clamp(3rem,4.8vw,5.5rem)}
+#about .about-manifesto-copy{font-size:clamp(1rem,1.3vw,1.1rem);line-height:1.7}
+#about .about-story-cta{display:flex;align-items:center;justify-content:space-between;background:#101010;color:#e5d8c2;font-weight:900;letter-spacing:.12em;text-decoration:none;padding:16px 20px;margin-top:20px}
+#about .about-story-cta:hover{background:#493d2b}
+@media(max-width:850px){.cmwc-live-stats-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.cmwc-stat-intro{grid-column:1/-1}#about .about-story-grid{grid-template-columns:1fr}#about .about-story-gallery{position:relative;top:auto}#about .about-manifesto{margin-top:0}}
+@media(max-width:480px){.cmwc-stat-item{padding-left:12px}.cmwc-stat-item span{font-size:.6rem}#about .about-story-caption{font-size:.6rem}}
+
+/* October 2026: social platform icons and centered footer controls */
+#social .social-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:940px;margin-left:auto;margin-right:auto;gap:14px;justify-items:stretch;}
+#social .social-card{width:100%;min-width:0;}
+#social .social-icon{display:flex;align-items:center;justify-content:center;width:70px;height:70px;flex-shrink:0;line-height:1;}
+#social .social-icon svg{display:block;width:33px;height:33px;flex:none;}
+.cmwc-site-footer .cmwc-footer-follow{align-items:center;text-align:center;}
+.cmwc-site-footer .cmwc-footer-socials{justify-content:center;flex-wrap:wrap;gap:12px;width:100%;max-width:300px;margin:0 auto 18px;}
+.cmwc-site-footer .cmwc-footer-social{width:48px;height:48px;flex:0 0 48px;position:relative;overflow:hidden;}
+.cmwc-site-footer .cmwc-footer-social svg{display:block;width:26px;height:26px;flex:none;}
+.cmwc-site-footer .admin-footer-button{display:inline-flex;align-items:center;justify-content:center;width:100%;max-width:232px;min-width:0;margin:0 auto;box-sizing:border-box;text-align:center;}
+.cmwc-site-footer .admin-footer-note{margin:12px auto 0;max-width:260px;text-align:center;}
+@media(max-width:680px){#social .social-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}#social .social-icon{width:60px;height:60px;}}
+/* Continuous sponsor strip, seamless full-group looping with CSS variable set in script.js */
+#sponsors .sponsors-slide-track{animation:sponsors-seamless-motion 34s linear infinite !important;min-width:0;width:max-content;transform:translate3d(0,0,0);will-change:transform;}
+#sponsors .sponsors-slide-row-2 .sponsors-slide-track{animation-direction:reverse !important;animation-duration:41s !important;}
+#sponsors .sponsors-slide-row-3 .sponsors-slide-track{animation-duration:37s !important;}
+#sponsors .sponsors-slide-row:hover .sponsors-slide-track{animation-play-state:paused !important;}
+@keyframes sponsors-seamless-motion{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-1 * var(--sponsor-loop-distance,1100px)),0,0)}}
+@media(prefers-reduced-motion:reduce){#sponsors .sponsors-slide-track{animation:none !important;transform:none !important;}}
+
+/* Scoped 2026-10-24 update: two-column footer, centered hero, coming-soon sections */
+.cmwc-footer-link-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;row-gap:8px;list-style:none!important;padding:0!important;margin:0!important;}
+.cmwc-footer-link-list li{margin:0!important;min-width:0;}
+.cmwc-footer-link-list a{display:block;line-height:1.45;overflow-wrap:anywhere;}
+.cmwc-footer-links{min-width:0;}
+.cmwc-admin-quick-link{font-weight:800;color:#e8dcc4!important;}
+.hero-gallery .cmwc-hero-centered{display:block!important;margin-inline:auto!important;position:relative;left:auto;right:auto;transform:none;object-fit:contain;object-position:center;}
+.hero-gallery>.relative.z-10{text-align:center;display:flex;flex-direction:column;align-items:center;}
+.cmwc-coming-soon{position:relative;overflow:hidden;padding:clamp(72px,9vw,125px) 20px;text-align:center;background:#101010;color:#e8dcc4;border-block:1px solid rgba(232,220,196,.25);}
+.cmwc-video-soon{background:linear-gradient(145deg,#e8dcc4,#d5c5a5);color:#111;}
+.cmwc-soon-inner{max-width:1050px;margin:0 auto;}
+.cmwc-soon-kicker{font-size:12px;letter-spacing:.3em;font-weight:800;}
+.cmwc-coming-soon h2{font-family:'Anton',Impact,sans-serif;font-size:clamp(40px,6.5vw,90px);line-height:1.1;margin:24px auto;max-width:950px;}
+.cmwc-coming-soon p{font-size:clamp(16px,1.6vw,20px);max-width:760px;margin:0 auto 24px;line-height:1.6;}
+.cmwc-game-arena{position:relative;height:clamp(320px,40vw,480px);max-width:1050px;margin:32px auto 20px;overflow:hidden;border:2px solid rgba(232,220,196,.55);background:radial-gradient(ellipse at 45% 50%,#23201b,#080808 75%);}
+.cmwc-game-pieces{position:absolute;inset:0;}
+.cmwc-game-logo{position:absolute;width:clamp(55px,7vw,94px);aspect-ratio:1;object-fit:contain;cursor:pointer;border:0;background:none;padding:0;transition:left .7s cubic-bezier(.2,.85,.2,1),top .7s cubic-bezier(.2,.85,.2,1),transform .18s;animation:cmwcLogoBob var(--bob,4s) ease-in-out infinite alternate;filter:drop-shadow(0 6px 8px #0009);}
+.cmwc-game-logo:hover{transform:scale(1.25) rotate(8deg);}
+.cmwc-game-logo:focus-visible{outline:2px solid #e8dcc4;outline-offset:3px;}
+@keyframes cmwcLogoBob{to{translate:15px -17px;rotate:10deg}}
+.cmwc-game-score{display:inline-flex;align-items:center;gap:12px;border:1px solid #e8dcc4;padding:12px 18px;letter-spacing:.06em;font-size:13px;font-weight:800;}
+.cmwc-game-score strong{font-size:26px;color:#fff;}
+@media(max-width:600px){.cmwc-footer-link-list{column-gap:12px;}.cmwc-game-logo{width:54px;}}
+@media(prefers-reduced-motion:reduce){.cmwc-game-logo{animation:none;transition:none;}}
+
+/* CMWC official logo in hero and compact mobile-only CTA buttons. */
+.hero-gallery .hero-official-logo { width:clamp(105px,13vw,170px);height:auto;aspect-ratio:1;object-fit:contain;flex:none; }
+@media(max-width:639px){
+  .hero-gallery .hero-official-logo { width:clamp(100px,27vw,135px);margin-bottom:12px; }
+  .hero-gallery .hero-actions { flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;width:100%;max-width:370px;margin-inline:auto; }
+  .hero-gallery .hero-actions .hero-action { width:auto;flex:1 1 140px;min-width:0;max-width:180px;display:inline-flex;align-items:center;justify-content:center;padding:11px 12px!important;min-height:44px;font-size:clamp(11px,2.9vw,13px);line-height:1.2;text-align:center;letter-spacing:.02em;border-radius:3px;white-space:normal; }
+}
+
+/* Housing question: rider and volunteer registration only */
+.housing-choice { padding: 15px 17px; border: 2px solid currentColor; background: rgba(0,0,0,.045); margin: 12px 0; }
+.housing-choice .housing-title { display:block; font-size:.84rem; font-weight:800; letter-spacing:.075em; margin-bottom:12px; }
+.housing-choice .housing-check { display:flex; align-items:center; gap:12px; cursor:pointer; line-height:1.45; font-size:.95rem; font-weight:600; }
+.housing-choice .housing-check input { flex:none; width:21px; height:21px; accent-color:#111; cursor:pointer; }
+
+
+/* 2026-10-24 patch: bigger hero logo, slower galleries, footer facebook fix, and floating pajaro background */
+.hero-gallery .hero-official-logo{width:clamp(300px,39vw,510px)!important;height:auto;aspect-ratio:1;object-fit:contain;flex:none;}
+.hero-gallery .hero-official-logo:hover{transform:scale(1.03);transition:transform .22s ease;}
+@media(max-width:639px){
+  .hero-gallery .hero-official-logo{width:clamp(210px,64vw,320px)!important;margin-bottom:14px;}
+}
+
+/* Slow down the moving galleries a bit sitewide. */
+.sponsor-track{animation-duration:56s;}
+@media (max-width: 768px){.sponsor-track{animation-duration:44s;}}
+#sponsors .sponsors-slide-track{animation-duration:55s !important;}
+#sponsors .sponsors-slide-row-2 .sponsors-slide-track{animation-duration:64s !important;}
+#sponsors .sponsors-slide-row-3 .sponsors-slide-track{animation-duration:59s !important;}
+
+/* Footer social buttons: hard-mask each icon so background text cannot bleed through. */
+.cmwc-site-footer .cmwc-footer-socials{align-items:center;justify-content:center;}
+.cmwc-site-footer .cmwc-footer-social{background:rgba(232,220,196,.04);isolation:isolate;min-width:48px;}
+.cmwc-site-footer .cmwc-footer-social::before{content:"";position:absolute;inset:0;background:var(--black);z-index:0;}
+.cmwc-site-footer .cmwc-footer-social svg,.cmwc-site-footer .cmwc-footer-social .cmwc-footer-icon-backup{position:relative;z-index:1;}
+.cmwc-site-footer .cmwc-footer-icon-backup{display:block;font-weight:900;font-size:22px;line-height:1;}
+.cmwc-site-footer .cmwc-footer-social svg + .cmwc-footer-icon-backup{display:none;}
+
+/* About section floating Pajaro logos. */
+#about{position:relative;overflow:hidden;isolation:isolate;}
+#about > .max-w-7xl{position:relative;z-index:2;}
+.about-floating-birds{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+.about-floating-bird{position:absolute;width:clamp(44px,6vw,88px);height:auto;opacity:.12;filter:drop-shadow(0 10px 10px rgba(0,0,0,.12));animation:aboutBirdFloat var(--dur,18s) ease-in-out infinite alternate;}
+.about-floating-bird:nth-child(1){left:4%;top:7%;--dur:18s;animation-delay:-2s;}
+.about-floating-bird:nth-child(2){left:18%;top:12%;--dur:22s;animation-delay:-7s;}
+.about-floating-bird:nth-child(3){left:34%;top:8%;--dur:19s;animation-delay:-1s;}
+.about-floating-bird:nth-child(4){left:50%;top:18%;--dur:24s;animation-delay:-10s;}
+.about-floating-bird:nth-child(5){left:73%;top:10%;--dur:20s;animation-delay:-6s;}
+.about-floating-bird:nth-child(6){left:88%;top:20%;--dur:17s;animation-delay:-4s;}
+.about-floating-bird:nth-child(7){left:7%;top:40%;--dur:23s;animation-delay:-8s;}
+.about-floating-bird:nth-child(8){left:24%;top:56%;--dur:21s;animation-delay:-3s;}
+.about-floating-bird:nth-child(9){left:43%;top:44%;--dur:18s;animation-delay:-11s;}
+.about-floating-bird:nth-child(10){left:60%;top:63%;--dur:25s;animation-delay:-5s;}
+.about-floating-bird:nth-child(11){left:80%;top:48%;--dur:20s;animation-delay:-9s;}
+.about-floating-bird:nth-child(12){left:12%;top:79%;--dur:19s;animation-delay:-12s;}
+.about-floating-bird:nth-child(13){left:86%;top:78%;--dur:22s;animation-delay:-14s;}
+@keyframes aboutBirdFloat{0%{transform:translate3d(0,0,0) rotate(0deg) scale(1);}25%{transform:translate3d(18px,-16px,0) rotate(4deg) scale(1.03);}50%{transform:translate3d(-10px,18px,0) rotate(-5deg) scale(.97);}75%{transform:translate3d(14px,8px,0) rotate(3deg) scale(1.02);}100%{transform:translate3d(-16px,-20px,0) rotate(-6deg) scale(1);}}
+@media(max-width:850px){.about-floating-bird{opacity:.1;width:clamp(36px,10vw,70px);}}
+@media(prefers-reduced-motion:reduce){.about-floating-bird{animation:none;}}
+
+/* URGENT LAUNCH PATCH: dependable Facebook icon and visible About birds */
+#social .social-facebook-glyph{font-family:Arial,Helvetica,sans-serif!important;font-weight:900!important;font-size:42px!important;line-height:1!important;text-align:center!important;color:inherit!important;}
+.cmwc-site-footer .cmwc-footer-social .cmwc-facebook-glyph{position:relative;z-index:4;display:block;font-family:Arial,Helvetica,sans-serif;font-weight:900;font-size:34px;line-height:1;transform:translateY(3px);color:var(--beige)}
+.cmwc-site-footer .cmwc-footer-social:hover .cmwc-facebook-glyph{color:var(--black)}
+/* Above beige panels, but subtle and noninteractive */
+#about{position:relative;isolation:isolate;overflow:hidden;}
+#about .about-floating-birds{position:absolute!important;inset:0!important;z-index:12!important;pointer-events:none!important;overflow:hidden!important;}
+#about .about-floating-bird{display:block!important;position:absolute!important;z-index:12!important;opacity:.22!important;filter:brightness(0) drop-shadow(0 5px 9px rgba(0,0,0,.13))!important;width:clamp(60px,8vw,122px)!important;height:auto!important;animation:aboutBirdFloat var(--dur,18s) ease-in-out infinite alternate!important;}
+#about > .max-w-7xl{position:relative;z-index:2;}
+@media(max-width:700px){#about .about-floating-bird{opacity:.16!important;width:clamp(48px,12vw,85px)!important;}}
+@media(prefers-reduced-motion:reduce){#about .about-floating-bird{animation:none!important;}}
+
+/* Memorial shared candle: one prominent value and a real candle-lighting visual */
+#memorial .memorial-shared-emblem.memorial-candle-visual{width:66px;height:100px;position:relative;margin:auto;display:block;isolation:isolate;background:transparent;overflow:visible;}
+#memorial .memorial-candle-visual .candle-body{position:absolute;width:27px;height:46px;bottom:7px;left:19px;border-radius:5px 5px 2px 2px;background:linear-gradient(90deg,#9a835a,#e8dcc4 32%,#fff4da 62%,#aa946d);box-shadow:0 3px 12px #0009;z-index:3;}
+#memorial .memorial-candle-visual .candle-wick{position:absolute;left:31px;bottom:53px;width:3px;height:10px;background:#e8dcc4;z-index:2;}
+#memorial .memorial-candle-visual .candle-flame{position:absolute;left:24px;bottom:60px;width:18px;height:30px;border-radius:70% 10% 60% 50%;background:linear-gradient(20deg,#fff8ba 12%,#ffc345 42%,#fa6a20 85%);transform:rotate(12deg) scale(.15);transform-origin:50% 100%;opacity:0;filter:drop-shadow(0 0 12px #ffab39);z-index:4;transition:opacity .35s,transform .35s;}
+#memorial .memorial-candle-visual .candle-glow{position:absolute;left:0;top:0;width:66px;height:75px;border-radius:50%;background:radial-gradient(circle,#ffdd7d77 0%,#ff982933 45%,transparent 72%);opacity:0;transition:opacity .4s;}
+#memorial .memorial-candle-visual.candle-lit .candle-flame{opacity:1;transform:rotate(12deg) scale(1);animation:memorial-flame 1.8s ease-in-out infinite alternate;}
+#memorial .memorial-candle-visual.candle-lit .candle-glow{opacity:1;animation:memorial-glow 2s ease-in-out infinite alternate;}
+#memorial .memorial-candle-visual.candle-reignite{animation:candle-reignite .75s ease-out;}
+@keyframes memorial-flame{to{transform:rotate(-7deg) scale(.89) translateY(2px);}}
+@keyframes memorial-glow{to{opacity:.65;}}
+@keyframes candle-reignite{40%{filter:drop-shadow(0 0 25px #ffbd54)}100%{filter:none}}
+#memorial .memorial-shared-action .memorial-candle-count{display:flex;align-items:baseline;justify-content:center;gap:8px;color:var(--beige);font-size:clamp(13px,1.3vw,16px);font-weight:700;margin-top:12px;}
+#memorial #memorial-candle-count{font-family:Anton,Impact,sans-serif;font-size:clamp(36px,4vw,52px);font-weight:900;line-height:1;color:#fff3b9;text-shadow:0 0 18px #f3c76977;}
+#memorial #memorial-candle-label{font-size:13px;line-height:1.4;}
+@media(max-width:780px){#memorial .memorial-candle-count{flex-wrap:wrap;}#memorial .memorial-candle-visual{margin:0 auto 10px;}}
+@media(prefers-reduced-motion:reduce){#memorial .memorial-candle-visual.candle-lit .candle-flame,#memorial .memorial-candle-visual.candle-lit .candle-glow{animation:none;}}
+/* Extra thirteen Pajaro emblems; total twenty-six */
+#about .about-floating-bird:nth-child(n+14){opacity:.17!important;width:clamp(42px,6vw,95px)!important;}
+#about .about-floating-bird:nth-child(14){left:5%;top:23%;--dur:19s;animation-delay:-1s;}
+#about .about-floating-bird:nth-child(15){left:23%;top:32%;--dur:25s;animation-delay:-8s;}
+#about .about-floating-bird:nth-child(16){left:38%;top:25%;--dur:21s;animation-delay:-4s;}
+#about .about-floating-bird:nth-child(17){left:54%;top:35%;--dur:26s;animation-delay:-10s;}
+#about .about-floating-bird:nth-child(18){left:67%;top:28%;--dur:22s;animation-delay:-13s;}
+#about .about-floating-bird:nth-child(19){left:85%;top:36%;--dur:20s;animation-delay:-6s;}
+#about .about-floating-bird:nth-child(20){left:10%;top:53%;--dur:24s;animation-delay:-12s;}
+#about .about-floating-bird:nth-child(21){left:30%;top:65%;--dur:19s;animation-delay:-2s;}
+#about .about-floating-bird:nth-child(22){left:47%;top:57%;--dur:23s;animation-delay:-9s;}
+#about .about-floating-bird:nth-child(23){left:74%;top:68%;--dur:27s;animation-delay:-5s;}
+#about .about-floating-bird:nth-child(24){left:92%;top:57%;--dur:21s;animation-delay:-15s;}
+#about .about-floating-bird:nth-child(25){left:36%;top:87%;--dur:25s;animation-delay:-7s;}
+#about .about-floating-bird:nth-child(26){left:69%;top:89%;--dur:18s;animation-delay:-11s;}

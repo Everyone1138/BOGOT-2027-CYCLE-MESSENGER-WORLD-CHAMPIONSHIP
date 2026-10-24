@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Volunteer Registration | CMWC Bogotá 2027</title>
+<meta name="description" content="Join the crew behind CMWC Bogotá 2027."/>
+<link rel="canonical" href="https://cmwc2027bogota.com/volunteer.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="style.css" rel="stylesheet"/>
+<link href="signup-pages.css" rel="stylesheet"/>
+</head>
+<body class="bg-beige text-black standalone-signup" data-signup-page="volunteer">
+<header class="standalone-header">
+  <a href="index.html" class="standalone-brand"><img src="images/cyclist-icon.png" alt="CMWC cyclist"/><span>CMWC BOGOTÁ 2027</span></a>
+  <div class="standalone-header-actions"><a class="standalone-back" href="index.html" data-copy="back">← Back to website</a><div class="standalone-langs"><button type="button" data-lang="en" class="standalone-lang active">EN</button><button type="button" data-lang="es" class="standalone-lang">ES</button></div></div>
+</header>
+<main>
+  <section class="standalone-hero"><div class="standalone-hero-image" aria-hidden="true"></div><div class="standalone-hero-inner"><p class="standalone-eyebrow" data-copy="eyebrow">CMWC / BOGOTÁ 2027 / VOLUNTEER</p><h1 class="font-anton" data-copy="title">VOLUNTEER REGISTRATION</h1><p data-copy="subtitle">Join the crew behind CMWC Bogotá 2027.</p></div></section>
+  <section class="standalone-main">
+    <div class="standalone-form-heading"><p data-copy="formIntro">Tell us how you want to help. We will be in touch with more information.</p></div>
+    <form action="forms/volunteer-signup.php" class="signup-card volunteer-card unified-form-card" id="volunteer-form" method="POST">
+<input aria-hidden="true" autocomplete="off" class="form-hp" name="website" tabindex="-1" type="text"/>
+<div class="grid md:grid-cols-2 gap-4">
+<div>
+<label for="volunteer-name">FULL NAME</label>
+<input id="volunteer-name" name="volunteerName" placeholder="Your full name" required="" type="text"/>
+</div>
+<div>
+<label for="volunteer-email">EMAIL</label>
+<input id="volunteer-email" name="volunteerEmail" placeholder="you@example.com" required="" type="email"/>
+</div>
+<div>
+<label for="volunteer-phone">PHONE / WHATSAPP</label>
+<input id="volunteer-phone" name="volunteerPhone" placeholder="Your phone number" type="tel"/>
+</div>
+<div>
+<label for="volunteer-city">CITY</label>
+<input id="volunteer-city" name="volunteerCity" placeholder="Your city" required="" type="text"/>
+</div>
+<div>
+<label for="volunteer-role">PREFERRED ROLE</label>
+<select id="volunteer-role" name="volunteerRole" required="">
+<option value="">-- Choose a role --</option>
+<option value="checkpoints">Checkpoints</option>
+<option value="registration">Registration</option>
+<option value="rider-support">Rider support</option>
+<option value="events">Events / parties</option>
+<option value="translation">Translation</option>
+<option value="media">Photo / video / media</option>
+</select>
+</div>
+<div>
+<label for="volunteer-availability">AVAILABILITY</label>
+<select id="volunteer-availability" name="volunteerAvailability" required="">
+<option value="">-- Choose availability --</option>
+<option value="before">Before the event</option>
+<option value="during">During the event</option>
+<option value="after">After the event</option>
+<option value="all">All weekend</option>
+</select>
+</div>
+<div>
+<label id="volunteer-food-preference-label">FOOD PREFERENCE</label>
+<div aria-labelledby="volunteer-food-preference-label" class="food-bubble-group">
+<label class="food-bubble"><input name="volunteerFoodPreferences[]" type="checkbox" value="no-preference"/><span class="food-option-none">No preference</span></label>
+<label class="food-bubble"><input name="volunteerFoodPreferences[]" type="checkbox" value="vegetarian"/><span class="food-option-vegetarian">Vegetarian</span></label>
+<label class="food-bubble"><input name="volunteerFoodPreferences[]" type="checkbox" value="vegan"/><span class="food-option-vegan">Vegan</span></label>
+<label class="food-bubble"><input name="volunteerFoodPreferences[]" type="checkbox" value="gluten-free"/><span class="food-option-gluten-free">Gluten-free</span></label>
+<label class="food-bubble"><input name="volunteerFoodPreferences[]" type="checkbox" value="lactose-free"/><span class="food-option-lactose-free">Lactose-free</span></label>
+<label class="food-bubble"><input name="volunteerFoodPreferences[]" type="checkbox" value="allergies-medical"/><span class="food-option-allergies">Allergies / medical restriction</span></label>
+<label class="food-bubble"><input data-other-toggle="volunteer-food-other-wrap" name="volunteerFoodPreferences[]" type="checkbox" value="other"/><span class="food-option-other">Other</span></label>
+</div>
+</div>
+<div class="food-other-wrap hidden" id="volunteer-food-other-wrap">
+<label for="volunteer-food-other">OTHER FOOD PREFERENCE</label>
+<input id="volunteer-food-other" name="volunteerFoodOther" placeholder="Write your food preference" type="text"/>
+</div>
+<div>
+<label for="volunteer-food-notes">FOOD ALLERGIES / NOTES</label>
+<input id="volunteer-food-notes" name="volunteerFoodNotes" placeholder="Allergies, restrictions, or details" type="text"/>
+</div>
+</div>
+<div class="housing-choice" role="group" aria-labelledby="volunteer-housing-title">
+  <span class="housing-title" id="volunteer-housing-title">DO YOU NEED HOUSING IN BOGOTÁ?</span>
+  <input type="hidden" name="volunteerNeedsHousing" value="No"/>
+  <label class="housing-check"><input type="checkbox" name="volunteerNeedsHousing" value="Yes" id="volunteer-housing"/><span class="housing-check-text">Yes, I need help finding accommodation</span></label>
+</div>
+<div>
+<label for="volunteer-notes">NOTES</label>
+<textarea id="volunteer-notes" name="volunteerNotes" placeholder="Tell us about your skills, languages, or what you want to help with." rows="4"></textarea>
+</div>
+<button type="submit">SIGN UP TO VOLUNTEER</button>
+<div class="hidden signup-message" id="volunteer-message"></div>
+</form>
+    <p class="standalone-privacy" data-copy="privacy">Your information is sent to the CMWC registration team.</p>
+  </section>
+</main>
+<footer class="standalone-footer"><span>CMWC 2027 · BICIMENSAJERÍA</span><a href="index.html" data-copy="home">Back to home ↗</a><a href="admin/login.php" id="standalone-admin">Admin Login</a></footer>
+<script src="signup-pages.js"></script>
+</body></html>
